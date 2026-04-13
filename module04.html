@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 04 — It's Okay to Fail. That's the Point. | Wide Open Future</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --night: #080c14;
+  --deep: #0c1020;
+  --card: #101828;
+  --card2: #141e30;
+  --navy: #3a6898;
+  --navy-light: #6898c8;
+  --navy-dim: #1e3a58;
+  --silver: #8898b8;
+  --silver-light: #b0c0d8;
+  --gold: #c8a84a;
+  --gold-light: #e0c070;
+  --gold-dim: #6a5820;
+  --teal: #3a9090;
+  --teal-light: #68b8b8;
+  --rose: #a05858;
+  --rose-light: #c88080;
+  --text: #e8ecf4;
+  --text-dim: #788098;
+  --text-soft: #b0bcd0;
+  --border: #182030;
+  --border-navy: #1e3050;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--night);color:var(--text);font-family:'Source Serif 4',Georgia,serif;font-weight:300;line-height:1.7;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(1px 1px at 15% 10%,rgba(58,104,152,0.5) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 80% 5%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 95% 25%,rgba(200,168,74,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 35% 50%,rgba(255,255,255,0.2) 0%,transparent 100%),radial-gradient(1px 1px at 5% 70%,rgba(58,104,152,0.4) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 60% 80%,rgba(255,255,255,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 45% 18%,rgba(200,168,74,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 88% 60%,rgba(255,255,255,0.25) 0%,transparent 100%);pointer-events:none;z-index:0;}
+
+.site-header{background:rgba(8,12,20,0.97);border-bottom:1px solid var(--border-navy);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);}
+.site-logo{font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;color:var(--navy-light);text-decoration:none;letter-spacing:0.05em;}
+.site-logo span{color:var(--text-dim);font-size:0.8rem;font-family:'Source Serif 4',serif;font-weight:300;margin-left:8px;}
+.progress-bar-wrap{flex:1;max-width:300px;margin:0 32px;}
+.progress-label{font-size:0.7rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+.progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--navy-dim),var(--navy));border-radius:2px;transition:width 0.6s ease;width:0%;}
+
+.module-hero{position:relative;z-index:1;padding:80px 40px 60px;max-width:860px;margin:0 auto;text-align:center;}
+.module-tag{display:inline-block;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--navy-light);border:1px solid var(--border-navy);padding:5px 16px;border-radius:20px;margin-bottom:24px;}
+.module-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.15;color:var(--text);margin-bottom:16px;}
+.module-title em{color:var(--gold-light);font-style:italic;}
+.module-subtitle{font-size:1.05rem;color:var(--text-soft);max-width:580px;margin:0 auto 32px;font-weight:300;}
+.module-meta{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;}
+.meta-pill{font-size:0.78rem;color:var(--text-dim);background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:20px;letter-spacing:0.05em;}
+
+.lesson-nav{position:relative;z-index:1;max-width:860px;margin:0 auto 48px;padding:0 40px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+.lesson-nav-btn{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 6px;cursor:pointer;text-align:center;transition:all 0.2s;color:var(--text-dim);}
+.lesson-nav-btn:hover{border-color:var(--navy-dim);color:var(--navy-light);}
+.lesson-nav-btn.active{background:var(--card2);border-color:var(--navy);color:var(--navy-light);}
+.lesson-nav-btn.completed{border-color:var(--gold-dim);color:var(--gold-light);}
+.lesson-nav-btn.completed::after{content:' ✓';font-size:0.7em;}
+.nav-num{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;}
+.nav-title{font-size:0.68rem;line-height:1.3;}
+
+.main{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 40px 80px;}
+.lesson-panel{display:none;animation:fadeIn 0.4s ease;}
+.lesson-panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.lesson-header{margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.lesson-number{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--navy-dim);margin-bottom:10px;}
+.lesson-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.6rem,4vw,2.2rem);color:var(--text);margin-bottom:12px;line-height:1.3;}
+.lesson-tagline{font-size:1rem;color:var(--text-soft);font-style:italic;font-weight:300;}
+
+.content-block{margin-bottom:32px;}
+.block-heading{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;color:var(--navy-light);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.block-heading::before{content:'';display:inline-block;width:20px;height:2px;background:var(--navy-dim);flex-shrink:0;}
+p{margin-bottom:14px;color:var(--text-soft);}
+p:last-child{margin-bottom:0;}
+strong{color:var(--text);font-weight:600;}
+
+.story-box{background:linear-gradient(135deg,rgba(58,104,152,0.08),rgba(200,168,74,0.05));border:1px solid var(--border-navy);border-radius:12px;padding:24px 28px;margin:24px 0;position:relative;}
+.story-box::before{content:'"';font-family:'Playfair Display',serif;font-size:4rem;color:var(--navy-dim);position:absolute;top:-10px;left:16px;line-height:1;}
+.story-text{font-size:0.95rem;color:var(--text-soft);line-height:1.8;font-style:italic;padding-left:12px;}
+
+.callout{border-radius:10px;padding:20px 24px;margin:24px 0;border-left:3px solid;}
+.callout-navy{background:rgba(58,104,152,0.07);border-color:var(--navy);}
+.callout-gold{background:rgba(200,168,74,0.07);border-color:var(--gold);}
+.callout-teal{background:rgba(58,144,144,0.07);border-color:var(--teal);}
+.callout-rose{background:rgba(160,88,88,0.07);border-color:var(--rose);}
+.callout-label{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;margin-bottom:8px;}
+.callout-navy .callout-label{color:var(--navy-light);}
+.callout-gold .callout-label{color:var(--gold-light);}
+.callout-teal .callout-label{color:var(--teal-light);}
+.callout-rose .callout-label{color:var(--rose-light);}
+
+ul.content-list{list-style:none;margin:12px 0 20px;}
+ul.content-list li{color:var(--text-soft);padding:6px 0 6px 24px;position:relative;border-bottom:1px solid rgba(24,32,48,0.8);font-size:0.95rem;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:'✦';position:absolute;left:0;color:var(--navy-dim);font-size:0.6rem;top:10px;}
+
+.compare-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:0.88rem;}
+.compare-table th{background:var(--card2);color:var(--navy-light);padding:10px 14px;text-align:left;font-weight:600;border-bottom:2px solid var(--border-navy);font-family:'Source Serif 4',serif;}
+.compare-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text-soft);vertical-align:top;}
+
+/* Failure type cards */
+.failure-types{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0;}
+.failure-type{background:var(--card);border:1px solid var(--border-navy);border-radius:10px;padding:16px;border-left:3px solid var(--navy-dim);}
+.ft-label{font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy-light);font-weight:600;margin-bottom:6px;}
+.ft-desc{font-size:0.83rem;color:var(--text-soft);line-height:1.5;}
+
+/* Resilience practices */
+.practice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0;}
+.practice-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;}
+.practice-icon{font-size:1.5rem;display:block;margin-bottom:8px;}
+.practice-name{font-size:0.85rem;color:var(--navy-light);font-weight:600;margin-bottom:4px;font-family:'Playfair Display',serif;}
+.practice-desc{font-size:0.8rem;color:var(--text-dim);line-height:1.5;}
+
+/* Capstone project options */
+.capstone-options{display:grid;grid-template-columns:1fr;gap:10px;margin:20px 0;}
+.capstone-option{background:var(--card);border:1px solid var(--border-navy);border-radius:10px;padding:18px 20px;cursor:pointer;transition:all 0.2s;}
+.capstone-option:hover{border-color:var(--gold-dim);background:var(--card2);}
+.capstone-option.selected{border-color:var(--gold);background:rgba(200,168,74,0.06);}
+.cap-letter{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold);font-weight:700;display:inline-block;margin-right:10px;}
+.cap-title{font-size:0.9rem;color:var(--text);font-weight:600;}
+.cap-desc{font-size:0.8rem;color:var(--text-dim);margin-top:4px;line-height:1.5;}
+
+/* Reflection prompts */
+.reflection-box{background:var(--card2);border:1px solid var(--border-navy);border-radius:12px;padding:24px;margin:24px 0;}
+.reflection-title{font-family:'Playfair Display',serif;color:var(--gold-light);font-size:1rem;margin-bottom:16px;}
+.reflection-prompt{padding:10px 0;border-bottom:1px solid var(--border);font-size:0.88rem;color:var(--text-soft);line-height:1.6;}
+.reflection-prompt:last-child{border-bottom:none;}
+.prompt-num{color:var(--navy-light);font-weight:600;margin-right:8px;}
+
+/* Quiz */
+.quiz-section{background:var(--card);border:1px solid var(--border-navy);border-radius:14px;padding:32px;margin:40px 0 20px;}
+.quiz-title{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;color:var(--navy-light);margin-bottom:6px;}
+.quiz-subtitle{font-size:0.82rem;color:var(--text-dim);margin-bottom:28px;letter-spacing:0.03em;}
+.quiz-question{margin-bottom:28px;}
+.question-text{font-size:0.97rem;color:var(--text);margin-bottom:14px;font-weight:400;}
+.quiz-options{display:flex;flex-direction:column;gap:8px;}
+.quiz-option{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;cursor:pointer;font-size:0.88rem;color:var(--text-soft);text-align:left;transition:all 0.2s;font-family:'Source Serif 4',serif;}
+.quiz-option:hover:not(:disabled){border-color:var(--navy-dim);color:var(--text);}
+.quiz-option.correct{background:rgba(58,144,144,0.15);border-color:var(--teal);color:var(--teal-light);}
+.quiz-option.incorrect{background:rgba(180,70,70,0.1);border-color:#b44646;color:#d47070;}
+.quiz-option.show-correct{background:rgba(58,144,144,0.08);border-color:var(--teal);color:var(--teal-light);}
+.quiz-feedback{margin-top:10px;font-size:0.83rem;padding:10px 14px;border-radius:6px;display:none;line-height:1.5;}
+.quiz-feedback.correct{display:block;background:rgba(58,144,144,0.1);color:var(--teal-light);border-left:3px solid var(--teal);}
+.quiz-feedback.incorrect{display:block;background:rgba(180,80,80,0.08);color:#d47070;border-left:3px solid #b44646;}
+.quiz-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+.btn{padding:11px 24px;border-radius:8px;cursor:pointer;font-size:0.85rem;font-family:'Source Serif 4',serif;letter-spacing:0.05em;transition:all 0.2s;border:none;}
+.btn-primary{background:var(--navy);color:var(--text);font-weight:600;}
+.btn-primary:hover{background:var(--navy-light);color:var(--night);}
+.btn-secondary{background:transparent;color:var(--text-dim);border:1px solid var(--border);}
+.btn-secondary:hover{border-color:var(--navy-dim);color:var(--navy-light);}
+.quiz-score{display:none;text-align:center;padding:20px 0;}
+.score-number{font-family:'Playfair Display',serif;font-size:3rem;color:var(--navy-light);font-weight:700;display:block;}
+.score-label{color:var(--text-dim);font-size:0.85rem;margin-top:4px;}
+
+.confidence-check{background:linear-gradient(135deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--border-navy);border-radius:14px;padding:32px;margin:20px 0 40px;text-align:center;}
+.confidence-title{font-family:'Playfair Display',Georgia,serif;font-size:1.2rem;color:var(--navy-light);margin-bottom:6px;}
+.confidence-subtitle{font-size:0.82rem;color:var(--text-dim);margin-bottom:24px;}
+.confidence-options{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.confidence-btn{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:16px 20px;cursor:pointer;transition:all 0.2s;min-width:160px;font-family:'Source Serif 4',serif;}
+.confidence-btn:hover{border-color:var(--navy-dim);transform:translateY(-2px);}
+.confidence-btn.selected{border-color:var(--navy);background:rgba(58,104,152,0.08);}
+.conf-icon{font-size:1.6rem;display:block;margin-bottom:6px;}
+.conf-label{font-size:0.82rem;color:var(--navy-light);font-weight:600;display:block;}
+.conf-desc{font-size:0.72rem;color:var(--text-dim);margin-top:4px;line-height:1.4;}
+.confidence-response{margin-top:20px;padding:14px 20px;border-radius:8px;font-size:0.88rem;display:none;color:var(--text-soft);background:rgba(58,104,152,0.05);border:1px solid var(--border-navy);}
+
+.lesson-nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid var(--border);}
+.nav-btn{background:transparent;border:1px solid var(--border);color:var(--text-dim);padding:10px 20px;border-radius:8px;cursor:pointer;font-size:0.83rem;font-family:'Source Serif 4',serif;transition:all 0.2s;}
+.nav-btn:hover{border-color:var(--navy-dim);color:var(--navy-light);}
+.nav-btn:disabled{opacity:0.3;cursor:not-allowed;}
+.nav-btn.next-btn{background:var(--navy);color:var(--text);border-color:var(--navy);font-weight:600;}
+.nav-btn.next-btn:hover{background:var(--navy-light);border-color:var(--navy-light);color:var(--night);}
+
+.facilitator-note{background:rgba(58,144,144,0.06);border:1px solid rgba(58,144,144,0.3);border-radius:10px;padding:18px 22px;margin:20px 0;}
+.facilitator-note .fn-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal-light);margin-bottom:8px;font-weight:600;}
+.facilitator-note p{color:rgba(180,220,220,0.8);font-size:0.88rem;}
+
+/* Completion — special for capstone */
+.completion-banner{display:none;text-align:center;padding:60px 40px;animation:fadeIn 0.6s ease;}
+.completion-banner.show{display:block;}
+.completion-star{font-size:4rem;display:block;margin-bottom:20px;}
+.completion-title{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--gold-light);margin-bottom:12px;line-height:1.2;}
+.completion-text{color:var(--text-soft);max-width:560px;margin:0 auto 28px;font-size:0.97rem;}
+.completion-summary{display:inline-grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;}
+.summary-stat{background:var(--card);border:1px solid var(--border-navy);border-radius:10px;padding:16px 20px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy-light);display:block;}
+.stat-label{font-size:0.72rem;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;}
+.completion-quote{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold-light);font-style:italic;max-width:500px;margin:0 auto 32px;line-height:1.6;}
+
+@media(max-width:640px){
+  .site-header{padding:12px 20px;}
+  .progress-bar-wrap{display:none;}
+  .module-hero{padding:50px 20px 40px;}
+  .lesson-nav{padding:0 20px;grid-template-columns:repeat(3,1fr);}
+  .main{padding:0 20px 60px;}
+  .failure-types,.practice-grid{grid-template-columns:1fr;}
+  .confidence-options{flex-direction:column;align-items:center;}
+  .completion-summary{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://wideopenfuture.org" class="site-logo">Wide Open Future <span>/ Module 04</span></a>
+  <div class="progress-bar-wrap">
+    <div class="progress-label">Your progress</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div style="font-size:0.75rem;color:var(--text-dim);"><span id="progressText">Lesson 1 of 6</span></div>
+</header>
+
+<section class="module-hero">
+  <div class="module-tag">Module 04 · Capstone · Wide Open Future</div>
+  <h1 class="module-title">It's Okay to Fail.<br><em>That's the Point.</em></h1>
+  <p class="module-subtitle">Where everything becomes real. Start. Get it wrong. Learn. Try again. Make something. Show up with it.</p>
+  <div class="module-meta">
+    <span class="meta-pill">6 Lessons</span>
+    <span class="meta-pill">Capstone project</span>
+    <span class="meta-pill">Self-paced</span>
+    <span class="meta-pill">Facilitator-ready</span>
+  </div>
+</section>
+
+<nav class="lesson-nav">
+  <button class="lesson-nav-btn active" onclick="goToLesson(0)"><span class="nav-num">01</span><span class="nav-title">What Failure Is</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(1)"><span class="nav-num">02</span><span class="nav-title">Fear of Starting</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(2)"><span class="nav-num">03</span><span class="nav-title">What Went Wrong</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(3)"><span class="nav-num">04</span><span class="nav-title">Resilience</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(4)"><span class="nav-num">05</span><span class="nav-title">Quit or Persist?</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(5)"><span class="nav-num">06</span><span class="nav-title">Make Something</span></button>
+</nav>
+
+<main class="main">
+
+<!-- ════════════════════════════
+     LESSON 1 — What Failure Actually Is
+════════════════════════════ -->
+<div class="lesson-panel active" id="lesson-0">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 01 of 06</div>
+    <h2 class="lesson-title">What Failure Actually Is</h2>
+    <p class="lesson-tagline">From shame to data — redefining the thing that stops most people cold.</p>
+  </div>
+
+  <div class="story-box">
+    <p class="story-text">The word "failure" carries more weight than it deserves. It lands in the chest. It attaches to identity. It replays. We don't say "the crop failed this year." We say "I failed." The language collapses the distinction between a thing that happened and a judgment about who we are. That collapse is the problem — not the failure itself. This lesson is about separating those two things back out.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Failure is data, not verdict</h3>
+    <p>When something doesn't work, there are exactly four reasons why. Knowing which one applies is how you learn from it instead of just suffering it.</p>
+    <div class="failure-types">
+      <div class="failure-type">
+        <div class="ft-label">Wrong approach</div>
+        <div class="ft-desc">The method didn't fit the problem. This is the most common kind. The fix is a different strategy, not a different person.</div>
+      </div>
+      <div class="failure-type">
+        <div class="ft-label">Wrong timing</div>
+        <div class="ft-desc">The right idea at the wrong moment. Markets change. People change. Circumstances change. Timing is often beyond your control.</div>
+      </div>
+      <div class="failure-type">
+        <div class="ft-label">Wrong execution</div>
+        <div class="ft-desc">Good idea, good timing — but the implementation had gaps. This is the most learnable failure. You know what to fix.</div>
+      </div>
+      <div class="failure-type">
+        <div class="ft-label">Wrong goal</div>
+        <div class="ft-desc">You were working toward something that wasn't actually right for you. This failure is the most valuable — it points you somewhere better.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Fixed mindset vs. growth mindset</h3>
+    <p>Psychologist Carol Dweck identified two basic orientations toward difficulty. They produce very different outcomes.</p>
+    <table class="compare-table">
+      <tr><th>Fixed Mindset</th><th>Growth Mindset</th></tr>
+      <tr><td>"I'm not good at this."</td><td>"I'm not good at this <strong>yet</strong>."</td></tr>
+      <tr><td>Difficulty = evidence of limits</td><td>Difficulty = where the learning is</td></tr>
+      <tr><td>Avoids challenges to protect self-image</td><td>Seeks challenges because that's how growth happens</td></tr>
+      <tr><td>Failure means I'm not capable</td><td>Failure means I haven't figured it out yet</td></tr>
+      <tr><td>Effort feels pointless if you're not naturally good</td><td>Effort is the mechanism — not a sign of weakness</td></tr>
+    </table>
+    <p>This is not relentless positivity. It is a more accurate description of how growth actually works. The "yet" is not optimism. It is realism.</p>
+  </div>
+
+  <div class="callout callout-gold">
+    <div class="callout-label">The failures that weren't wasted</div>
+    <p>James Dyson built 5,126 prototypes before his vacuum worked. Walt Disney was fired from his first newspaper job for "lacking imagination." Vera Wang failed to make the Olympic figure skating team and failed to become editor of Vogue — and started designing wedding dresses at 40. <strong>In every case, the failures were not detours from the path. They were the path.</strong></p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The personal failure inventory</h3>
+    <p>This is private writing — not for sharing unless you choose to. Think of three failures you still carry. For each one, ask: which of the four types was it? What did it actually teach you? Is this failure part of who you are — or something that happened to you?</p>
+    <p>That last question is the one worth sitting with.</p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Note — Give It Silence</div>
+    <p>The personal failure inventory needs real silence — 10 to 12 minutes minimum. Don't rush it. Don't fill the silence with encouragement or explanation. The work happens in the quiet. After, invite sharing only if people choose. Never require it.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-0">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q0-0">
+      <p class="question-text">1. The "four types of failure" framework is useful because...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,0,0,false)">It helps you assign blame to the right source</button>
+        <button class="quiz-option" onclick="answer(0,0,1,true)">It turns failure into data — separating what happened from who you are</button>
+        <button class="quiz-option" onclick="answer(0,0,2,false)">It proves that most failures are outside your control</button>
+        <button class="quiz-option" onclick="answer(0,0,3,false)">It shows which failures are worth learning from and which to ignore</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-0-correct">✓ Exactly. Failure as data, not verdict. That shift changes everything about what you do next.</div>
+      <div class="quiz-feedback" id="fb-0-0-incorrect">The four-type framework turns failure into something you can analyze — separating what happened from a verdict about who you are. That's the shift that makes learning possible.</div>
+    </div>
+    <div class="quiz-question" id="q0-1">
+      <p class="question-text">2. A growth mindset says that difficulty is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,1,0,false)">Evidence that you're not capable of the task</button>
+        <button class="quiz-option" onclick="answer(0,1,1,false)">Something to push through by trying harder at the same approach</button>
+        <button class="quiz-option" onclick="answer(0,1,2,true)">Where the learning is — not evidence of limits, but the mechanism of growth</button>
+        <button class="quiz-option" onclick="answer(0,1,3,false)">A sign to find something you're naturally better at</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-1-correct">✓ Right. Difficulty is not evidence of limits — it's where growth happens. That's not optimism. It's accurate.</div>
+      <div class="quiz-feedback" id="fb-0-1-incorrect">Growth mindset treats difficulty as the location of learning — not as evidence of limits. "I'm not good at this yet" is more accurate than "I'm not good at this."</div>
+    </div>
+    <div class="quiz-question" id="q0-2">
+      <p class="question-text">3. "Wrong goal" is the most valuable type of failure because...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,2,0,false)">It means you tried hardest and still didn't succeed</button>
+        <button class="quiz-option" onclick="answer(0,2,1,false)">It's the easiest failure to recover from</button>
+        <button class="quiz-option" onclick="answer(0,2,2,true)">It redirects you — you were working toward something that wasn't right for you, and now you know</button>
+        <button class="quiz-option" onclick="answer(0,2,3,false)">It's the rarest type and therefore most instructive</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-2-correct">✓ When the goal itself was wrong, the failure does you a favor. It frees you to find what's actually right — before you spend more time on the wrong thing.</div>
+      <div class="quiz-feedback" id="fb-0-2-incorrect">Wrong-goal failures redirect you. They're telling you something important: this isn't the right destination. That information, painful as it is, points you somewhere better.</div>
+    </div>
+    <div class="quiz-score" id="score-0"><span class="score-number" id="score-num-0"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(0)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(0)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(0,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(0,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(0,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-0"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" disabled>← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(1)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     LESSON 2 — The Fear of Starting
+════════════════════════════ -->
+<div class="lesson-panel" id="lesson-1">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 02 of 06</div>
+    <h2 class="lesson-title">The Fear of Starting</h2>
+    <p class="lesson-tagline">Beginning is the hardest part. It is also a skill.</p>
+  </div>
+
+  <div class="story-box">
+    <p class="story-text">There is a kind of farmer every agricultural community has known — who spends all winter planning. The perfect rotation. The optimal seed variety. The ideal planting schedule. They read everything. They know everything. And then spring comes and somehow the field doesn't get planted. The planning was real. The knowledge was real. But the planting never happened. That is the fear of starting — dressed up as preparation.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The real reasons we don't start</h3>
+    <ul class="content-list">
+      <li><strong>Perfectionism.</strong> If it can't be done perfectly, the thinking goes, it shouldn't be done at all. This is not a high standard — it's a trap. Perfect is the enemy of done, and done is the enemy of nothing.</li>
+      <li><strong>Fear of judgment.</strong> Someone will see it. Someone will have an opinion. That exposure feels unbearable before you begin. What helps: almost no one is paying as much attention to your attempts as you think they are.</li>
+      <li><strong>Overwhelm.</strong> The whole project is so big that any starting point feels arbitrary and inadequate. The fix: don't start the project — start one sentence, one row, one phone call. Then the next.</li>
+      <li><strong>Waiting to feel ready.</strong> The readiness feeling almost never comes before you start. It comes after. Starting is what creates the feeling of readiness — not the other way around.</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-navy">
+    <div class="callout-label">The minimum viable attempt</div>
+    <p>A minimum viable attempt is the smallest version of starting that counts. Not the whole thing — just the first real move. One paragraph, not the whole essay. One row planted, not the whole field. One call made, not the whole plan completed. <strong>The goal of a minimum viable attempt is not to produce something good. It is to produce something — anything — that you can then react to, improve, or continue.</strong></p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Starting rituals that work</h3>
+    <p>Many people who create things regularly have discovered that the path to starting is not motivation — it's ritual. A specific place, a specific time, a specific small action that tells your brain: we are doing this now.</p>
+    <ul class="content-list">
+      <li>The same chair, the same cup of coffee, before anything else is open</li>
+      <li>A two-minute timer — you only have to work for two minutes. (You'll keep going.)</li>
+      <li>Writing the first terrible sentence on purpose — permission to begin badly</li>
+      <li>Setting out your materials the night before so starting tomorrow has no friction</li>
+    </ul>
+    <p>Find yours. It doesn't need to be impressive. It just needs to work.</p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Activity — The Two-Minute Start</div>
+    <p>Give everyone a creative or practical prompt (write the opening of something, sketch a plan, start a letter). Set a timer for two minutes. Their only job: start. Don't stop, don't edit, don't look up. When the timer ends, ask: who kept going? Almost everyone will have. That experience — not the explanation — is the lesson.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-1">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q1-0">
+      <p class="question-text">1. "Waiting until you feel ready" is a starting barrier because...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,0,0,false)">Readiness requires research and preparation that takes time</button>
+        <button class="quiz-option" onclick="answer(1,0,1,true)">The readiness feeling comes after starting — not before. Waiting for it means never beginning.</button>
+        <button class="quiz-option" onclick="answer(1,0,2,false)">Most people are never truly ready for important challenges</button>
+        <button class="quiz-option" onclick="answer(1,0,3,false)">Feeling ready means you've already waited too long</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-0-correct">✓ Readiness is a feeling that follows action — not a prerequisite for it. Waiting for it is how things don't get started.</div>
+      <div class="quiz-feedback" id="fb-1-0-incorrect">Readiness doesn't arrive before you start — it's generated by starting. Waiting for the feeling means waiting indefinitely.</div>
+    </div>
+    <div class="quiz-question" id="q1-1">
+      <p class="question-text">2. A "minimum viable attempt" is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,1,0,false)">A half-hearted effort that gets you out of an obligation</button>
+        <button class="quiz-option" onclick="answer(1,1,1,false)">The lowest acceptable quality for a finished product</button>
+        <button class="quiz-option" onclick="answer(1,1,2,true)">The smallest real first move — something you can react to, improve, or continue</button>
+        <button class="quiz-option" onclick="answer(1,1,3,false)">A planning technique that breaks big projects into smaller pieces</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-1-correct">✓ The point is not to produce something good — it's to produce something real that you can then work with. Starting creates momentum. Nothing can't.</div>
+      <div class="quiz-feedback" id="fb-1-1-incorrect">A minimum viable attempt isn't about low quality — it's about getting something real in front of you. One paragraph, one row, one call. Something you can react to and continue from.</div>
+    </div>
+    <div class="quiz-question" id="q1-2">
+      <p class="question-text">3. Perfectionism is a starting barrier because...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,2,0,false)">High standards are incompatible with a growth mindset</button>
+        <button class="quiz-option" onclick="answer(1,2,1,false)">Perfectionists work too slowly to ever finish</button>
+        <button class="quiz-option" onclick="answer(1,2,2,true)">The belief that it must be perfect prevents beginning — and nothing gets made at all</button>
+        <button class="quiz-option" onclick="answer(1,2,3,false)">Perfectionists are usually less capable than they think</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-2-correct">✓ "If I can't do it perfectly, I won't do it" — that's the trap. Perfect is the enemy of done. Done is the enemy of nothing.</div>
+      <div class="quiz-feedback" id="fb-1-2-incorrect">Perfectionism isn't a high standard — it's a stopping point before you start. The belief that it must be right from the beginning prevents you from beginning at all.</div>
+    </div>
+    <div class="quiz-score" id="score-1"><span class="score-number" id="score-num-1"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(1)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(1)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(1,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(1,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(1,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-1"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(0)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(2)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     LESSON 3 — Learning from What Went Wrong
+════════════════════════════ -->
+<div class="lesson-panel" id="lesson-2">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 03 of 06</div>
+    <h2 class="lesson-title">Learning from What Went Wrong</h2>
+    <p class="lesson-tagline">The debrief skill — turning failure into fuel instead of weight.</p>
+  </div>
+
+  <div class="story-box">
+    <p class="story-text">Good pilots do something every other profession should steal: after every flight, they debrief. What worked, what didn't, what they'd do differently. Not to assign blame. Not to relive the bad moment. To extract the learning before it evaporates. Most people do the opposite. They replay the failure emotionally — the embarrassment, the regret, the what-ifs — until the emotional charge fades, and then they move on. The information was there. They just never got it out.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The debrief — five questions</h3>
+    <table class="compare-table">
+      <tr><th>Question</th><th>What you're extracting</th></tr>
+      <tr><td><strong>What did I set out to do?</strong></td><td>Clarity on the original goal — so you can evaluate against it honestly</td></tr>
+      <tr><td><strong>What actually happened?</strong></td><td>The facts, separate from the feelings. Just the sequence of events.</td></tr>
+      <tr><td><strong>Where did it go wrong — and which type was it?</strong></td><td>Apply the four-type framework from Lesson 1. Approach, timing, execution, or goal?</td></tr>
+      <tr><td><strong>What would I do differently?</strong></td><td>The actionable learning — not regret, but a concrete change for next time</td></tr>
+      <tr><td><strong>What did I do well that I want to keep?</strong></td><td>Equally important. Most debriefs skip this. It anchors confidence alongside the learning.</td></tr>
+    </table>
+  </div>
+
+  <div class="callout callout-teal">
+    <div class="callout-label">The timing matters</div>
+    <p>The best time to debrief is when the emotional charge has dropped enough to think clearly — but not so long after that the details have faded. Usually 24 to 72 hours after the event. Not in the raw moment. Not three months later. In that window, while it's still fresh but not still burning.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">What not to do</h3>
+    <ul class="content-list">
+      <li><strong>Don't replay the emotional experience.</strong> There's a difference between reviewing what happened and reliving how it felt. The review is useful. The reliving is not.</li>
+      <li><strong>Don't catastrophize.</strong> This one failure is not proof of a pattern, a character flaw, or a permanent limitation. It is one event.</li>
+      <li><strong>Don't skip question five.</strong> What went well is as important as what didn't. You need to know what to keep as much as what to change.</li>
+      <li><strong>Don't do it alone every time.</strong> A trusted person who can help you think through a failure without judging you or rescuing you — that's one of the most valuable relationships you can have.</li>
+    </ul>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Activity</div>
+    <p>Walk the group through a shared "failure" — a project that didn't go as planned, a decision the community made that had unintended consequences, or a personal professional example you're willing to share. Model the debrief out loud. Show what it looks like to apply all five questions without self-pity or defensiveness. Seeing someone model intellectual honesty is more powerful than any amount of instruction about it.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-2">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q2-0">
+      <p class="question-text">1. The most important difference between "reviewing" and "reliving" a failure is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,0,0,false)">Reviewing takes longer and produces more insight</button>
+        <button class="quiz-option" onclick="answer(2,0,1,true)">Reviewing extracts information; reliving replays the emotional experience without learning from it</button>
+        <button class="quiz-option" onclick="answer(2,0,2,false)">Reliving is more honest because it acknowledges how you really felt</button>
+        <button class="quiz-option" onclick="answer(2,0,3,false)">Reviewing requires a trusted person while reliving can be done alone</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-0-correct">✓ Reviewing gets the information out. Reliving just keeps the hurt alive. The debrief framework helps you do the first and skip the second.</div>
+      <div class="quiz-feedback" id="fb-2-0-incorrect">Reviewing extracts the learning — what happened, what type of failure, what to do differently. Reliving just replays the emotional charge without getting anything useful out of it.</div>
+    </div>
+    <div class="quiz-question" id="q2-1">
+      <p class="question-text">2. Why is "what did I do well?" an important debrief question?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,1,0,false)">To balance out the negative feedback you're giving yourself</button>
+        <button class="quiz-option" onclick="answer(2,1,1,true)">You need to know what to keep — anchoring strengths alongside the learning builds confidence to try again</button>
+        <button class="quiz-option" onclick="answer(2,1,2,false)">It helps you identify what type of failure it was</button>
+        <button class="quiz-option" onclick="answer(2,1,3,false)">It satisfies the social expectation of fairness to yourself</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-1-correct">✓ Knowing what worked is not self-flattery — it's information. You need to protect and repeat the things that went right just as much as you need to change what didn't.</div>
+      <div class="quiz-feedback" id="fb-2-1-incorrect">What went well is real learning too — you need to know what to keep and repeat. Most debriefs skip this. Don't.</div>
+    </div>
+    <div class="quiz-question" id="q2-2">
+      <p class="question-text">3. The best time to debrief a failure is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,2,0,false)">Immediately after — while the memory is freshest</button>
+        <button class="quiz-option" onclick="answer(2,2,1,false)">At least a month later — when emotions have fully settled</button>
+        <button class="quiz-option" onclick="answer(2,2,2,true)">24 to 72 hours after — emotional charge has dropped but details are still fresh</button>
+        <button class="quiz-option" onclick="answer(2,2,3,false)">Whenever you feel ready — there's no optimal timing</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-2-correct">✓ The window between "still burning" and "already faded" — usually 24 to 72 hours — is when the debrief is most useful.</div>
+      <div class="quiz-feedback" id="fb-2-2-incorrect">Immediately is too raw. Months later and details have faded. The 24-to-72-hour window is when you can think clearly while the specifics are still there to work with.</div>
+    </div>
+    <div class="quiz-score" id="score-2"><span class="score-number" id="score-num-2"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(2)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(2)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(2,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(2,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(2,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-2"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(1)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(3)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     LESSON 4 — Resilience Is a Practice
+════════════════════════════ -->
+<div class="lesson-panel" id="lesson-3">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 04 of 06</div>
+    <h2 class="lesson-title">Resilience Is a Practice, Not a Trait</h2>
+    <p class="lesson-tagline">It's not something you have. It's something you do — repeatedly.</p>
+  </div>
+
+  <div class="story-box">
+    <p class="story-text">People talk about resilience like it's a character trait — something some people have and others don't. The rancher who lost a season to drought and kept going. The family that survived a hard winter and came out stronger. We describe them as resilient as if they were born that way. But ask them. They'll tell you they didn't feel resilient. They felt scared, or exhausted, or like quitting. They just kept doing the next thing anyway. That's not a trait. That's a practice. And it can be built.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">What resilience actually looks like</h3>
+    <p>Resilience is not the absence of struggle. It's not bouncing back as if nothing happened. It's <strong>moving through</strong> — feeling the full weight of something hard and choosing the next action anyway. The "bounce back" metaphor is misleading: resilient people are often changed by what they go through. They carry it. They just don't stop.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Six practices that build it</h3>
+    <div class="practice-grid">
+      <div class="practice-card">
+        <span class="practice-icon">🔗</span>
+        <div class="practice-name">Maintain connections</div>
+        <div class="practice-desc">Isolation amplifies hardship. The people who recover from setbacks fastest are almost always the ones who stay connected — to family, community, or at least one person who knows what's happening.</div>
+      </div>
+      <div class="practice-card">
+        <span class="practice-icon">📍</span>
+        <div class="practice-name">Take the next small action</div>
+        <div class="practice-desc">When everything feels overwhelming, forget the whole picture. What's the one next thing? Just that. One action rebuilds momentum where paralysis had taken hold.</div>
+      </div>
+      <div class="practice-card">
+        <span class="practice-icon">📖</span>
+        <div class="practice-name">Create a narrative</div>
+        <div class="practice-desc">People who find meaning in hard experiences — not toxic positivity, but genuine sense-making — recover more fully. "This happened, and here's what I learned" is a resilience act.</div>
+      </div>
+      <div class="practice-card">
+        <span class="practice-icon">🌱</span>
+        <div class="practice-name">Protect your baseline</div>
+        <div class="practice-desc">Sleep, movement, and food aren't luxuries during hard times — they're infrastructure. Resilience is harder to access when the body is depleted. Non-negotiable basics first.</div>
+      </div>
+      <div class="practice-card">
+        <span class="practice-icon">🎯</span>
+        <div class="practice-name">Keep a long view</div>
+        <div class="practice-desc">The crisis that feels permanent almost never is. Asking "will this matter in five years?" is not dismissive — it's perspective. Most of what feels catastrophic right now won't be.</div>
+      </div>
+      <div class="practice-card">
+        <span class="practice-icon">🤝</span>
+        <div class="practice-name">Accept help</div>
+        <div class="practice-desc">In agricultural communities especially, accepting help can feel like weakness. It isn't. The neighbor who shows up to help during a hard calving season is extending the same resilience infrastructure that keeps communities intact.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-gold">
+    <div class="callout-label">The rural resilience inheritance</div>
+    <p>People in agricultural communities often carry more resilience knowledge than they realize — because failure and hardship are built into the work. Bad harvests. Sick livestock. Equipment at the worst possible moment. Drought. Markets. The skills are already there. This lesson isn't teaching something new. It's naming what you already know how to do.</p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Discussion</div>
+    <p>Ask: Tell me about a time your community came through something hard together. What made it possible? The answers to that question are almost always the six practices on this list — without anyone having named them that way before. Naming them after the story lands differently than teaching them before it.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-3">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q3-0">
+      <p class="question-text">1. Resilience is best described as...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,0,0,false)">A personality trait some people are born with and others aren't</button>
+        <button class="quiz-option" onclick="answer(3,0,1,false)">The ability to return to exactly how you were before the hardship</button>
+        <button class="quiz-option" onclick="answer(3,0,2,true)">A practice — moving through hard things and choosing the next action anyway, repeatedly</button>
+        <button class="quiz-option" onclick="answer(3,0,3,false)">Emotional toughness that prevents you from being affected by difficulty</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-0-correct">✓ A practice, not a trait. It's built through action — the next small thing, the maintained connection, the kept perspective — not bestowed at birth.</div>
+      <div class="quiz-feedback" id="fb-3-0-incorrect">Resilience isn't a trait you either have or don't — it's a practice built through specific, repeatable actions. Anyone can build it. Everyone already has some of it.</div>
+    </div>
+    <div class="quiz-question" id="q3-1">
+      <p class="question-text">2. When everything feels overwhelming, the most useful resilience action is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,1,0,false)">Step back entirely until you feel ready to engage</button>
+        <button class="quiz-option" onclick="answer(3,1,1,true)">Identify and take just the next small action — forget the whole picture for now</button>
+        <button class="quiz-option" onclick="answer(3,1,2,false)">Make a comprehensive plan so you can see the path forward</button>
+        <button class="quiz-option" onclick="answer(3,1,3,false)">Talk through your feelings before taking any action</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-1-correct">✓ Just the next thing. Not the whole picture — just the one next action. That rebuilds momentum where paralysis had taken hold.</div>
+      <div class="quiz-feedback" id="fb-3-1-incorrect">When overwhelmed, the whole picture is the problem. The fix is to stop looking at it and ask: what is the one next thing I can do? Just that. Then the one after that.</div>
+    </div>
+    <div class="quiz-question" id="q3-2">
+      <p class="question-text">3. In rural and agricultural communities, accepting help during hard times is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,2,0,false)">A sign of weakness that undermines independence</button>
+        <button class="quiz-option" onclick="answer(3,2,1,false)">Fine for others but not appropriate for community leaders</button>
+        <button class="quiz-option" onclick="answer(3,2,2,true)">Part of the resilience infrastructure that keeps communities intact — not weakness, participation</button>
+        <button class="quiz-option" onclick="answer(3,2,3,false)">Only appropriate for financial hardship, not emotional difficulty</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-2-correct">✓ Accepting help is participation in the community resilience system — the same one you contribute to when you're the one showing up for a neighbor.</div>
+      <div class="quiz-feedback" id="fb-3-2-incorrect">Accepting help isn't weakness — it's how the community resilience system works. You show up for neighbors. Neighbors show up for you. That's the infrastructure. It only works if people use it in both directions.</div>
+    </div>
+    <div class="quiz-score" id="score-3"><span class="score-number" id="score-num-3"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(3)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(3)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(3,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(3,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(3,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-3"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(2)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(4)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     LESSON 5 — When to Quit and When to Persist
+════════════════════════════ -->
+<div class="lesson-panel" id="lesson-4">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 05 of 06</div>
+    <h2 class="lesson-title">When to Quit and When to Persist</h2>
+    <p class="lesson-tagline">The underrated wisdom of knowing the difference.</p>
+  </div>
+
+  <div class="story-box">
+    <p class="story-text">We are surrounded by messages about persistence. Don't quit. Keep going. Never give up. And those messages are sometimes right. But sometimes quitting is the most intelligent thing you can do — and the culture's obsession with persistence has made it harder to recognize when that's true. There is a version of quitting that is failure. And there is a version of quitting that is clarity — knowing what you've learned, knowing it's not the right path, and choosing to invest your limited time somewhere better. The skill is knowing which one you're facing.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The case for persisting</h3>
+    <ul class="content-list">
+      <li><strong>The dip.</strong> Almost every worthwhile endeavor has a point where it gets hard before it gets better. This is predictable. Quitting in the dip — before you've gotten through to the other side — is the most common and most regrettable kind of quitting.</li>
+      <li><strong>You haven't actually tried the adjusted approach yet.</strong> If you haven't applied what you learned from the failure, you haven't actually iterated. Try the changed version first.</li>
+      <li><strong>The goal is still right, even if the method wasn't.</strong> Separate the goal from the approach. A failed approach doesn't invalidate the goal.</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The case for quitting</h3>
+    <ul class="content-list">
+      <li><strong>The goal itself was wrong.</strong> Not the approach — the destination. This is the "wrong goal" failure type. When you've genuinely learned that this isn't the right thing to be working toward, continuing is not persistence. It's avoidance of the harder decision.</li>
+      <li><strong>The cost has exceeded any reasonable return.</strong> Sunk cost thinking keeps people in bad situations too long. What matters is what's ahead — not what's already spent.</li>
+      <li><strong>Every resource you keep here is unavailable for something better.</strong> Time, money, energy, attention — they're all finite. Continuing something that isn't working is a choice not to do something that could.</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The questions that tell you which one it is</h3>
+    <table class="compare-table">
+      <tr><th>Ask yourself...</th><th>What the answer reveals</th></tr>
+      <tr><td>Have I actually tried the adjusted approach yet?</td><td>If no — persist and try it. If yes and it didn't work — revisit.</td></tr>
+      <tr><td>Is this a dip, or is this a dead end?</td><td>Dips are temporary hard patches. Dead ends are structural — the path doesn't go where you need to go.</td></tr>
+      <tr><td>Is the goal still right, or has the goal changed?</td><td>If the goal has changed — quitting the old path is wisdom, not failure.</td></tr>
+      <tr><td>Am I quitting to avoid discomfort, or to pursue something better?</td><td>Honest answer to this one matters more than any external advice.</td></tr>
+    </table>
+  </div>
+
+  <div class="callout callout-navy">
+    <div class="callout-label">The honest question</div>
+    <p>"Am I quitting to avoid discomfort, or to pursue something better?" That question — answered honestly — is worth more than any framework. Most people know the difference when they stop and actually ask it.</p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Discussion</div>
+    <p>Ask: Has anyone here made a decision to quit something that turned out to be the right call? What did you learn from it? This conversation almost always surprises the room — because the culture rarely celebrates the wise quit. Naming and honoring it here changes the frame.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-4">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q4-0">
+      <p class="question-text">1. "The dip" is a reason to persist because...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,0,0,false)">It means the project is nearly finished</button>
+        <button class="quiz-option" onclick="answer(4,0,1,true)">Almost every worthwhile endeavor has a hard patch before it gets better — quitting in the dip means never reaching the other side</button>
+        <button class="quiz-option" onclick="answer(4,0,2,false)">The discomfort of the dip is the learning itself</button>
+        <button class="quiz-option" onclick="answer(4,0,3,false)">Quitting during a dip guarantees you'll feel regret later</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-0-correct">✓ The dip is predictable. Knowing it's coming — and that it's temporary — is what makes it possible to push through instead of quitting right before the breakthrough.</div>
+      <div class="quiz-feedback" id="fb-4-0-incorrect">The dip is the hard patch before things get better. It's predictable in almost every worthwhile endeavor. Quitting in it means never finding out what was on the other side.</div>
+    </div>
+    <div class="quiz-question" id="q4-1">
+      <p class="question-text">2. Quitting is the wise choice when...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,1,0,false)">The project has taken longer than originally planned</button>
+        <button class="quiz-option" onclick="answer(4,1,1,false)">Other people have expressed doubts about it</button>
+        <button class="quiz-option" onclick="answer(4,1,2,true)">The goal itself was wrong — and continuing means investing more in the wrong destination</button>
+        <button class="quiz-option" onclick="answer(4,1,3,false)">You've experienced more than two failures at the same task</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-1-correct">✓ When the goal itself is wrong — not the approach, but the destination — continuing isn't persistence. It's avoidance of the harder, clearer decision.</div>
+      <div class="quiz-feedback" id="fb-4-1-incorrect">Quitting is wise when you've genuinely learned the goal was wrong. Timeline, other people's doubts, and even repeated failures aren't automatically reasons to quit — but a wrong goal is.</div>
+    </div>
+    <div class="quiz-question" id="q4-2">
+      <p class="question-text">3. The most honest question to ask yourself when considering quitting is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,2,0,false)">What would other people think of me if I quit this?</button>
+        <button class="quiz-option" onclick="answer(4,2,1,false)">How much have I already invested in this?</button>
+        <button class="quiz-option" onclick="answer(4,2,2,true)">Am I quitting to avoid discomfort, or to pursue something better?</button>
+        <button class="quiz-option" onclick="answer(4,2,3,false)">Would a more resilient person push through this?</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-2-correct">✓ That's the one. Most people know the answer when they actually stop and ask it honestly. It cuts through all the noise.</div>
+      <div class="quiz-feedback" id="fb-4-2-incorrect">The honest question is: am I avoiding discomfort, or pursuing something better? Other people's opinions, sunk costs, and comparisons to resilient people all point the wrong direction.</div>
+    </div>
+    <div class="quiz-score" id="score-4"><span class="score-number" id="score-num-4"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(4)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(4)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(4,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(4,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(4,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-4"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(3)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(5)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     LESSON 6 — The Capstone: Make Something Real
+════════════════════════════ -->
+<div class="lesson-panel" id="lesson-5">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 06 of 06 · The Capstone</div>
+    <h2 class="lesson-title">Make Something Real</h2>
+    <p class="lesson-tagline">Use everything. Let it be imperfect. Show up with it. That's the whole assignment.</p>
+  </div>
+
+  <div class="callout callout-gold">
+    <div class="callout-label">What this lesson is</div>
+    <p>This is not a test. There is no grade. There is no perfect version. The only requirement is that you make something real — using at least two things you learned across this curriculum — and that you honestly reflect on how it went. <strong>The requirement is not excellence. The requirement is the attempt, and the honest accounting of it afterward.</strong></p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">You have been preparing for this since Module 01, Lesson 01</h3>
+    <p>You know how AI works and how to use it as a tool. You know how to think critically about what you encounter. You know how to show up and how to treat people. You know that failure is data, that starting is a skill, and that resilience is something you practice — not something you wait to feel.</p>
+    <p><strong>Now use all of it. Make something and show up with it.</strong></p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Choose your project</h3>
+    <div class="capstone-options">
+      <div class="capstone-option" onclick="selectCapstone(this)">
+        <span class="cap-letter">A</span><span class="cap-title">The Community Pitch</span>
+        <div class="cap-desc">Identify a real problem in your community and develop a pitch for addressing it. Research it, propose a solution, anticipate the objections, and present it as if to a real audience. Use AI as a research and drafting tool. Apply critical thinking to your own proposal.</div>
+      </div>
+      <div class="capstone-option" onclick="selectCapstone(this)">
+        <span class="cap-letter">B</span><span class="cap-title">The How-To That Doesn't Exist</span>
+        <div class="cap-desc">Create a guide for something you know how to do that no good guide covers — specific to your context, your community, your knowledge. Ranch-specific, rural-specific, community-specific. Something that would have helped you if it had existed. Write it, illustrate it, or record it.</div>
+      </div>
+      <div class="capstone-option" onclick="selectCapstone(this)">
+        <span class="cap-letter">C</span><span class="cap-title">The Letter That Matters</span>
+        <div class="cap-desc">Write a letter you've been putting off — to a legislator, a school board, an organization, or a person. Make it real. Use SIFT to fact-check your claims. Use the critical thinking framework to strengthen your argument. Send it, or prepare it to be sent.</div>
+      </div>
+      <div class="capstone-option" onclick="selectCapstone(this)">
+        <span class="cap-letter">D</span><span class="cap-title">The Creative Work</span>
+        <div class="cap-desc">Write a piece, build something, make a plan for something creative you've been avoiding. The medium is yours. The requirement is that it's real and finished — not perfected. Apply the fear-of-starting lesson. Use the minimum viable attempt. Let it be what it actually is.</div>
+      </div>
+      <div class="capstone-option" onclick="selectCapstone(this)">
+        <span class="cap-letter">E</span><span class="cap-title">The Personal Plan</span>
+        <div class="cap-desc">Build a real plan for something that matters to you — a credential, a business, a life change, a skill. Use AI to research and organize. Apply critical thinking to your own assumptions. Include a failure plan: what will you do when (not if) it gets hard?</div>
+      </div>
+    </div>
+    <p style="font-size:0.83rem;color:var(--text-dim);margin-top:8px;">Or propose your own. Use at least two skills from this curriculum and apply the failure-and-resilience lens.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The reflection — after you finish</h3>
+    <div class="reflection-box">
+      <div class="reflection-title">Five questions to answer honestly when it's done</div>
+      <div class="reflection-prompt"><span class="prompt-num">1.</span> What was hardest about starting — and what got you started anyway?</div>
+      <div class="reflection-prompt"><span class="prompt-num">2.</span> Where did it go wrong during the process, and what did you do about it?</div>
+      <div class="reflection-prompt"><span class="prompt-num">3.</span> What would you do differently if you did this again?</div>
+      <div class="reflection-prompt"><span class="prompt-num">4.</span> What are you proud of that has nothing to do with the quality of the finished product?</div>
+      <div class="reflection-prompt"><span class="prompt-num">5.</span> What does completing this tell you about yourself as a learner?</div>
+    </div>
+  </div>
+
+  <div class="callout callout-navy">
+    <div class="callout-label">If you want to give up halfway through</div>
+    <p>You might. Someone always hits a wall. When that happens, ask yourself: what is the smallest version of this that would count as done? Then do that. Finish the smallest version. The discipline of completing something — even a reduced version — is the lesson. The product is secondary.</p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Note — The Most Important Moment</div>
+    <p>The most important moment of this session is when the person who was most afraid to start presents their thing. That moment deserves your full attention and your genuine, specific praise — not for the quality of the product, but for the fact of the attempt. "I noticed that you chose the hardest project and started anyway" is more powerful than "great job." Be specific. Be genuine. That response is part of what the learner will carry forward.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-5">
+    <div class="quiz-title">Capstone Reflection Check</div>
+    <div class="quiz-subtitle">Three questions drawn from the whole module. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q5-0">
+      <p class="question-text">1. The requirement for the capstone project is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,0,0,false)">A polished, high-quality finished product</button>
+        <button class="quiz-option" onclick="answer(5,0,1,false)">A project that uses all five curriculum skills</button>
+        <button class="quiz-option" onclick="answer(5,0,2,true)">The attempt and honest reflection — not excellence, not perfection</button>
+        <button class="quiz-option" onclick="answer(5,0,3,false)">Something you've never tried before</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-0-correct">✓ The attempt and the honest accounting of it. That's what the whole module has been building toward. Not perfection — the willingness to try and reflect.</div>
+      <div class="quiz-feedback" id="fb-5-0-incorrect">The requirement isn't excellence — it's the attempt and the honest reflection afterward. Those two things are the whole curriculum in practice.</div>
+    </div>
+    <div class="quiz-question" id="q5-1">
+      <p class="question-text">2. If you hit a wall halfway through the capstone project, you should...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,1,0,false)">Set it aside and come back when you feel more motivated</button>
+        <button class="quiz-option" onclick="answer(5,1,1,false)">Switch to an easier project option</button>
+        <button class="quiz-option" onclick="answer(5,1,2,true)">Ask: what's the smallest version of this that counts as done? Then finish that.</button>
+        <button class="quiz-option" onclick="answer(5,1,3,false)">Ask for feedback before continuing so you know if you're on the right track</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-1-correct">✓ The smallest version that counts as done. Finish it. The discipline of completing something — even reduced — is the lesson. The product is secondary.</div>
+      <div class="quiz-feedback" id="fb-5-1-incorrect">When you hit the wall, ask what the smallest complete version looks like. Then finish that. Completion — even a reduced version — is the point. Not size, not polish.</div>
+    </div>
+    <div class="quiz-question" id="q5-2">
+      <p class="question-text">3. This entire curriculum — four modules, 24 lessons — was built on one conviction. That conviction is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,2,0,false)">AI literacy is the most important skill of the 21st century</button>
+        <button class="quiz-option" onclick="answer(5,2,1,false)">Rural communities have been underserved by traditional education and deserve better tools</button>
+        <button class="quiz-option" onclick="answer(5,2,2,false)">Critical thinking and social skills are more valuable than technical knowledge</button>
+        <button class="quiz-option" onclick="answer(5,2,3,true)">Where you come from is a strength, not a limitation — and your future is wide open</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-2-correct">✓ That's the whole thing. Where you come from is a strength. Your future is wide open. Everything in these four modules was built in service of that.</div>
+      <div class="quiz-feedback" id="fb-5-2-incorrect">All of it — the AI literacy, the critical thinking, the social skills, the resilience work — was built on one belief: where you come from is a strength, not a limitation. Your future is wide open.</div>
+    </div>
+    <div class="quiz-score" id="score-5"><span class="score-number" id="score-num-5"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(5)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(5)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about completing this module — and the whole curriculum?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(5,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(5,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(5,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-5"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(4)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="completeModule()">Complete the Curriculum ✦</button>
+  </div>
+</div>
+
+
+<!-- COMPLETION — special for final capstone -->
+<div class="completion-banner" id="completionBanner">
+  <span class="completion-star">🌾</span>
+  <h2 class="completion-title">Wide Open Future<br>Curriculum Complete</h2>
+  <p class="completion-text">Four modules. Twenty-four lessons. You know how AI works, how to think critically, how to treat people, and how to start things — imperfect things — and learn from them. That's not nothing. That's everything.</p>
+  <div class="completion-summary">
+    <div class="summary-stat"><span class="stat-num">4</span><span class="stat-label">Modules</span></div>
+    <div class="summary-stat"><span class="stat-num">24</span><span class="stat-label">Lessons</span></div>
+    <div class="summary-stat"><span class="stat-num" id="finalScore">—</span><span class="stat-label">Module Score</span></div>
+  </div>
+  <div class="completion-quote">"No such thing as failure here. Only trying, learning, and trying again."</div>
+  <p style="color:var(--text-dim);font-size:0.83rem;margin-bottom:28px;">Built from eastern Montana. For every community forty miles from everything.</p>
+  <a href="https://wideopenfuture.org" class="btn btn-primary" style="text-decoration:none;display:inline-block;">← Back to Wide Open Future</a>
+</div>
+</main>
+
+<script>
+const state={currentLesson:0,completed:new Array(6).fill(false),quizAnswers:Array.from({length:6},()=>({})),quizSubmitted:new Array(6).fill(false),confidence:new Array(6).fill(null),totalCorrect:0};
+const quizData=[[{correct:1},{correct:2},{correct:2}],[{correct:1},{correct:2},{correct:2}],[{correct:1},{correct:1},{correct:2}],[{correct:2},{correct:1},{correct:2}],[{correct:1},{correct:2},{correct:2}],[{correct:2},{correct:2},{correct:3}]];
+
+function goToLesson(n){document.getElementById('lesson-'+state.currentLesson).classList.remove('active');document.querySelectorAll('.lesson-nav-btn')[state.currentLesson].classList.remove('active');state.currentLesson=n;document.getElementById('lesson-'+n).classList.add('active');document.querySelectorAll('.lesson-nav-btn')[n].classList.add('active');updateProgress();window.scrollTo({top:0,behavior:'smooth'});}
+function updateProgress(){const pct=((state.currentLesson+1)/6)*100;document.getElementById('progressFill').style.width=pct+'%';document.getElementById('progressText').textContent='Lesson '+(state.currentLesson+1)+' of 6';}
+function answer(lesson,question,optIdx,isCorrect){if(state.quizSubmitted[lesson])return;state.quizAnswers[lesson][question]={optIdx,isCorrect};const qEl=document.getElementById('q'+lesson+'-'+question);qEl.querySelectorAll('.quiz-option').forEach((btn,i)=>{btn.style.opacity=i===optIdx?'1':'0.5';btn.style.borderColor=i===optIdx?'var(--navy-dim)':''});}
+function submitQuiz(lesson){if(state.quizSubmitted[lesson])return;state.quizSubmitted[lesson]=true;let correct=0;const answers=state.quizAnswers[lesson];for(let q=0;q<3;q++){const qEl=document.getElementById('q'+lesson+'-'+q);const opts=qEl.querySelectorAll('.quiz-option');const rightIdx=quizData[lesson][q].correct;opts.forEach(btn=>{btn.disabled=true;btn.style.opacity='1';});if(answers[q]!==undefined){const chosen=answers[q].optIdx;const isRight=answers[q].isCorrect;opts[chosen].classList.add(isRight?'correct':'incorrect');if(!isRight)opts[rightIdx].classList.add('show-correct');const fbId=isRight?'fb-'+lesson+'-'+q+'-correct':'fb-'+lesson+'-'+q+'-incorrect';document.getElementById(fbId).classList.add(isRight?'correct':'incorrect');if(isRight)correct++;}else{opts[rightIdx].classList.add('show-correct');const fbEl=document.getElementById('fb-'+lesson+'-'+q+'-incorrect');if(fbEl)fbEl.classList.add('incorrect');}}const scoreEl=document.getElementById('score-'+lesson);scoreEl.style.display='block';document.getElementById('score-num-'+lesson).textContent=correct+'/3';state.totalCorrect+=correct;markComplete(lesson);}
+function retakeQuiz(lesson){state.quizSubmitted[lesson]=false;state.quizAnswers[lesson]={};for(let q=0;q<3;q++){const qEl=document.getElementById('q'+lesson+'-'+q);const opts=qEl.querySelectorAll('.quiz-option');opts.forEach(btn=>{btn.disabled=false;btn.classList.remove('correct','incorrect','show-correct');btn.style.opacity='1';btn.style.borderColor='';});['correct','incorrect'].forEach(type=>{const el=document.getElementById('fb-'+lesson+'-'+q+'-'+type);if(el)el.classList.remove('correct','incorrect');});}const scoreEl=document.getElementById('score-'+lesson);if(scoreEl)scoreEl.style.display='none';}
+const confMessages={'getting-there':"That's the process. Try the lesson again tomorrow — or just move on and come back. There's no penalty for taking your time.",'got-it':"Solid. That's all you need. Move forward with confidence.",'could-teach':"That's a different level of ownership. When you can teach something, you've truly got it."};
+function setConfidence(lesson,level){state.confidence[lesson]=level;const container=document.getElementById('lesson-'+lesson);container.querySelectorAll('.confidence-btn').forEach(btn=>btn.classList.remove('selected'));event.currentTarget.classList.add('selected');const resp=document.getElementById('conf-resp-'+lesson);resp.style.display='block';resp.textContent=confMessages[level];markComplete(lesson);}
+function markComplete(lesson){if(state.quizSubmitted[lesson]&&state.confidence[lesson]){state.completed[lesson]=true;const navBtn=document.querySelectorAll('.lesson-nav-btn')[lesson];navBtn.classList.add('completed');navBtn.classList.remove('active');}}
+function selectCapstone(el){document.querySelectorAll('.capstone-option').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');}
+function completeModule(){document.getElementById('lesson-5').classList.remove('active');document.getElementById('completionBanner').classList.add('show');document.getElementById('finalScore').textContent=state.totalCorrect+'/18';window.scrollTo({top:0,behavior:'smooth'});document.getElementById('progressFill').style.width='100%';document.getElementById('progressText').textContent='Complete ✦';}
+updateProgress();
+</script>
+</body>
+</html>

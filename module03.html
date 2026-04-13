@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 03 — Social Skills & Etiquette | Wide Open Future</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --night: #140e08;
+  --deep: #1c1208;
+  --card: #211608;
+  --card2: #281c0c;
+  --amber: #c4823a;
+  --amber-light: #e0a860;
+  --amber-dim: #7a4e20;
+  --gold: #d4a840;
+  --gold-light: #ecc860;
+  --teal: #4a9090;
+  --teal-light: #78b8b8;
+  --rose: #b06060;
+  --rose-light: #d08888;
+  --text: #f0e8d8;
+  --text-dim: #9a8868;
+  --text-soft: #c8b898;
+  --border: #2a1e0e;
+  --border-amber: #4a3018;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--night);color:var(--text);font-family:'Source Serif 4',Georgia,serif;font-weight:300;line-height:1.7;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(1px 1px at 18% 12%,rgba(196,130,58,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 78% 8%,rgba(255,255,255,0.3) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 92% 28%,rgba(196,130,58,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 38% 58%,rgba(255,255,255,0.2) 0%,transparent 100%),radial-gradient(1px 1px at 8% 78%,rgba(196,130,58,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 62% 88%,rgba(255,255,255,0.2) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 48% 22%,rgba(255,255,255,0.35) 0%,transparent 100%);pointer-events:none;z-index:0;}
+
+.site-header{background:rgba(20,14,8,0.96);border-bottom:1px solid var(--border-amber);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);}
+.site-logo{font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;color:var(--amber-light);text-decoration:none;letter-spacing:0.05em;}
+.site-logo span{color:var(--text-dim);font-size:0.8rem;font-family:'Source Serif 4',serif;font-weight:300;margin-left:8px;}
+.progress-bar-wrap{flex:1;max-width:300px;margin:0 32px;}
+.progress-label{font-size:0.7rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+.progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--amber-dim),var(--amber));border-radius:2px;transition:width 0.6s ease;width:0%;}
+
+.module-hero{position:relative;z-index:1;padding:80px 40px 60px;max-width:860px;margin:0 auto;text-align:center;}
+.module-tag{display:inline-block;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber-light);border:1px solid var(--border-amber);padding:5px 16px;border-radius:20px;margin-bottom:24px;}
+.module-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.2;color:var(--text);margin-bottom:16px;}
+.module-title em{color:var(--amber-light);font-style:italic;}
+.module-subtitle{font-size:1.05rem;color:var(--text-soft);max-width:580px;margin:0 auto 32px;font-weight:300;}
+.module-meta{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;}
+.meta-pill{font-size:0.78rem;color:var(--text-dim);background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:20px;letter-spacing:0.05em;}
+
+.lesson-nav{position:relative;z-index:1;max-width:860px;margin:0 auto 48px;padding:0 40px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+.lesson-nav-btn{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 6px;cursor:pointer;text-align:center;transition:all 0.2s;color:var(--text-dim);}
+.lesson-nav-btn:hover{border-color:var(--amber-dim);color:var(--amber-light);}
+.lesson-nav-btn.active{background:var(--card2);border-color:var(--amber);color:var(--amber-light);}
+.lesson-nav-btn.completed{border-color:var(--teal);color:var(--teal-light);}
+.lesson-nav-btn.completed::after{content:' ✓';font-size:0.7em;}
+.nav-num{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:3px;}
+.nav-title{font-size:0.68rem;line-height:1.3;}
+
+.main{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 40px 80px;}
+.lesson-panel{display:none;animation:fadeIn 0.4s ease;}
+.lesson-panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.lesson-header{margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.lesson-number{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber-dim);margin-bottom:10px;}
+.lesson-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.6rem,4vw,2.2rem);color:var(--text);margin-bottom:12px;line-height:1.3;}
+.lesson-tagline{font-size:1rem;color:var(--text-soft);font-style:italic;font-weight:300;}
+
+.content-block{margin-bottom:32px;}
+.block-heading{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;color:var(--amber-light);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.block-heading::before{content:'';display:inline-block;width:20px;height:2px;background:var(--amber-dim);flex-shrink:0;}
+p{margin-bottom:14px;color:var(--text-soft);}
+p:last-child{margin-bottom:0;}
+strong{color:var(--text);font-weight:600;}
+
+/* Story box — the warm signature of this module */
+.story-box{background:linear-gradient(135deg,rgba(196,130,58,0.08),rgba(212,168,64,0.05));border:1px solid var(--border-amber);border-radius:12px;padding:24px 28px;margin:24px 0;position:relative;}
+.story-box::before{content:'"';font-family:'Playfair Display',serif;font-size:4rem;color:var(--amber-dim);position:absolute;top:-10px;left:16px;line-height:1;}
+.story-text{font-size:0.95rem;color:var(--text-soft);line-height:1.8;font-style:italic;padding-left:12px;}
+.story-attribution{font-size:0.75rem;color:var(--text-dim);margin-top:10px;padding-left:12px;letter-spacing:0.05em;}
+
+.callout{border-radius:10px;padding:20px 24px;margin:24px 0;border-left:3px solid;}
+.callout-amber{background:rgba(196,130,58,0.07);border-color:var(--amber);}
+.callout-teal{background:rgba(74,144,144,0.07);border-color:var(--teal);}
+.callout-rose{background:rgba(176,96,96,0.07);border-color:var(--rose);}
+.callout-gold{background:rgba(212,168,64,0.07);border-color:var(--gold);}
+.callout-label{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;margin-bottom:8px;}
+.callout-amber .callout-label{color:var(--amber-light);}
+.callout-teal  .callout-label{color:var(--teal-light);}
+.callout-rose  .callout-label{color:var(--rose-light);}
+.callout-gold  .callout-label{color:var(--gold-light);}
+
+.example-box{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin:20px 0;font-size:0.92rem;}
+.example-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+
+ul.content-list{list-style:none;margin:12px 0 20px;}
+ul.content-list li{color:var(--text-soft);padding:6px 0 6px 24px;position:relative;border-bottom:1px solid rgba(42,30,14,0.7);font-size:0.95rem;}
+ul.content-list li:last-child{border-bottom:none;}
+ul.content-list li::before{content:'✦';position:absolute;left:0;color:var(--amber-dim);font-size:0.6rem;top:10px;}
+
+.compare-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:0.88rem;}
+.compare-table th{background:var(--card2);color:var(--amber-light);padding:10px 14px;text-align:left;font-weight:600;border-bottom:2px solid var(--border-amber);font-family:'Source Serif 4',serif;}
+.compare-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text-soft);vertical-align:top;}
+
+/* Scenario cards for practice */
+.scenario-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0;}
+.scenario-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;border-left:3px solid var(--amber-dim);}
+.scenario-label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber-dim);margin-bottom:6px;}
+.scenario-text{font-size:0.85rem;color:var(--text-soft);line-height:1.5;}
+
+/* Do/Don't comparison */
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0;}
+.do-box{background:rgba(74,144,144,0.07);border:1px solid var(--teal);border-radius:10px;padding:16px;}
+.dont-box{background:rgba(176,96,96,0.07);border:1px solid var(--rose);border-radius:10px;padding:16px;}
+.do-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal-light);font-weight:600;margin-bottom:8px;}
+.dont-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rose-light);font-weight:600;margin-bottom:8px;}
+.do-box li,.dont-box li{font-size:0.82rem;color:var(--text-soft);margin-bottom:5px;list-style:none;padding-left:14px;position:relative;}
+.do-box li::before{content:'✓';color:var(--teal-light);position:absolute;left:0;font-size:0.8em;}
+.dont-box li::before{content:'✗';color:var(--rose-light);position:absolute;left:0;font-size:0.8em;}
+
+/* Quiz */
+.quiz-section{background:var(--card);border:1px solid var(--border-amber);border-radius:14px;padding:32px;margin:40px 0 20px;}
+.quiz-title{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;color:var(--amber-light);margin-bottom:6px;}
+.quiz-subtitle{font-size:0.82rem;color:var(--text-dim);margin-bottom:28px;letter-spacing:0.03em;}
+.quiz-question{margin-bottom:28px;}
+.question-text{font-size:0.97rem;color:var(--text);margin-bottom:14px;font-weight:400;}
+.quiz-options{display:flex;flex-direction:column;gap:8px;}
+.quiz-option{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;cursor:pointer;font-size:0.88rem;color:var(--text-soft);text-align:left;transition:all 0.2s;font-family:'Source Serif 4',serif;}
+.quiz-option:hover:not(:disabled){border-color:var(--amber-dim);color:var(--text);}
+.quiz-option.correct{background:rgba(74,144,144,0.15);border-color:var(--teal);color:var(--teal-light);}
+.quiz-option.incorrect{background:rgba(180,70,70,0.1);border-color:#b44646;color:#d47070;}
+.quiz-option.show-correct{background:rgba(74,144,144,0.08);border-color:var(--teal);color:var(--teal-light);}
+.quiz-feedback{margin-top:10px;font-size:0.83rem;padding:10px 14px;border-radius:6px;display:none;line-height:1.5;}
+.quiz-feedback.correct{display:block;background:rgba(74,144,144,0.1);color:var(--teal-light);border-left:3px solid var(--teal);}
+.quiz-feedback.incorrect{display:block;background:rgba(180,80,80,0.08);color:#d47070;border-left:3px solid #b44646;}
+.quiz-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+.btn{padding:11px 24px;border-radius:8px;cursor:pointer;font-size:0.85rem;font-family:'Source Serif 4',serif;letter-spacing:0.05em;transition:all 0.2s;border:none;}
+.btn-primary{background:var(--amber);color:var(--night);font-weight:600;}
+.btn-primary:hover{background:var(--amber-light);}
+.btn-secondary{background:transparent;color:var(--text-dim);border:1px solid var(--border);}
+.btn-secondary:hover{border-color:var(--amber-dim);color:var(--amber-light);}
+.quiz-score{display:none;text-align:center;padding:20px 0;}
+.score-number{font-family:'Playfair Display',serif;font-size:3rem;color:var(--amber-light);font-weight:700;display:block;}
+.score-label{color:var(--text-dim);font-size:0.85rem;margin-top:4px;}
+
+.confidence-check{background:linear-gradient(135deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--border-amber);border-radius:14px;padding:32px;margin:20px 0 40px;text-align:center;}
+.confidence-title{font-family:'Playfair Display',Georgia,serif;font-size:1.2rem;color:var(--amber-light);margin-bottom:6px;}
+.confidence-subtitle{font-size:0.82rem;color:var(--text-dim);margin-bottom:24px;}
+.confidence-options{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.confidence-btn{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:16px 20px;cursor:pointer;transition:all 0.2s;min-width:160px;font-family:'Source Serif 4',serif;}
+.confidence-btn:hover{border-color:var(--amber-dim);transform:translateY(-2px);}
+.confidence-btn.selected{border-color:var(--amber);background:rgba(196,130,58,0.08);}
+.conf-icon{font-size:1.6rem;display:block;margin-bottom:6px;}
+.conf-label{font-size:0.82rem;color:var(--amber-light);font-weight:600;display:block;}
+.conf-desc{font-size:0.72rem;color:var(--text-dim);margin-top:4px;line-height:1.4;}
+.confidence-response{margin-top:20px;padding:14px 20px;border-radius:8px;font-size:0.88rem;display:none;color:var(--text-soft);background:rgba(196,130,58,0.05);border:1px solid var(--border-amber);}
+
+.lesson-nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid var(--border);}
+.nav-btn{background:transparent;border:1px solid var(--border);color:var(--text-dim);padding:10px 20px;border-radius:8px;cursor:pointer;font-size:0.83rem;font-family:'Source Serif 4',serif;transition:all 0.2s;}
+.nav-btn:hover{border-color:var(--amber-dim);color:var(--amber-light);}
+.nav-btn:disabled{opacity:0.3;cursor:not-allowed;}
+.nav-btn.next-btn{background:var(--amber);color:var(--night);border-color:var(--amber);font-weight:600;}
+.nav-btn.next-btn:hover{background:var(--amber-light);border-color:var(--amber-light);}
+
+.facilitator-note{background:rgba(74,144,144,0.06);border:1px solid rgba(74,144,144,0.3);border-radius:10px;padding:18px 22px;margin:20px 0;}
+.facilitator-note .fn-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal-light);margin-bottom:8px;font-weight:600;}
+.facilitator-note p{color:rgba(200,225,225,0.8);font-size:0.88rem;}
+
+.completion-banner{display:none;text-align:center;padding:60px 40px;animation:fadeIn 0.6s ease;}
+.completion-banner.show{display:block;}
+.completion-star{font-size:4rem;display:block;margin-bottom:20px;}
+.completion-title{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--amber-light);margin-bottom:12px;}
+.completion-text{color:var(--text-soft);max-width:500px;margin:0 auto 28px;font-size:0.97rem;}
+.completion-summary{display:inline-grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;}
+.summary-stat{background:var(--card);border:1px solid var(--border-amber);border-radius:10px;padding:16px 20px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--amber-light);display:block;}
+.stat-label{font-size:0.72rem;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;}
+
+@media(max-width:640px){
+  .site-header{padding:12px 20px;}
+  .progress-bar-wrap{display:none;}
+  .module-hero{padding:50px 20px 40px;}
+  .lesson-nav{padding:0 20px;grid-template-columns:repeat(3,1fr);}
+  .main{padding:0 20px 60px;}
+  .scenario-grid,.do-dont{grid-template-columns:1fr;}
+  .confidence-options{flex-direction:column;align-items:center;}
+  .completion-summary{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://wideopenfuture.org" class="site-logo">Wide Open Future <span>/ Module 03</span></a>
+  <div class="progress-bar-wrap">
+    <div class="progress-label">Your progress</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div style="font-size:0.75rem;color:var(--text-dim);"><span id="progressText">Lesson 1 of 6</span></div>
+</header>
+
+<section class="module-hero">
+  <div class="module-tag">Module 03 · Wide Open Future</div>
+  <h1 class="module-title">Social Skills<br><em>& Etiquette</em></h1>
+  <p class="module-subtitle">The human skills that AI can never replace. Charm school, rebuilt for the 21st century.</p>
+  <div class="module-meta">
+    <span class="meta-pill">6 Lessons</span>
+    <span class="meta-pill">Self-paced</span>
+    <span class="meta-pill">Retakeable quizzes</span>
+    <span class="meta-pill">Facilitator-ready</span>
+  </div>
+</section>
+
+<nav class="lesson-nav">
+  <button class="lesson-nav-btn active" onclick="goToLesson(0)"><span class="nav-num">01</span><span class="nav-title">First Impressions</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(1)"><span class="nav-num">02</span><span class="nav-title">Conversation</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(2)"><span class="nav-num">03</span><span class="nav-title">Hard Conversations</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(3)"><span class="nav-num">04</span><span class="nav-title">Digital Etiquette</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(4)"><span class="nav-num">05</span><span class="nav-title">Civic Life</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(5)"><span class="nav-num">06</span><span class="nav-title">AI in the Room</span></button>
+</nav>
+
+<main class="main">
+
+<!-- ════════════════════════════
+     LESSON 1 — First Impressions
+════════════════════════════ -->
+<div class="lesson-panel active" id="lesson-0">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 01 of 06</div>
+    <h2 class="lesson-title">First Impressions and Presence</h2>
+    <p class="lesson-tagline">You've already said something — and you haven't spoken yet.</p>
+  </div>
+
+  <div class="story-box">
+    <p class="story-text">Research puts the formation of a first impression at somewhere between seven seconds and two minutes. Either way, it happens before you've had a chance to say anything meaningful. Before your credentials, your resume, your accomplishments, your intentions — the person across from you has already started forming a picture. The question is not whether that happens. It does. The question is whether you're being intentional about what that picture looks like.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">What presence actually is</h3>
+    <p>Presence isn't about looking a certain way or having a certain personality. It's about being <strong>fully there</strong> — engaged, attentive, and comfortable enough in your own skin that the person you're with feels it. People with strong presence make others feel seen. That's what people remember.</p>
+    <p>The good news: presence is not a gift some people are born with. It's a set of habits, and habits can be built.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The five nonverbal signals that matter most</h3>
+    <ul class="content-list">
+      <li><strong>Eye contact.</strong> Not a stare — a steady, natural gaze that says "you have my attention." Looking at your phone while someone talks says the opposite.</li>
+      <li><strong>Posture.</strong> Slouched signals checked-out. Upright but relaxed signals engaged and confident. You don't have to stand at attention — just be present in your body.</li>
+      <li><strong>The handshake.</strong> Firm, brief, and dry. Not crushing, not limp. Still matters — especially in rural professional and civic settings where it carries real cultural weight.</li>
+      <li><strong>Your face at rest.</strong> Most people have no idea what their face looks like when they're not actively expressing something. If you've ever been told you "look angry" or "look bored" — it may be your resting expression, not your actual feelings. Worth knowing.</li>
+      <li><strong>The phone.</strong> Face-down on the table is better than face-up. Out of sight is better than face-down. The presence of a phone on a table, even untouched, reduces how much people share and how connected they feel. Put it away.</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-amber">
+    <div class="callout-label">The honest truth about this lesson</div>
+    <p>Most people reading this will think of someone else who needs it. The ones who benefit most are the ones who apply it to themselves. Spend five minutes this week watching how you show up — not judging, just noticing. That noticing is the beginning of change.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Making an introduction</h3>
+    <p>The basics still matter and they're still missed constantly: name, a brief context, and genuine interest in the other person. Not a monologue about yourself.</p>
+    <div class="example-box">
+      <div class="example-label">Strong introduction</div>
+      <p style="color:var(--text-soft);">"Hi, I'm Tammi Fladager — I'm a county commissioner up in Daniels County. I heard you're working on rural healthcare access and I'd love to hear what you're seeing out there."</p>
+    </div>
+    <div class="example-box">
+      <div class="example-label">What not to do</div>
+      <p style="color:var(--text-soft);">"Hi, I'm [name] and I've been commissioner for two years now and before that I worked in medical transcription for 26 years and I also write children's books and I'm almost done with my bachelor's degree..." — thirty seconds in, the other person is already looking for an exit.</p>
+    </div>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Activity — The 7-Second Experiment</div>
+    <p>Have two volunteers step outside, then re-enter one at a time. Ask the group to silently form a first impression — just notice, don't speak. Then debrief: What did you notice? What signals did they send? This exercise is more instructive than any lecture because the group provides the feedback, not the teacher.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-0">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q0-0">
+      <p class="question-text">1. Research suggests first impressions form in...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,0,0,false)">About 10 minutes of conversation</button>
+        <button class="quiz-option" onclick="answer(0,0,1,true)">As little as seven seconds — well before you've said anything meaningful</button>
+        <button class="quiz-option" onclick="answer(0,0,2,false)">Only after someone has seen your credentials or resume</button>
+        <button class="quiz-option" onclick="answer(0,0,3,false)">After multiple interactions over time</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-0-correct">✓ Right. Seven seconds to two minutes — and the impression starts forming before you've spoken a meaningful word.</div>
+      <div class="quiz-feedback" id="fb-0-0-incorrect">First impressions form remarkably fast — as little as seven seconds. Your nonverbal signals are doing the talking before your words are.</div>
+    </div>
+    <div class="quiz-question" id="q0-1">
+      <p class="question-text">2. Placing your phone face-down on the table during a conversation...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,1,0,false)">Shows good phone etiquette and signals full presence</button>
+        <button class="quiz-option" onclick="answer(0,1,1,false)">Has no effect — people know you're not using it</button>
+        <button class="quiz-option" onclick="answer(0,1,2,true)">Still reduces how connected people feel — out of sight is better</button>
+        <button class="quiz-option" onclick="answer(0,1,3,false)">Is rude because it implies you might need to check it</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-1-correct">✓ Even a phone on the table — untouched — reduces how much people share and how connected they feel. Out of sight, out of mind.</div>
+      <div class="quiz-feedback" id="fb-0-1-incorrect">The research is clear: even a phone sitting face-down on the table affects the quality of connection. Put it away entirely when presence matters.</div>
+    </div>
+    <div class="quiz-question" id="q0-2">
+      <p class="question-text">3. The most important thing about a strong introduction is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,2,0,false)">Listing your accomplishments so people know your credentials</button>
+        <button class="quiz-option" onclick="answer(0,2,1,false)">Speaking loudly and confidently for at least 30 seconds</button>
+        <button class="quiz-option" onclick="answer(0,2,2,true)">Being brief, giving context, and showing genuine interest in the other person</button>
+        <button class="quiz-option" onclick="answer(0,2,3,false)">Having a rehearsed script you can deliver smoothly</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-2-correct">✓ Brief, contextual, and genuinely curious about them. That combination makes people feel seen — and they'll remember you for it.</div>
+      <div class="quiz-feedback" id="fb-0-2-incorrect">A strong introduction is brief, gives enough context to connect, and quickly turns attention to the other person. It's not a monologue — it's an opening.</div>
+    </div>
+    <div class="quiz-score" id="score-0"><span class="score-number" id="score-num-0"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(0)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(0)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(0,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(0,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(0,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-0"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" disabled>← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(1)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     LESSON 2 — The Art of Conversation
+════════════════════════════ -->
+<div class="lesson-panel" id="lesson-1">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 02 of 06</div>
+    <h2 class="lesson-title">The Art of Conversation</h2>
+    <p class="lesson-tagline">The rarest skill in the room — and the most valued.</p>
+  </div>
+
+  <div class="story-box">
+    <p class="story-text">There's usually one person in every small community who everyone describes the same way: "She really listens." People seek them out. They trust them. They feel better after talking to them — not because that person solved anything, but because they felt genuinely heard. That person is not necessarily the smartest in the room or the most educated. They have simply mastered one thing: making people feel like what they say matters. That is the art of conversation. It is mostly the art of listening.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The difference between waiting to talk and actually listening</h3>
+    <p>Most people in a conversation are half-listening and half-preparing what they'll say next. That's not listening — that's taking turns. <strong>Real listening means the other person's words are actually landing.</strong> You're tracking what they mean, not just what they say. You're noticing what they didn't say. You're interested in where they're going, not just waiting for your turn.</p>
+    <p>People can tell the difference. They always can.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Five habits of a good listener</h3>
+    <ul class="content-list">
+      <li><strong>Don't interrupt.</strong> Let them finish. Even if you know where they're going. Especially if you know where they're going.</li>
+      <li><strong>Ask follow-up questions.</strong> Not to redirect — to go deeper. "What did you do next?" "How did that land for you?" These signal you were actually paying attention.</li>
+      <li><strong>Reflect back.</strong> "So what I'm hearing is..." gives the speaker a chance to confirm or correct. It also proves you were listening.</li>
+      <li><strong>Don't fix everything.</strong> Sometimes people want to be heard, not advised. Ask: "Are you looking for ideas, or do you need to talk it through?" That question alone is a gift.</li>
+      <li><strong>Be comfortable with silence.</strong> Silence after someone says something important is respect — it means you're thinking about what they said. Filling every pause with noise is about your discomfort, not their need.</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Conversational narcissism — and how to avoid it</h3>
+    <p>Conversational narcissism is the habit of steering every conversation back to yourself. It doesn't always come from selfishness — often it comes from wanting to connect by sharing similar experiences. But it lands as "my experience is more important than yours."</p>
+    <div class="do-dont">
+      <div class="do-box">
+        <div class="do-label">Instead of hijacking...</div>
+        <ul>
+          <li>"That sounds really hard. How long has that been going on?"</li>
+          <li>"What's the hardest part of it for you?"</li>
+          <li>"I haven't been through that — tell me more."</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <div class="dont-label">Avoid the redirect...</div>
+        <ul>
+          <li>"Oh, that reminds me of when I..."</li>
+          <li>"I know exactly what you mean, the same thing happened to me..."</li>
+          <li>"Actually, what I always do is..."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The question toolkit</h3>
+    <table class="compare-table">
+      <tr><th>Type</th><th>What it does</th><th>Example</th></tr>
+      <tr><td><strong>Open question</strong></td><td>Invites a real answer, opens conversation</td><td>"What's been the hardest part of this year for your operation?"</td></tr>
+      <tr><td><strong>Closed question</strong></td><td>Gets a yes/no — useful for facts, not connection</td><td>"Did the sale go well?"</td></tr>
+      <tr><td><strong>Follow-up question</strong></td><td>Proves you were listening, goes deeper</td><td>"You mentioned the water situation — what's happening there?"</td></tr>
+      <tr><td><strong>Clarifying question</strong></td><td>Makes sure you understood correctly</td><td>"When you say the board didn't support it — do you mean they voted no, or just didn't engage?"</td></tr>
+    </table>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Activity — Structured Conversation</div>
+    <p>Pair participants. Person A speaks for two minutes on something that genuinely matters to them. Person B's only job: listen, no interrupting, no phone, and ask one follow-up question when A finishes. Then debrief: How did it feel to be that listened to? What made it different? This exercise lands every time.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-1">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q1-0">
+      <p class="question-text">1. "Conversational narcissism" means...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,0,0,false)">Talking about yourself intentionally to seem more interesting</button>
+        <button class="quiz-option" onclick="answer(1,0,1,true)">Habitually steering conversations back to yourself — even when trying to connect</button>
+        <button class="quiz-option" onclick="answer(1,0,2,false)">Refusing to listen to other people's opinions</button>
+        <button class="quiz-option" onclick="answer(1,0,3,false)">Dominating group conversations with strong opinions</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-0-correct">✓ Right — and the key detail is "even when trying to connect." It often comes from good intentions, not selfishness. But it still lands as dismissive.</div>
+      <div class="quiz-feedback" id="fb-1-0-incorrect">Conversational narcissism is the habit of redirecting conversations to yourself — often without realizing it, often while trying to connect. The impact is what matters, not the intent.</div>
+    </div>
+    <div class="quiz-question" id="q1-1">
+      <p class="question-text">2. When someone is venting about a problem, the best first move is to...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,1,0,false)">Immediately offer the best solution you can think of</button>
+        <button class="quiz-option" onclick="answer(1,1,1,false)">Share a similar experience so they feel less alone</button>
+        <button class="quiz-option" onclick="answer(1,1,2,true)">Ask whether they want ideas or just need to talk it through</button>
+        <button class="quiz-option" onclick="answer(1,1,3,false)">Listen quietly and say nothing until they're completely done</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-1-correct">✓ "Are you looking for ideas, or do you need to talk it through?" That question alone changes everything. It shows respect and gives them control.</div>
+      <div class="quiz-feedback" id="fb-1-1-incorrect">Asking whether they want advice or just to be heard is one of the most respectful things you can do. It assumes they know what they need — and it's usually right.</div>
+    </div>
+    <div class="quiz-question" id="q1-2">
+      <p class="question-text">3. Silence after someone says something important is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,2,0,false)">A sign the conversation has broken down</button>
+        <button class="quiz-option" onclick="answer(1,2,1,false)">Awkward and should be filled as quickly as possible</button>
+        <button class="quiz-option" onclick="answer(1,2,2,true)">A form of respect — it signals you're actually thinking about what they said</button>
+        <button class="quiz-option" onclick="answer(1,2,3,false)">Only appropriate in formal or professional settings</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-2-correct">✓ Silence is respect. The urge to fill every pause is about our own discomfort — not the other person's need. Let the silence do its work.</div>
+      <div class="quiz-feedback" id="fb-1-2-incorrect">Silence after something meaningful is a sign of respect and genuine thought. The urge to fill it immediately is about your discomfort — not what the other person needs.</div>
+    </div>
+    <div class="quiz-score" id="score-1"><span class="score-number" id="score-num-1"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(1)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(1)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(1,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(1,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(1,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-1"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(0)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(2)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     LESSON 3 — Hard Conversations
+════════════════════════════ -->
+<div class="lesson-panel" id="lesson-2">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 03 of 06</div>
+    <h2 class="lesson-title">Conflict and Hard Conversations</h2>
+    <p class="lesson-tagline">Disagreeing without destroying. Saying hard things with grace.</p>
+  </div>
+
+  <div class="story-box">
+    <p class="story-text">In a small town, you don't get to walk away from conflict the way you might in a city. The person you disagree with at a county meeting tonight is the person you'll stand next to at the grain elevator tomorrow morning. That reality doesn't make hard conversations optional — it makes doing them well non-negotiable. Avoidance has a cost in small communities. So does doing it badly. The skill is learning to do it right.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Why most hard conversations go wrong</h3>
+    <ul class="content-list">
+      <li><strong>We attack the person instead of the problem.</strong> Once someone feels personally criticized, they stop listening and start defending.</li>
+      <li><strong>We wait too long.</strong> Small frustrations compound. By the time we say something, there's months of unspoken resentment behind it.</li>
+      <li><strong>We say it at the wrong time.</strong> Emotional, tired, hungry, or in front of an audience — none of these are the right time for a hard conversation.</li>
+      <li><strong>We lead with "you always" or "you never."</strong> These absolute statements are almost never accurate and always put people on the defensive.</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The structure that actually works</h3>
+    <table class="compare-table">
+      <tr><th>Step</th><th>What it sounds like</th></tr>
+      <tr><td><strong>1. Ask first</strong></td><td>"Is now a good time? I'd like to talk about something that's been on my mind."</td></tr>
+      <tr><td><strong>2. Describe the behavior, not the person</strong></td><td>"When the meeting ran over by an hour without warning..." not "You're so disorganized."</td></tr>
+      <tr><td><strong>3. Name the impact</strong></td><td>"...I had to cancel another commitment, which put me in a difficult spot."</td></tr>
+      <tr><td><strong>4. Ask what they see</strong></td><td>"I wanted to understand what happened from your side."</td></tr>
+      <tr><td><strong>5. Work toward something</strong></td><td>"What could we do differently going forward?"</td></tr>
+    </table>
+  </div>
+
+  <div class="callout callout-teal">
+    <div class="callout-label">The hardest part</div>
+    <p>Step four — asking what they see — is the one most people skip. And it's the most important. You may not have the full picture. Going into a hard conversation already certain you're right and they're wrong is almost always a mistake. Curiosity about their perspective is not weakness. It's wisdom.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">When to use it and when to let it go</h3>
+    <p>Not every frustration deserves a hard conversation. Ask yourself: <em>Is this a pattern or a one-time thing? Does it affect my work, my relationships, or my wellbeing in a real way? Will this matter in six months?</em></p>
+    <p>If the answer is yes — have the conversation. If it's a one-time thing that you can genuinely release — let it go. <strong>The key word is "genuinely." Stuffed resentment is not the same as letting go.</strong></p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Receiving hard feedback</h3>
+    <p>The other side of hard conversations is getting them. When someone comes to you with a concern, your first job is to listen — not defend, not explain, not immediately counter. Take it in. Thank them for saying it. Then, if needed, respond. Someone who tells you hard things cares enough to risk the discomfort. That is a gift, even when it doesn't feel like one.</p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Note</div>
+    <p>Role-play scenarios work well here — give pairs a low-stakes scenario and have them walk through the five-step structure. Debrief: What felt awkward? What made it easier? The "ask what they see" step almost always generates the most discussion.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-2">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q2-0">
+      <p class="question-text">1. Hard conversations go wrong most often because...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,0,0,false)">The other person is unwilling to listen or change</button>
+        <button class="quiz-option" onclick="answer(2,0,1,true)">We attack the person instead of the behavior, wait too long, or pick the wrong time</button>
+        <button class="quiz-option" onclick="answer(2,0,2,false)">Rural communities are less equipped for emotional conversations</button>
+        <button class="quiz-option" onclick="answer(2,0,3,false)">The relationship isn't strong enough to handle honesty</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-0-correct">✓ Right — attacking the person, waiting too long, bad timing. These are the patterns, and all of them are within your control.</div>
+      <div class="quiz-feedback" id="fb-2-0-incorrect">Most hard conversations fail because of things on our end — attacking the person, waiting until frustration has built up, or choosing a bad moment. All of those are within our control.</div>
+    </div>
+    <div class="quiz-question" id="q2-1">
+      <p class="question-text">2. In the five-step structure, why is "ask what they see" the most important step?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,1,0,false)">It gives you time to calm down before responding</button>
+        <button class="quiz-option" onclick="answer(2,1,1,false)">It shows you're willing to be flexible on outcomes</button>
+        <button class="quiz-option" onclick="answer(2,1,2,true)">You may not have the full picture — their perspective might change yours</button>
+        <button class="quiz-option" onclick="answer(2,1,3,false)">It satisfies the social expectation of being fair</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-1-correct">✓ Exactly. Curiosity about their perspective is not weakness — you may not have the full story. Going in certain you're right is almost always a mistake.</div>
+      <div class="quiz-feedback" id="fb-2-1-incorrect">Going in certain you're right closes you off to information that might matter. Asking what they see keeps you open to the possibility that you don't have the full picture — and that changes outcomes.</div>
+    </div>
+    <div class="quiz-question" id="q2-2">
+      <p class="question-text">3. When someone brings you hard feedback, your first job is to...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,2,0,false)">Respond immediately with your side of the story</button>
+        <button class="quiz-option" onclick="answer(2,2,1,false)">Determine whether the feedback is accurate before responding</button>
+        <button class="quiz-option" onclick="answer(2,2,2,true)">Listen — not defend or explain. Take it in, and thank them for saying it.</button>
+        <button class="quiz-option" onclick="answer(2,2,3,false)">Ask who else they've talked to about this</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-2-correct">✓ Listen first. Someone who tells you hard things cares enough to risk the discomfort. That's a gift — even when it doesn't feel like one.</div>
+      <div class="quiz-feedback" id="fb-2-2-incorrect">When feedback is hard to hear, the instinct is to defend. Resist it. Listen fully first. Evaluate later. Someone who tells you something difficult is extending trust.</div>
+    </div>
+    <div class="quiz-score" id="score-2"><span class="score-number" id="score-num-2"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(2)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(2)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(2,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(2,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(2,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-2"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(1)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(3)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     LESSON 4 — Digital Etiquette
+════════════════════════════ -->
+<div class="lesson-panel" id="lesson-3">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 04 of 06</div>
+    <h2 class="lesson-title">Digital Etiquette</h2>
+    <p class="lesson-tagline">The rules changed and nobody sent a memo.</p>
+  </div>
+
+  <div class="story-box">
+    <p class="story-text">We invented these tools faster than we invented the norms for using them. Email is now thirty years old and people still send messages that would never fly in a face-to-face conversation. Social media is barely twenty and has already reshaped how people fight, grieve, celebrate, and humiliate each other. Nobody handed us a rulebook. We're all figuring it out — some people better than others. This lesson is the memo nobody sent.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Text and messaging</h3>
+    <ul class="content-list">
+      <li><strong>Respond in kind.</strong> If someone sent a paragraph, a one-word reply is dismissive. If they sent "👍" they don't want an essay back.</li>
+      <li><strong>Don't send multiple one-line texts when one message will do.</strong> Three pings in a row for one thought is noise.</li>
+      <li><strong>Tone doesn't travel well in text.</strong> Sarcasm, irony, and frustration land differently in writing. When in doubt, add more warmth — not less.</li>
+      <li><strong>Read receipts create pressure.</strong> If you use them, reply in a reasonable time. If you can't reply, don't leave someone on read for 24 hours without a "got it, will get back to you."</li>
+      <li><strong>Some conversations don't belong in text.</strong> Anything with emotional stakes — conflict, sensitive news, important decisions — deserves a real conversation.</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Email</h3>
+    <ul class="content-list">
+      <li><strong>Subject lines are the courtesy of the professional world.</strong> "Quick question" tells the recipient nothing. "Question about Thursday's agenda — 2 mins" is actually useful.</li>
+      <li><strong>Reply-all is almost always wrong.</strong> Before you hit it, ask: does everyone on this chain actually need your reply?</li>
+      <li><strong>Don't send emails you'd regret seeing screenshotted.</strong> Email is not private. Especially in organizations, government, and anything involving public trust.</li>
+      <li><strong>The 24-hour rule for angry emails.</strong> Draft it. Don't send it. Read it again tomorrow. Delete the whole thing or send a much shorter version.</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Social media</h3>
+    <ul class="content-list">
+      <li><strong>The internet has a long memory.</strong> In small communities especially, what you post follows you. Employers look. School boards look. Voters look.</li>
+      <li><strong>Public figures and private people are not the same.</strong> Criticizing a public official's decisions is fair. Publishing personal attacks on private individuals is not — and can be harmful.</li>
+      <li><strong>Don't post in anger.</strong> The post that feels satisfying in the moment often costs you something you'll care about later.</li>
+      <li><strong>Engagement isn't endorsement — but it looks like it.</strong> Liking, sharing, and commenting on content attaches you to it in the public mind. Act accordingly.</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-rose">
+    <div class="callout-label">The standard worth holding</div>
+    <p>Would you say this to their face, in public, with your name on it? If the answer is no — that's your answer about whether to post it, send it, or say it digitally. The screen creates a false sense of distance. The impact is real.</p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Discussion</div>
+    <p>Ask: Has anyone regretted something they sent or posted? (You don't need specifics — just the raising of hands.) What was the cost? This tends to open a powerful conversation about the gap between what felt justified in the moment and what it cost them later. No judgment — just reflection.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-3">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q3-0">
+      <p class="question-text">1. Before hitting Reply-All on an email, you should ask...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,0,0,false)">Whether your reply is longer than the original email</button>
+        <button class="quiz-option" onclick="answer(3,0,1,true)">Whether everyone on the chain actually needs to receive your reply</button>
+        <button class="quiz-option" onclick="answer(3,0,2,false)">Whether you're the most senior person on the thread</button>
+        <button class="quiz-option" onclick="answer(3,0,3,false)">Whether the original sender used Reply-All first</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-0-correct">✓ Exactly. Reply-All is one of the most overused buttons in the professional world. Most replies only need to go to one person.</div>
+      <div class="quiz-feedback" id="fb-3-0-incorrect">Reply-All is almost always wrong. Before using it, ask: does everyone on this chain actually need my response? Usually the answer is no.</div>
+    </div>
+    <div class="quiz-question" id="q3-1">
+      <p class="question-text">2. "The 24-hour rule" for angry emails means...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,1,0,false)">You must respond to all emails within 24 hours</button>
+        <button class="quiz-option" onclick="answer(3,1,1,false)">Wait 24 hours before opening emails from difficult people</button>
+        <button class="quiz-option" onclick="answer(3,1,2,true)">Draft the angry email, don't send it, read it again tomorrow — then delete or send a shorter version</button>
+        <button class="quiz-option" onclick="answer(3,1,3,false)">Only send important emails between 9am and 5pm</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-1-correct">✓ Draft it, sit on it, re-read it with fresh eyes. The version you send the next morning is almost always better — or not needed at all.</div>
+      <div class="quiz-feedback" id="fb-3-1-incorrect">The 24-hour rule: draft the angry email to get it out of your system, but don't send it. Read it again tomorrow. Usually you'll send a much shorter, calmer version — or nothing at all.</div>
+    </div>
+    <div class="quiz-question" id="q3-2">
+      <p class="question-text">3. The best test for whether to post something on social media is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,2,0,false)">Whether it will get a lot of engagement</button>
+        <button class="quiz-option" onclick="answer(3,2,1,false)">Whether the subject deserves to be called out publicly</button>
+        <button class="quiz-option" onclick="answer(3,2,2,true)">Would you say this to their face, in public, with your name on it?</button>
+        <button class="quiz-option" onclick="answer(3,2,3,false)">Whether similar posts have gotten you in trouble before</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-2-correct">✓ That's the standard. The screen creates a false sense of distance. If you wouldn't say it in person with your name on it, that's your answer.</div>
+      <div class="quiz-feedback" id="fb-3-2-incorrect">The test is simple: would you say this to their face, in public, with your name attached? The screen makes things feel more distant than they are. The impact is real.</div>
+    </div>
+    <div class="quiz-score" id="score-3"><span class="score-number" id="score-num-3"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(3)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(3)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(3,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(3,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(3,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-3"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(2)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(4)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     LESSON 5 — Community & Civic Etiquette
+════════════════════════════ -->
+<div class="lesson-panel" id="lesson-4">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 05 of 06</div>
+    <h2 class="lesson-title">Community and Civic Etiquette</h2>
+    <p class="lesson-tagline">Small towns, public life, and the long memory of community.</p>
+  </div>
+
+  <div class="story-box">
+    <p class="story-text">Small-town civic life has rules that nobody writes down. Everyone knows them — or is supposed to. Show up when you say you will. Don't grandstand in public meetings. Don't make it personal. Disagree at the meeting, shake hands in the parking lot. Volunteer when there aren't enough people. Step back when it's someone else's turn. These rules hold a community together more than any ordinance does. And when people stop following them — even a few people — everyone feels it.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">How to show up in public meetings</h3>
+    <ul class="content-list">
+      <li><strong>Come prepared.</strong> Read the agenda. Know the issue. Your time and everyone else's is more valuable when you've done the homework.</li>
+      <li><strong>Speak to the issue, not the person.</strong> "I disagree with this proposal because..." is appropriate. "I can't believe he would even suggest..." is not.</li>
+      <li><strong>Three minutes is usually enough.</strong> If you can't make your point in three minutes, you haven't found it yet. Respect the room's time.</li>
+      <li><strong>Don't repeat what's already been said.</strong> Adding "and I agree with everything she just said" is not a contribution. If someone made your point better than you would have, let it stand.</li>
+      <li><strong>Public comment is not a conversation.</strong> You present your view. You don't get to cross-examine the board or demand immediate answers. That's not the format.</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The long memory of small communities</h3>
+    <p>In cities, you can have a bad moment and mostly recover — most people won't remember, and you can disappear into the crowd. In a town of 1,000 people, that calculation is different. <strong>Your reputation is built slowly and lost fast.</strong> The way you behave at the county meeting, the school board meeting, the co-op annual meeting — it accumulates.</p>
+    <p>This isn't a reason to be invisible or to never take a stand. It's a reason to be intentional. The people who have the most influence in small communities over time are the ones who show up consistently, treat people well regardless of whether they agree with them, and don't burn bridges they'll need to cross again.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Civic participation as etiquette</h3>
+    <ul class="content-list">
+      <li><strong>Vote.</strong> Complaining about government while not voting is a form of free-riding on everyone who does.</li>
+      <li><strong>Show up to more than just the things that affect you directly.</strong> Presence at a school board meeting when you have no children signals investment in the community, not just self-interest.</li>
+      <li><strong>Give credit generously.</strong> In small communities, the people doing the work are often invisible. Naming them publicly — at a meeting, in a letter to the paper — costs you nothing and matters enormously to them.</li>
+      <li><strong>Disagree with decisions, not with people's humanity.</strong> You can think a commissioner made the wrong call without concluding that they're a bad person. Holding that distinction is civic maturity.</li>
+    </ul>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Discussion</div>
+    <p>Ask: Who is someone in your community who does civic life really well? What do they do? This question almost always produces the same answers — they show up, they're consistent, they treat people well even in disagreement. The discussion teaches the lesson better than any list.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-4">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q4-0">
+      <p class="question-text">1. In a public meeting, "speak to the issue, not the person" means...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,0,0,false)">Address your comments directly to the board, not the audience</button>
+        <button class="quiz-option" onclick="answer(4,0,1,true)">Critique the proposal or decision — not the character of the person who made it</button>
+        <button class="quiz-option" onclick="answer(4,0,2,false)">Keep your comments impersonal and avoid all emotional language</button>
+        <button class="quiz-option" onclick="answer(4,0,3,false)">Don't name specific individuals in your public comments</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-0-correct">✓ Right — attack the proposal, not the proposer. "I disagree with this because..." not "I can't believe he would..."</div>
+      <div class="quiz-feedback" id="fb-4-0-incorrect">"Speak to the issue" means focusing your criticism on the decision or proposal — not on the character, motives, or personality of the person who made it.</div>
+    </div>
+    <div class="quiz-question" id="q4-1">
+      <p class="question-text">2. In small communities, reputation is built...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,1,0,false)">Quickly through a few high-profile moments</button>
+        <button class="quiz-option" onclick="answer(4,1,1,true)">Slowly through consistent behavior over time — and lost fast</button>
+        <button class="quiz-option" onclick="answer(4,1,2,false)">Mainly through your professional credentials and accomplishments</button>
+        <button class="quiz-option" onclick="answer(4,1,3,false)">Through the connections and relationships you're born into</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-1-correct">✓ Slowly built, quickly lost. That asymmetry is worth understanding. Consistent behavior over time is what earns real standing in a small community.</div>
+      <div class="quiz-feedback" id="fb-4-1-incorrect">Reputation in small communities is built slowly — through consistent behavior over years — and can be lost very fast. That asymmetry is worth keeping in mind.</div>
+    </div>
+    <div class="quiz-question" id="q4-2">
+      <p class="question-text">3. "Disagree with decisions, not with people's humanity" is an example of...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,2,0,false)">Being passive or refusing to take a stand</button>
+        <button class="quiz-option" onclick="answer(4,2,1,false)">Civic disengagement</button>
+        <button class="quiz-option" onclick="answer(4,2,2,true)">Civic maturity — you can oppose a decision and still respect the person who made it</button>
+        <button class="quiz-option" onclick="answer(4,2,3,false)">A rule only applicable to elected officials</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-2-correct">✓ Civic maturity. Holding that distinction keeps communities functional — and keeps you from burning the relationships you'll need later.</div>
+      <div class="quiz-feedback" id="fb-4-2-incorrect">Disagreeing with someone's decision while respecting their humanity is civic maturity — not weakness. It keeps communities functional and relationships intact across disagreements.</div>
+    </div>
+    <div class="quiz-score" id="score-4"><span class="score-number" id="score-num-4"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(4)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(4)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(4,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(4,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(4,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-4"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(3)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(5)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     LESSON 6 — When AI Is in the Room
+════════════════════════════ -->
+<div class="lesson-panel" id="lesson-5">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 06 of 06</div>
+    <h2 class="lesson-title">When AI Is in the Room</h2>
+    <p class="lesson-tagline">The new social frontier nobody has fully figured out yet. Here's a start.</p>
+  </div>
+
+  <div class="story-box">
+    <p class="story-text">Every generation gets a new set of social questions that didn't exist before. Phones at the dinner table. Social media at funerals. Video calls with the camera off. Each time, the norms take years to catch up to the technology. AI is the newest version of that gap — and it's a big one. Using AI at work, in school, in civic life, in personal relationships raises questions we're still working out. This lesson doesn't pretend to have all the answers. It gives you a framework for thinking through them yourself.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Where the new questions are showing up</h3>
+    <ul class="content-list">
+      <li><strong>In school and education.</strong> When is using AI for help appropriate? When does it become doing the work for you? These lines are being drawn differently by different institutions right now.</li>
+      <li><strong>At work.</strong> If you use AI to draft something faster, are you obligated to say so? What if your organization hasn't set a policy yet?</li>
+      <li><strong>In public and civic life.</strong> If a public comment was drafted with AI help, does that need to be disclosed? What about a letter to the editor?</li>
+      <li><strong>In personal relationships.</strong> Is it appropriate to use AI to draft a heartfelt message to a friend? What about a condolence note? A wedding toast?</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">A framework for the gray areas</h3>
+    <table class="compare-table">
+      <tr><th>Question to ask</th><th>Why it matters</th></tr>
+      <tr><td>Does the recipient expect this to be fully yours?</td><td>If yes, and AI did significant work — that's a disclosure question</td></tr>
+      <tr><td>Does using AI here change the meaning of the interaction?</td><td>A condolence note's value is in the human care behind it. AI changes that.</td></tr>
+      <tr><td>Am I using AI as a tool or as a replacement for my own thinking?</td><td>Tool: fine. Replacement: you're losing something — and often it shows.</td></tr>
+      <tr><td>Would I be comfortable if people knew I used AI for this?</td><td>If not — that discomfort is worth listening to.</td></tr>
+    </table>
+  </div>
+
+  <div class="callout callout-gold">
+    <div class="callout-label">The one rule that covers most situations</div>
+    <p><strong>Don't let AI replace the part of you that the other person is actually there for.</strong> In education, that's your thinking. In relationships, that's your care. In civic life, that's your voice. AI can help you express those things more clearly. It cannot generate them for you.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">AI in meetings and group settings</h3>
+    <ul class="content-list">
+      <li><strong>Announce it when it's relevant.</strong> If you used AI to prepare a presentation, brief report, or analysis that others will rely on — say so. It helps people calibrate how to engage with the material.</li>
+      <li><strong>Don't use AI in real time without saying so.</strong> If you're looking something up or running a question through AI during a meeting, naming it ("let me ask AI quickly") keeps the room informed.</li>
+      <li><strong>AI note-taking and summarization tools are increasingly common.</strong> If a meeting is being recorded and summarized by AI, participants should know — both as a courtesy and, in some contexts, a legal matter.</li>
+    </ul>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Discussion — Open Questions</div>
+    <p>This lesson works best as a discussion rather than instruction. Pose the scenarios from the gray-areas table and let the group debate. There are no settled right answers here. The goal is that participants leave with a personal framework — not a list of rules — for navigating situations as they arise.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-5">
+    <div class="quiz-title">Final Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+    <div class="quiz-question" id="q5-0">
+      <p class="question-text">1. Using AI to draft a condolence note to a grieving friend raises a social question because...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,0,0,false)">Condolence notes are too personal to involve technology at all</button>
+        <button class="quiz-option" onclick="answer(5,0,1,true)">The value of that note is the human care behind it — AI may change what the note actually means</button>
+        <button class="quiz-option" onclick="answer(5,0,2,false)">Your friend might be able to tell it was AI-generated</button>
+        <button class="quiz-option" onclick="answer(5,0,3,false)">AI isn't good enough at emotional writing to do it well</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-0-correct">✓ The issue isn't whether AI can write it well — it's what the note is for. Its value is in the care behind it. AI can't generate that.</div>
+      <div class="quiz-feedback" id="fb-5-0-incorrect">The question isn't whether AI writes well — it's what that note represents. Its value is the human care, grief, and relationship behind it. AI changes what it actually is.</div>
+    </div>
+    <div class="quiz-question" id="q5-1">
+      <p class="question-text">2. If you used AI to help draft a public comment or presentation others will rely on, you should...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,1,0,false)">Say nothing — it's your work because you reviewed and approved it</button>
+        <button class="quiz-option" onclick="answer(5,1,1,true)">Disclose it — it helps others calibrate how to engage with the material</button>
+        <button class="quiz-option" onclick="answer(5,1,2,false)">Only disclose if someone directly asks whether you used AI</button>
+        <button class="quiz-option" onclick="answer(5,1,3,false)">Avoid using AI for any public-facing content</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-1-correct">✓ Disclosure helps people engage with the material appropriately. It's a transparency courtesy — and in some contexts, more than that.</div>
+      <div class="quiz-feedback" id="fb-5-1-incorrect">When others will rely on AI-assisted work, naming it helps them calibrate. It's a courtesy — and sometimes an obligation — depending on context.</div>
+    </div>
+    <div class="quiz-question" id="q5-2">
+      <p class="question-text">3. The one rule that covers most AI social situations is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,2,0,false)">Always disclose AI use regardless of context</button>
+        <button class="quiz-option" onclick="answer(5,2,1,false)">Never use AI for anything another person will read or hear</button>
+        <button class="quiz-option" onclick="answer(5,2,2,true)">Don't let AI replace the part of you the other person is actually there for — your thinking, your care, your voice</button>
+        <button class="quiz-option" onclick="answer(5,2,3,false)">Use AI only for tasks where speed matters more than quality</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-2-correct">✓ That's the whole lesson. AI as a tool to help you express yourself — yes. AI as a replacement for the part of you that matters — that's where it crosses a line.</div>
+      <div class="quiz-feedback" id="fb-5-2-incorrect">The rule is about what AI replaces. If it's replacing busywork — fine. If it's replacing your thinking, your care, or your voice in a context where that's what's actually being asked for — that's where it crosses a line.</div>
+    </div>
+    <div class="quiz-score" id="score-5"><span class="score-number" id="score-num-5"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(5)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(5)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about completing this module?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(5,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(5,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(5,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-5"></div>
+  </div>
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(4)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="completeModule()">Complete Module ✦</button>
+  </div>
+</div>
+
+<!-- COMPLETION -->
+<div class="completion-banner" id="completionBanner">
+  <span class="completion-star">🌾</span>
+  <h2 class="completion-title">Module 03 Complete</h2>
+  <p class="completion-text">You've finished Social Skills & Etiquette. You know how to show up with presence, listen in a way people feel, navigate conflict without destroying, handle digital life with integrity, participate in civic life with grace, and think clearly about AI's place in human relationships.</p>
+  <div class="completion-summary">
+    <div class="summary-stat"><span class="stat-num">6</span><span class="stat-label">Lessons</span></div>
+    <div class="summary-stat"><span class="stat-num">18</span><span class="stat-label">Quiz Questions</span></div>
+    <div class="summary-stat"><span class="stat-num" id="finalScore">—</span><span class="stat-label">Your Score</span></div>
+  </div>
+  <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:24px;">"How we treat people is who we are."</p>
+  <a href="https://wideopenfuture.org" class="btn btn-primary" style="text-decoration:none;display:inline-block;">← Back to Wide Open Future</a>
+</div>
+</main>
+
+<script>
+const state={currentLesson:0,completed:new Array(6).fill(false),quizAnswers:Array.from({length:6},()=>({})),quizSubmitted:new Array(6).fill(false),confidence:new Array(6).fill(null),totalCorrect:0};
+const quizData=[[{correct:1},{correct:2},{correct:2}],[{correct:1},{correct:2},{correct:2}],[{correct:1},{correct:2},{correct:2}],[{correct:1},{correct:2},{correct:2}],[{correct:1},{correct:1},{correct:2}],[{correct:1},{correct:1},{correct:2}]];
+
+function goToLesson(n){document.getElementById('lesson-'+state.currentLesson).classList.remove('active');document.querySelectorAll('.lesson-nav-btn')[state.currentLesson].classList.remove('active');state.currentLesson=n;document.getElementById('lesson-'+n).classList.add('active');document.querySelectorAll('.lesson-nav-btn')[n].classList.add('active');updateProgress();window.scrollTo({top:0,behavior:'smooth'});}
+function updateProgress(){const pct=((state.currentLesson+1)/6)*100;document.getElementById('progressFill').style.width=pct+'%';document.getElementById('progressText').textContent='Lesson '+(state.currentLesson+1)+' of 6';}
+function answer(lesson,question,optIdx,isCorrect){if(state.quizSubmitted[lesson])return;state.quizAnswers[lesson][question]={optIdx,isCorrect};const qEl=document.getElementById('q'+lesson+'-'+question);qEl.querySelectorAll('.quiz-option').forEach((btn,i)=>{btn.style.opacity=i===optIdx?'1':'0.5';btn.style.borderColor=i===optIdx?'var(--amber-dim)':''});}
+function submitQuiz(lesson){if(state.quizSubmitted[lesson])return;state.quizSubmitted[lesson]=true;let correct=0;const answers=state.quizAnswers[lesson];for(let q=0;q<3;q++){const qEl=document.getElementById('q'+lesson+'-'+q);const opts=qEl.querySelectorAll('.quiz-option');const rightIdx=quizData[lesson][q].correct;opts.forEach(btn=>{btn.disabled=true;btn.style.opacity='1';});if(answers[q]!==undefined){const chosen=answers[q].optIdx;const isRight=answers[q].isCorrect;opts[chosen].classList.add(isRight?'correct':'incorrect');if(!isRight)opts[rightIdx].classList.add('show-correct');const fbId=isRight?'fb-'+lesson+'-'+q+'-correct':'fb-'+lesson+'-'+q+'-incorrect';document.getElementById(fbId).classList.add(isRight?'correct':'incorrect');if(isRight)correct++;}else{opts[rightIdx].classList.add('show-correct');const fbEl=document.getElementById('fb-'+lesson+'-'+q+'-incorrect');if(fbEl)fbEl.classList.add('incorrect');}}const scoreEl=document.getElementById('score-'+lesson);scoreEl.style.display='block';document.getElementById('score-num-'+lesson).textContent=correct+'/3';state.totalCorrect+=correct;markComplete(lesson);}
+function retakeQuiz(lesson){state.quizSubmitted[lesson]=false;state.quizAnswers[lesson]={};for(let q=0;q<3;q++){const qEl=document.getElementById('q'+lesson+'-'+q);const opts=qEl.querySelectorAll('.quiz-option');opts.forEach(btn=>{btn.disabled=false;btn.classList.remove('correct','incorrect','show-correct');btn.style.opacity='1';btn.style.borderColor='';});['correct','incorrect'].forEach(type=>{const el=document.getElementById('fb-'+lesson+'-'+q+'-'+type);if(el)el.classList.remove('correct','incorrect');});}const scoreEl=document.getElementById('score-'+lesson);if(scoreEl)scoreEl.style.display='none';}
+const confMessages={'getting-there':"That's the process. Try the lesson again tomorrow — or just move on and come back. There's no penalty for taking your time.",'got-it':"Solid. That's all you need. Move forward with confidence.",'could-teach':"That's a different level of ownership. When you can teach something, you've truly got it."};
+function setConfidence(lesson,level){state.confidence[lesson]=level;const container=document.getElementById('lesson-'+lesson);container.querySelectorAll('.confidence-btn').forEach(btn=>btn.classList.remove('selected'));event.currentTarget.classList.add('selected');const resp=document.getElementById('conf-resp-'+lesson);resp.style.display='block';resp.textContent=confMessages[level];markComplete(lesson);}
+function markComplete(lesson){if(state.quizSubmitted[lesson]&&state.confidence[lesson]){state.completed[lesson]=true;const navBtn=document.querySelectorAll('.lesson-nav-btn')[lesson];navBtn.classList.add('completed');navBtn.classList.remove('active');}}
+function completeModule(){document.getElementById('lesson-5').classList.remove('active');document.getElementById('completionBanner').classList.add('show');document.getElementById('finalScore').textContent=state.totalCorrect+'/18';window.scrollTo({top:0,behavior:'smooth'});document.getElementById('progressFill').style.width='100%';document.getElementById('progressText').textContent='Module Complete ✦';}
+updateProgress();
+</script>
+</body>
+</html>

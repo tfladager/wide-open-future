@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 01 — Using AI: A Starter's Guide | Wide Open Future</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --night: #0d0d1a;
+  --deep: #13132a;
+  --card: #1a1a35;
+  --card2: #20203d;
+  --gold: #e8b84b;
+  --gold-light: #f5d078;
+  --gold-dim: #9a7520;
+  --wheat: #d4a843;
+  --sage: #7a9e7e;
+  --sage-light: #a8c5ac;
+  --sky: #4a7fa5;
+  --sky-light: #7ab0d4;
+  --text: #e8e4d8;
+  --text-dim: #a09880;
+  --text-soft: #c8c0b0;
+  --border: #2a2a50;
+  --border-gold: #4a3a18;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--night);
+  color: var(--text);
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 300;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── STARS BACKGROUND ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 20%, rgba(232,184,75,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 72% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 88% 35%, rgba(232,184,75,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 33% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 58% 72%, rgba(232,184,75,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 80%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 15%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 60%, rgba(232,184,75,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 22% 92%, rgba(255,255,255,0.3) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: rgba(13,13,26,0.95);
+  border-bottom: 1px solid var(--border-gold);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.site-logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.site-logo span {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  margin-left: 8px;
+}
+
+.progress-bar-wrap {
+  flex: 1;
+  max-width: 300px;
+  margin: 0 32px;
+}
+
+.progress-label {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.progress-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+  border-radius: 2px;
+  transition: width 0.6s ease;
+  width: 0%;
+}
+
+/* ── HERO ── */
+.module-hero {
+  position: relative;
+  z-index: 1;
+  padding: 80px 40px 60px;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.module-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border-gold);
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.module-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.module-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.module-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-soft);
+  max-width: 580px;
+  margin: 0 auto 32px;
+  font-weight: 300;
+}
+
+.module-meta {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.meta-pill {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* ── LESSON NAV ── */
+.lesson-nav {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto 48px;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+.lesson-nav-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  color: var(--text-dim);
+}
+
+.lesson-nav-btn:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold-light);
+}
+
+.lesson-nav-btn.active {
+  background: var(--card2);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.lesson-nav-btn.completed {
+  border-color: var(--sage);
+  color: var(--sage-light);
+}
+
+.lesson-nav-btn.completed::after {
+  content: ' ✓';
+  font-size: 0.7em;
+}
+
+.nav-num {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.nav-title {
+  font-size: 0.68rem;
+  line-height: 1.3;
+}
+
+/* ── MAIN CONTENT ── */
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+/* ── LESSON PANEL ── */
+.lesson-panel {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.lesson-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lesson-header {
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.lesson-number {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+}
+
+.lesson-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.lesson-tagline {
+  font-size: 1rem;
+  color: var(--text-soft);
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* ── CONTENT BLOCKS ── */
+.content-block {
+  margin-bottom: 32px;
+}
+
+.block-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.block-heading::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: var(--gold-dim);
+  flex-shrink: 0;
+}
+
+p { margin-bottom: 14px; color: var(--text-soft); }
+p:last-child { margin-bottom: 0; }
+
+strong { color: var(--text); font-weight: 600; }
+
+/* ── CALLOUT BOXES ── */
+.callout {
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  border-left: 3px solid;
+}
+
+.callout-gold {
+  background: rgba(232,184,75,0.07);
+  border-color: var(--gold);
+}
+
+.callout-sage {
+  background: rgba(122,158,126,0.07);
+  border-color: var(--sage);
+}
+
+.callout-sky {
+  background: rgba(74,127,165,0.07);
+  border-color: var(--sky);
+}
+
+.callout-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.callout-gold .callout-label { color: var(--gold); }
+.callout-sage .callout-label { color: var(--sage-light); }
+.callout-sky .callout-label  { color: var(--sky-light); }
+
+/* ── EXAMPLE BOXES ── */
+.example-box {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  font-size: 0.92rem;
+}
+
+.example-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+/* ── LISTS ── */
+ul.content-list {
+  list-style: none;
+  margin: 12px 0 20px;
+}
+
+ul.content-list li {
+  color: var(--text-soft);
+  padding: 6px 0 6px 24px;
+  position: relative;
+  border-bottom: 1px solid rgba(42,42,80,0.5);
+  font-size: 0.95rem;
+}
+
+ul.content-list li:last-child { border-bottom: none; }
+
+ul.content-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--gold-dim);
+  font-size: 0.6rem;
+  top: 10px;
+}
+
+/* ── COMPARISON TABLE ── */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.88rem;
+}
+
+.compare-table th {
+  background: var(--card2);
+  color: var(--gold-light);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--border-gold);
+  font-family: 'Source Serif 4', serif;
+}
+
+.compare-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-soft);
+  vertical-align: top;
+}
+
+.compare-table tr:hover td {
+  background: rgba(255,255,255,0.02);
+}
+
+/* ── PROMPT BUILDER ── */
+.prompt-builder {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+}
+
+.prompt-builder h4 {
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.prompt-parts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.prompt-part {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.part-letter {
+  font-size: 1.4rem;
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-weight: 700;
+  display: block;
+}
+
+.part-word {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: block;
+  margin-top: 2px;
+}
+
+.part-desc {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* ── AI COMPARISON CARDS ── */
+.ai-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.ai-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  transition: border-color 0.2s;
+}
+
+.ai-card:hover { border-color: var(--gold-dim); }
+
+.ai-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+
+.ai-desc {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ── QUIZ SECTION ── */
+.quiz-section {
+  background: var(--card);
+  border: 1px solid var(--border-gold);
+  border-radius: 14px;
+  padding: 32px;
+  margin: 40px 0 20px;
+}
+
+.quiz-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.quiz-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+  letter-spacing: 0.03em;
+}
+
+.quiz-question {
+  margin-bottom: 28px;
+}
+
+.question-text {
+  font-size: 0.97rem;
+  color: var(--text);
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quiz-option {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--text-soft);
+  text-align: left;
+  transition: all 0.2s;
+  font-family: 'Source Serif 4', serif;
+}
+
+.quiz-option:hover:not(:disabled) {
+  border-color: var(--gold-dim);
+  color: var(--text);
+}
+
+.quiz-option.correct {
+  background: rgba(122,158,126,0.15);
+  border-color: var(--sage);
+  color: var(--sage-light);
+}
+
+.quiz-option.incorrect {
+  background: rgba(180,70,70,0.1);
+  border-color: #b44646;
+  color: #d47070;
+}
+
+.quiz-option.show-correct {
+  background: rgba(122,158,126,0.08);
+  border-color: var(--sage);
+  color: var(--sage-light);
+}
+
+.quiz-feedback {
+  margin-top: 10px;
+  font-size: 0.83rem;
+  padding: 10px 14px;
+  border-radius: 6px;
+  display: none;
+  line-height: 1.5;
+}
+
+.quiz-feedback.correct {
+  display: block;
+  background: rgba(122,158,126,0.1);
+  color: var(--sage-light);
+  border-left: 3px solid var(--sage);
+}
+
+.quiz-feedback.incorrect {
+  display: block;
+  background: rgba(180,80,80,0.08);
+  color: #d47070;
+  border-left: 3px solid #b44646;
+}
+
+.quiz-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 11px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: 'Source Serif 4', serif;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--night);
+  font-weight: 600;
+}
+
+.btn-primary:hover { background: var(--gold-light); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold-light);
+}
+
+.quiz-score {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.score-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: var(--gold);
+  font-weight: 700;
+  display: block;
+}
+
+.score-label {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* ── CONFIDENCE CHECK ── */
+.confidence-check {
+  background: linear-gradient(135deg, var(--card) 0%, var(--card2) 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: 14px;
+  padding: 32px;
+  margin: 20px 0 40px;
+  text-align: center;
+}
+
+.confidence-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.confidence-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+
+.confidence-options {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.confidence-btn {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 160px;
+  font-family: 'Source Serif 4', serif;
+}
+
+.confidence-btn:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-2px);
+}
+
+.confidence-btn.selected {
+  border-color: var(--gold);
+  background: rgba(232,184,75,0.08);
+}
+
+.conf-icon { font-size: 1.6rem; display: block; margin-bottom: 6px; }
+.conf-label { font-size: 0.82rem; color: var(--gold-light); font-weight: 600; display: block; }
+.conf-desc  { font-size: 0.72rem; color: var(--text-dim); margin-top: 4px; line-height: 1.4; }
+
+.confidence-response {
+  margin-top: 20px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  display: none;
+  color: var(--text-soft);
+  background: rgba(232,184,75,0.05);
+  border: 1px solid var(--border-gold);
+}
+
+/* ── LESSON NAVIGATION ── */
+.lesson-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.83rem;
+  font-family: 'Source Serif 4', serif;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-btn:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold-light);
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.nav-btn.next-btn {
+  background: var(--gold);
+  color: var(--night);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+
+.nav-btn.next-btn:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  color: var(--night);
+}
+
+/* ── COMPLETION BANNER ── */
+.completion-banner {
+  display: none;
+  text-align: center;
+  padding: 60px 40px;
+  animation: fadeIn 0.6s ease;
+}
+
+.completion-banner.show { display: block; }
+
+.completion-star {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.completion-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.completion-text {
+  color: var(--text-soft);
+  max-width: 500px;
+  margin: 0 auto 28px;
+  font-size: 0.97rem;
+}
+
+.completion-summary {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.summary-stat {
+  background: var(--card);
+  border: 1px solid var(--border-gold);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── FACILITATOR NOTES ── */
+.facilitator-note {
+  background: rgba(74,127,165,0.06);
+  border: 1px solid rgba(74,127,165,0.3);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 20px 0;
+}
+
+.facilitator-note .fn-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sky-light);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.facilitator-note p { color: rgba(200,220,235,0.8); font-size: 0.88rem; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .site-header { padding: 12px 20px; }
+  .progress-bar-wrap { display: none; }
+  .module-hero { padding: 50px 20px 40px; }
+  .lesson-nav { padding: 0 20px; grid-template-columns: repeat(3, 1fr); }
+  .main { padding: 0 20px 60px; }
+  .quiz-section, .confidence-check { padding: 20px; }
+  .confidence-options { flex-direction: column; align-items: center; }
+  .completion-summary { grid-template-columns: 1fr; }
+  .prompt-parts { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="https://wideopenfuture.org" class="site-logo">
+    Wide Open Future <span>/ Module 01</span>
+  </a>
+  <div class="progress-bar-wrap">
+    <div class="progress-label">Your progress</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div style="font-size:0.75rem; color:var(--text-dim);">
+    <span id="progressText">Lesson 1 of 6</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="module-hero">
+  <div class="module-tag">Module 01 · Wide Open Future</div>
+  <h1 class="module-title">Using AI:<br><em>A Starter's Guide</em></h1>
+  <p class="module-subtitle">What it is, how it works, and how to use it without losing yourself in it.</p>
+  <div class="module-meta">
+    <span class="meta-pill">6 Lessons</span>
+    <span class="meta-pill">Self-paced</span>
+    <span class="meta-pill">Retakeable quizzes</span>
+    <span class="meta-pill">Facilitator-ready</span>
+  </div>
+</section>
+
+<!-- LESSON NAV -->
+<nav class="lesson-nav" id="lessonNav">
+  <button class="lesson-nav-btn active" onclick="goToLesson(0)">
+    <span class="nav-num">01</span>
+    <span class="nav-title">What Is AI?</span>
+  </button>
+  <button class="lesson-nav-btn" onclick="goToLesson(1)">
+    <span class="nav-num">02</span>
+    <span class="nav-title">The Prompt</span>
+  </button>
+  <button class="lesson-nav-btn" onclick="goToLesson(2)">
+    <span class="nav-num">03</span>
+    <span class="nav-title">AI in Your World</span>
+  </button>
+  <button class="lesson-nav-btn" onclick="goToLesson(3)">
+    <span class="nav-num">04</span>
+    <span class="nav-title">When It's Wrong</span>
+  </button>
+  <button class="lesson-nav-btn" onclick="goToLesson(4)">
+    <span class="nav-num">05</span>
+    <span class="nav-title">Test the Tools</span>
+  </button>
+  <button class="lesson-nav-btn" onclick="goToLesson(5)">
+    <span class="nav-num">06</span>
+    <span class="nav-title">Use It Wisely</span>
+  </button>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+<!-- ═══════════════════════════════════════════════
+     LESSON 1 — What Is AI, Really?
+═══════════════════════════════════════════════ -->
+<div class="lesson-panel active" id="lesson-0">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 01 of 06</div>
+    <h2 class="lesson-title">What Is AI, Really?</h2>
+    <p class="lesson-tagline">Myths vs. reality — understanding the tool before you use it.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The honest answer</h3>
+    <p>AI stands for Artificial Intelligence — but that name makes it sound more magical than it is. Here's the plain truth: <strong>AI is software that finds patterns in huge amounts of text and data, then uses those patterns to give you an answer.</strong></p>
+    <p>It doesn't think. It doesn't know things the way you know things. It has never seen a Montana sunrise or driven forty miles to a doctor's appointment. It learned by reading billions of sentences written by people who have — and it uses those patterns to respond to you.</p>
+    <p>That doesn't make it useless. It makes it a very powerful tool. And like any tool, it works best when the person using it understands what it actually is.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">What AI is — and what it isn't</h3>
+    <table class="compare-table">
+      <tr><th>AI IS...</th><th>AI IS NOT...</th></tr>
+      <tr><td>Pattern-matching software trained on text</td><td>Alive, conscious, or self-aware</td></tr>
+      <tr><td>A fast, tireless writing and research assistant</td><td>Always right — it makes things up</td></tr>
+      <tr><td>A tool that responds to your questions</td><td>Magic, or secretly run by humans</td></tr>
+      <tr><td>Getting better every year</td><td>A replacement for your own thinking</td></tr>
+      <tr><td>Already in your daily life</td><td>Something only tech people need to understand</td></tr>
+    </table>
+  </div>
+
+  <div class="callout callout-gold">
+    <div class="callout-label">Why This Matters</div>
+    <p>When you understand that AI is a pattern-matching tool — not magic, not a mind — you stop being impressed by it and start using it. <strong>That shift is everything.</strong> The people who get the most out of AI are the ones who stopped being amazed and started being strategic.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Three things AI does well</h3>
+    <ul class="content-list">
+      <li><strong>Drafts fast.</strong> Need a starting point for a letter, a plan, a presentation? AI gives you something to react to in seconds.</li>
+      <li><strong>Explains things patiently.</strong> Ask the same question ten ways. It never gets tired or makes you feel dumb for asking again.</li>
+      <li><strong>Summarizes and organizes.</strong> Hand it a pile of information and ask it to make sense of it. That's where it shines.</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Three things AI does poorly</h3>
+    <ul class="content-list">
+      <li><strong>Facts it wasn't trained on.</strong> It may confidently give you wrong numbers, fake citations, or outdated information.</li>
+      <li><strong>Anything about your specific life.</strong> It doesn't know your land, your neighbors, your situation.</li>
+      <li><strong>Judgment calls.</strong> It can lay out options. It can't tell you what's right for you.</li>
+    </ul>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Note</div>
+    <p>Open discussion: Ask participants what they've heard about AI — good or bad. Write them on a board. Then work through the list together: myth or reality? This lesson works well as a 15-minute group activity before assigning the self-paced portion.</p>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-section" id="quiz-0">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q0-0">
+      <p class="question-text">1. AI gives you answers by...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,0,0,false)">Accessing a live database of all human knowledge</button>
+        <button class="quiz-option" onclick="answer(0,0,1,true)">Matching patterns from text it was trained on</button>
+        <button class="quiz-option" onclick="answer(0,0,2,false)">Connecting to the internet in real time</button>
+        <button class="quiz-option" onclick="answer(0,0,3,false)">Having a team of experts review your question</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-0-correct">✓ Exactly right. AI is pattern-matching software — not a live search engine, not a team of people, and not magic.</div>
+      <div class="quiz-feedback" id="fb-0-0-incorrect">Not quite. AI works by finding patterns in the text it was trained on — it doesn't access live information or read your question in real time.</div>
+    </div>
+
+    <div class="quiz-question" id="q0-1">
+      <p class="question-text">2. Which of these is something AI does WELL?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,1,0,false)">Giving you perfectly accurate facts every time</button>
+        <button class="quiz-option" onclick="answer(0,1,1,false)">Making judgment calls about your personal situation</button>
+        <button class="quiz-option" onclick="answer(0,1,2,true)">Giving you a fast first draft to react to</button>
+        <button class="quiz-option" onclick="answer(0,1,3,false)">Knowing what's happening in the news right now</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-1-correct">✓ That's it. First drafts, explanations, summaries — AI is a fast starting point. You bring the judgment.</div>
+      <div class="quiz-feedback" id="fb-0-1-incorrect">Not quite. AI does best at things like drafting, explaining, and organizing — not at facts, judgment, or real-time events.</div>
+    </div>
+
+    <div class="quiz-question" id="q0-2">
+      <p class="question-text">3. The most important thing to remember about AI is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,2,0,false)">It's too complicated for most people to use</button>
+        <button class="quiz-option" onclick="answer(0,2,1,false)">It will replace most human jobs soon</button>
+        <button class="quiz-option" onclick="answer(0,2,2,false)">It's always more accurate than a person</button>
+        <button class="quiz-option" onclick="answer(0,2,3,true)">It's a tool — and you are the one in charge of using it well</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-2-correct">✓ Yes. That's the whole lesson in one sentence. You're always in charge.</div>
+      <div class="quiz-feedback" id="fb-0-2-incorrect">Think about it this way — what makes any tool useful? The person who knows how to use it. That's you.</div>
+    </div>
+
+    <div class="quiz-score" id="score-0">
+      <span class="score-number" id="score-num-0"></span>
+      <div class="score-label">questions correct</div>
+    </div>
+
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(0)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(0)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <!-- CONFIDENCE CHECK -->
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson? No wrong answers here.</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(0,'getting-there')">
+        <span class="conf-icon">🌱</span>
+        <span class="conf-label">Getting There</span>
+        <span class="conf-desc">Still building. I'll try it again.</span>
+      </button>
+      <button class="confidence-btn" onclick="setConfidence(0,'got-it')">
+        <span class="conf-icon">🌾</span>
+        <span class="conf-label">Got It</span>
+        <span class="conf-desc">Solid. Ready to move on.</span>
+      </button>
+      <button class="confidence-btn" onclick="setConfidence(0,'could-teach')">
+        <span class="conf-icon">🏆</span>
+        <span class="conf-label">Could Teach It</span>
+        <span class="conf-desc">I own this. Let's go.</span>
+      </button>
+    </div>
+    <div class="confidence-response" id="conf-resp-0"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" disabled>← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(1)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     LESSON 2 — The Art of the Prompt
+═══════════════════════════════════════════════ -->
+<div class="lesson-panel" id="lesson-1">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 02 of 06</div>
+    <h2 class="lesson-title">Talking to AI: The Art of the Prompt</h2>
+    <p class="lesson-tagline">Better questions get better answers. Every time.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">What is a prompt?</h3>
+    <p>A prompt is anything you type to an AI. It's your instruction, your question, your request. The quality of what you get back depends almost entirely on the quality of what you put in.</p>
+    <p>Here's the thing most people don't realize: <strong>AI isn't being difficult when it gives you a vague answer. It's giving you what you asked for.</strong> Vague question, vague answer. Specific question, specific answer. You're in control of that.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The CLEAR framework</h3>
+    <div class="prompt-builder">
+      <h4>Five things that make a great prompt</h4>
+      <div class="prompt-parts">
+        <div class="prompt-part">
+          <span class="part-letter">C</span>
+          <span class="part-word">Context</span>
+          <span class="part-desc">Tell it your situation. Who you are, what you need, why it matters.</span>
+        </div>
+        <div class="prompt-part">
+          <span class="part-letter">L</span>
+          <span class="part-word">Length</span>
+          <span class="part-desc">Short paragraph? Full letter? Bullet list? Say so.</span>
+        </div>
+        <div class="prompt-part">
+          <span class="part-letter">E</span>
+          <span class="part-word">Examples</span>
+          <span class="part-desc">Show it what good looks like. Paste in a sample if you have one.</span>
+        </div>
+        <div class="prompt-part">
+          <span class="part-letter">A</span>
+          <span class="part-word">Audience</span>
+          <span class="part-desc">Who's reading this? A 10-year-old? A county commissioner? A doctor?</span>
+        </div>
+        <div class="prompt-part">
+          <span class="part-letter">R</span>
+          <span class="part-word">Role</span>
+          <span class="part-desc">Ask it to act as something. "Act as a patient teacher" changes everything.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">See the difference</h3>
+    <div class="example-box">
+      <div class="example-label">Weak prompt</div>
+      <p style="color:var(--text-dim); font-style:italic;">"Write something about my ranch."</p>
+    </div>
+    <div class="example-box">
+      <div class="example-label">Strong CLEAR prompt</div>
+      <p style="color:var(--text-soft);">"I run a 2,000-acre cattle ranch in eastern Montana with my husband. Write a 3-paragraph 'About Us' section for our ranch website. Audience: potential buyers of our beef and hay. Tone: proud, honest, hardworking — not fancy. Focus on our commitment to land stewardship and family values."</p>
+    </div>
+    <div class="callout callout-sage">
+      <div class="callout-label">The result</div>
+      <p>Same AI, same moment — completely different outputs. The second prompt gave the AI everything it needed to write something you'd actually use.</p>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">It's a conversation, not a command</h3>
+    <p>You don't have to get it perfect the first time. If the answer isn't right, push back. Say "make it shorter," or "that's too formal," or "I need you to focus more on the cost part." AI responds to follow-up just like a person would.</p>
+    <p>Think of it as working with a very fast assistant who knows a lot but needs your direction. You're the boss of the conversation.</p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Activity — 10 minutes</div>
+    <p>Give participants a topic relevant to their life (job application, letter to a school, a business idea). Have them write a weak prompt first, then rebuild it using CLEAR. Compare outputs. The difference is usually striking enough that it lands immediately.</p>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-section" id="quiz-1">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q1-0">
+      <p class="question-text">1. In the CLEAR framework, what does "A" stand for?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,0,0,false)">Accuracy</button>
+        <button class="quiz-option" onclick="answer(1,0,1,true)">Audience</button>
+        <button class="quiz-option" onclick="answer(1,0,2,false)">Amount</button>
+        <button class="quiz-option" onclick="answer(1,0,3,false)">Attitude</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-0-correct">✓ Audience — who will read this? Telling AI who the reader is changes the whole tone of the response.</div>
+      <div class="quiz-feedback" id="fb-1-0-incorrect">The A in CLEAR stands for Audience — who's going to read what AI writes for you? That shapes everything.</div>
+    </div>
+
+    <div class="quiz-question" id="q1-1">
+      <p class="question-text">2. If AI gives you a vague answer, the most likely reason is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,1,0,false)">The AI is broken or having a bad day</button>
+        <button class="quiz-option" onclick="answer(1,1,1,false)">The topic is too complicated for AI</button>
+        <button class="quiz-option" onclick="answer(1,1,2,true)">Your prompt was vague — it gave you what you asked for</button>
+        <button class="quiz-option" onclick="answer(1,1,3,false)">You need to pay for a better version</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-1-correct">✓ Exactly. Garbage in, garbage out — and the reverse is also true. Specific in, specific out.</div>
+      <div class="quiz-feedback" id="fb-1-1-incorrect">Almost always, a vague answer means a vague prompt. The fix is in your hands — sharpen the question.</div>
+    </div>
+
+    <div class="quiz-question" id="q1-2">
+      <p class="question-text">3. After AI gives you a response you don't like, you should...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,2,0,false)">Start over from scratch with a new conversation</button>
+        <button class="quiz-option" onclick="answer(1,2,1,true)">Follow up — tell it what to change and why</button>
+        <button class="quiz-option" onclick="answer(1,2,2,false)">Accept it — AI can't do better than its first try</button>
+        <button class="quiz-option" onclick="answer(1,2,3,false)">Try a different AI — they all have one chance</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-2-correct">✓ Right. It's a conversation. Push back. Redirect. Tell it what's wrong and what you need instead.</div>
+      <div class="quiz-feedback" id="fb-1-2-incorrect">Don't give up after one try. AI responds to follow-up just like a person would. Keep the conversation going.</div>
+    </div>
+
+    <div class="quiz-score" id="score-1"><span class="score-number" id="score-num-1"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(1)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(1)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(1,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try it again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(1,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(1,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-1"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(0)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(2)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     LESSON 3 — AI in Your World
+═══════════════════════════════════════════════ -->
+<div class="lesson-panel" id="lesson-2">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 03 of 06</div>
+    <h2 class="lesson-title">AI in Your World</h2>
+    <p class="lesson-tagline">It's already here. The question is whether you're using it on purpose.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Closer than you think</h3>
+    <p>AI is not some far-off city technology. It's already in the tools rural people use every day — and it's coming into more of them fast. The question isn't whether AI will affect your life. It already has. The question is whether you're going to use it deliberately or just have it happen to you.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">AI on the ranch and farm</h3>
+    <ul class="content-list">
+      <li><strong>Precision agriculture tools</strong> — soil sensors, yield maps, and irrigation systems that use AI to make recommendations</li>
+      <li><strong>Livestock monitoring</strong> — ear tags and cameras that flag sick animals before symptoms are obvious</li>
+      <li><strong>Weather and market prediction</strong> — apps that use AI to forecast conditions and commodity trends</li>
+      <li><strong>Equipment diagnostics</strong> — newer machinery that runs AI in the cab to flag problems early</li>
+      <li><strong>Grant writing and farm planning</strong> — AI can help draft USDA applications, business plans, and loan paperwork</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">AI and rural healthcare</h3>
+    <ul class="content-list">
+      <li><strong>Telehealth support</strong> — AI tools help rural patients prepare for remote appointments and understand their options</li>
+      <li><strong>Medical records and billing</strong> — AI handles enormous amounts of healthcare paperwork behind the scenes</li>
+      <li><strong>Symptom checkers</strong> — tools that help you figure out whether something warrants a 40-mile drive</li>
+      <li><strong>Medication management</strong> — AI tools that flag drug interactions and help manage complex prescriptions for elderly patients</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-gold">
+    <div class="callout-label">Real example</div>
+    <p>A rancher in eastern Montana uses Claude to draft letters to the county commission, write grant proposals for water infrastructure, and research grazing regulations. It doesn't replace her knowledge of the land — it handles the paperwork so she has more time to do the work she actually knows how to do.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">AI in school and community life</h3>
+    <ul class="content-list">
+      <li><strong>Homework help</strong> — AI can explain math problems, check writing, and answer research questions patiently</li>
+      <li><strong>Credential prep</strong> — AI tools (including this platform) help adult learners study for the HiSET and other credentials</li>
+      <li><strong>Small business</strong> — writing product descriptions, social media posts, customer emails, business plans</li>
+      <li><strong>Civic participation</strong> — drafting public comments, understanding proposed ordinances, researching candidates</li>
+    </ul>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Discussion</div>
+    <p>Ask: Where have you already seen AI show up in your work or daily life — even without realizing it? This conversation often surprises people. Most have interacted with AI many times without knowing it. That recognition builds comfort and curiosity.</p>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-section" id="quiz-2">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q2-0">
+      <p class="question-text">1. Precision agriculture tools that use AI can help ranchers and farmers with...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,0,0,false)">Replacing the need to check on livestock in person</button>
+        <button class="quiz-option" onclick="answer(2,0,1,true)">Making data-driven recommendations about soil, water, and yields</button>
+        <button class="quiz-option" onclick="answer(2,0,2,false)">Running the farm without human oversight</button>
+        <button class="quiz-option" onclick="answer(2,0,3,false)">Guaranteeing higher profits every season</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-0-correct">✓ Right. AI helps with data and recommendations — the rancher or farmer still makes the call.</div>
+      <div class="quiz-feedback" id="fb-2-0-incorrect">AI in agriculture helps with data — soil sensors, yield maps, irrigation recommendations. The farmer still makes the decisions.</div>
+    </div>
+
+    <div class="quiz-question" id="q2-1">
+      <p class="question-text">2. For someone living 40 miles from the nearest hospital, AI might help most with...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,1,0,false)">Performing medical procedures remotely</button>
+        <button class="quiz-option" onclick="answer(2,1,1,true)">Helping prepare for telehealth appointments and understand symptoms</button>
+        <button class="quiz-option" onclick="answer(2,1,2,false)">Replacing the need for actual medical care</button>
+        <button class="quiz-option" onclick="answer(2,1,3,false)">Diagnosing conditions with full accuracy</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-1-correct">✓ Exactly. AI is a support tool — helping people prepare, understand, and navigate. Not a replacement for care.</div>
+      <div class="quiz-feedback" id="fb-2-1-incorrect">AI won't replace healthcare — but it can help rural people prepare for appointments, understand their symptoms, and navigate a complicated system.</div>
+    </div>
+
+    <div class="quiz-question" id="q2-2">
+      <p class="question-text">3. The best way to think about AI in rural life is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,2,0,false)">Something designed for city people that doesn't apply here</button>
+        <button class="quiz-option" onclick="answer(2,2,1,false)">A technology that will replace rural jobs and communities</button>
+        <button class="quiz-option" onclick="answer(2,2,2,true)">A tool that's already here — and most useful when you use it on purpose</button>
+        <button class="quiz-option" onclick="answer(2,2,3,false)">Something to worry about but wait and see</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-2-correct">✓ That's it. It's already in your world. Using it deliberately puts you ahead.</div>
+      <div class="quiz-feedback" id="fb-2-2-incorrect">AI is already in rural life — in the equipment, the apps, the healthcare system. The advantage goes to the people who use it on purpose.</div>
+    </div>
+
+    <div class="quiz-score" id="score-2"><span class="score-number" id="score-num-2"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(2)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(2)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(2,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try it again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(2,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(2,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-2"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(1)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(3)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     LESSON 4 — When AI Gets It Wrong
+═══════════════════════════════════════════════ -->
+<div class="lesson-panel" id="lesson-3">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 04 of 06</div>
+    <h2 class="lesson-title">When AI Gets It Wrong</h2>
+    <p class="lesson-tagline">It will. Knowing how and why keeps you in control.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">AI makes things up — confidently</h3>
+    <p>This is the most important thing to know about AI after you start using it: <strong>AI can be completely wrong and sound completely certain at the same time.</strong> It doesn't know what it doesn't know. It can give you a fake statistic, a made-up book title, or a wrong date — in the same confident tone it uses when it's right.</p>
+    <p>In the AI world, this is called a <strong>hallucination</strong>. It's not the AI lying. It's the AI filling in a pattern where it doesn't actually have the right information. The result looks like a fact. It isn't.</p>
+  </div>
+
+  <div class="callout callout-gold">
+    <div class="callout-label">Real example</div>
+    <p>A student asks AI to list five research papers about rural healthcare. AI produces five titles, five authors, five journal names — all formatted perfectly. Three of those papers do not exist. The AI invented them because it was asked for a list and it completed the pattern. The student who verifies before they cite catches it. The student who doesn't submit fake sources.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Three ways AI gets it wrong</h3>
+    <ul class="content-list">
+      <li><strong>Hallucinations.</strong> It invents facts, names, citations, or statistics that sound real but aren't. Always verify anything you plan to use.</li>
+      <li><strong>Outdated information.</strong> AI was trained on data up to a certain date. It doesn't know what happened last month. For anything time-sensitive, check a current source.</li>
+      <li><strong>Bias from training data.</strong> AI learned from text written by humans — and humans carry bias. If the training data underrepresented rural voices, rural perspectives, or certain communities, AI will reflect that gap.</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Your three-part check</h3>
+    <table class="compare-table">
+      <tr><th>Before you use AI's answer, ask...</th><th>Why it matters</th></tr>
+      <tr><td>Can I verify this with a real source?</td><td>Facts, statistics, names, and dates should be confirmed</td></tr>
+      <tr><td>Is this information time-sensitive?</td><td>Regulations, prices, and current events change — AI may not know</td></tr>
+      <tr><td>Does this match my own experience and knowledge?</td><td>You are the expert on your own situation. Trust that.</td></tr>
+    </table>
+  </div>
+
+  <div class="callout callout-sage">
+    <div class="callout-label">The rule of thumb</div>
+    <p>Use AI to think, draft, and explore — then use your own brain, your own knowledge, and real sources to verify anything important. That's not distrust. That's smart tool use. You'd do the same with any other source of information.</p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Activity</div>
+    <p>Ask AI a question you know the answer to — something local and specific. Let the group watch the answer come in, then evaluate it together. Where is it right? Where is it off? This exercise builds healthy skepticism faster than any lecture.</p>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-section" id="quiz-3">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q3-0">
+      <p class="question-text">1. An AI "hallucination" means...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,0,0,false)">The AI program has a glitch or technical error</button>
+        <button class="quiz-option" onclick="answer(3,0,1,false)">The AI is intentionally lying to mislead you</button>
+        <button class="quiz-option" onclick="answer(3,0,2,true)">The AI invents false information that sounds completely confident and real</button>
+        <button class="quiz-option" onclick="answer(3,0,3,false)">The AI becomes confused and stops responding</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-0-correct">✓ Right. Hallucinations are confident-sounding false information. That's what makes them dangerous if you don't verify.</div>
+      <div class="quiz-feedback" id="fb-3-0-incorrect">A hallucination is when AI fills in a pattern with invented information — and presents it as confidently as if it were real. Not a glitch. Not a lie. A pattern-matching error.</div>
+    </div>
+
+    <div class="quiz-question" id="q3-1">
+      <p class="question-text">2. You ask AI about a new state law passed last month. You should...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,1,0,false)">Trust the answer — AI knows current laws</button>
+        <button class="quiz-option" onclick="answer(3,1,1,true)">Verify with a government website — AI's knowledge has a cutoff date</button>
+        <button class="quiz-option" onclick="answer(3,1,2,false)">Ask AI the same question twice to confirm</button>
+        <button class="quiz-option" onclick="answer(3,1,3,false)">Only trust AI for laws older than 5 years</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-1-correct">✓ Always verify time-sensitive information. AI doesn't know what happened last month.</div>
+      <div class="quiz-feedback" id="fb-3-1-incorrect">AI has a training cutoff date — it doesn't know recent events or new laws. Always check a current official source for anything time-sensitive.</div>
+    </div>
+
+    <div class="quiz-question" id="q3-2">
+      <p class="question-text">3. When AI gives you information that conflicts with your own experience and knowledge, you should...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,2,0,false)">Assume AI is correct — it has access to more information</button>
+        <button class="quiz-option" onclick="answer(3,2,1,false)">Ignore your experience — AI doesn't have bias</button>
+        <button class="quiz-option" onclick="answer(3,2,2,true)">Trust your experience and verify — you are the expert on your own situation</button>
+        <button class="quiz-option" onclick="answer(3,2,3,false)">Ask AI to explain itself before deciding</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-2-correct">✓ Your own expertise and lived knowledge matter. AI doesn't know your land, your community, your situation. You do.</div>
+      <div class="quiz-feedback" id="fb-3-2-incorrect">You are the expert on your own life and situation. When AI conflicts with your real-world knowledge, trust yourself and verify.</div>
+    </div>
+
+    <div class="quiz-score" id="score-3"><span class="score-number" id="score-num-3"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(3)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(3)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(3,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try it again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(3,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(3,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-3"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(2)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(4)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     LESSON 5 — Put AI to the Test
+═══════════════════════════════════════════════ -->
+<div class="lesson-panel" id="lesson-4">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 05 of 06</div>
+    <h2 class="lesson-title">Put AI to the Test</h2>
+    <p class="lesson-tagline">Four tools. Different personalities. Test before you trust.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Not all AI is the same</h3>
+    <p>When people say "AI," they usually mean one of a handful of large language models — software built by different companies, trained on different data, with different personalities and guardrails. <strong>They are not interchangeable.</strong> Each has strengths and quirks worth knowing.</p>
+    <p>The best way to learn the difference? Ask them all the same question and compare.</p>
+  </div>
+
+  <div class="ai-cards">
+    <div class="ai-card">
+      <div class="ai-name">Claude</div>
+      <div class="ai-desc">Made by Anthropic. Tends to be thoughtful, careful, and good at nuanced writing. Often adds caveats. Strong at reasoning through complex questions.</div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-name">ChatGPT</div>
+      <div class="ai-desc">Made by OpenAI. The most widely used. Versatile, conversational, and good at creative tasks. GPT-4 and later versions are significantly more capable.</div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-name">Gemini</div>
+      <div class="ai-desc">Made by Google. Strong integration with Google products. Good at summarizing search results and handling factual questions with recent data.</div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-name">Grok</div>
+      <div class="ai-desc">Made by xAI. Has access to real-time posts on X (Twitter). More willing to push boundaries on some topics. Useful for current events and news.</div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The test activity</h3>
+    <p>Pick a question that matters to you — something about your work, your community, or your life. Ask the same question to at least two different AI tools. Then compare:</p>
+    <ul class="content-list">
+      <li>Which answer was more useful to you?</li>
+      <li>Which one felt more trustworthy? Why?</li>
+      <li>Did they disagree on anything? What does that tell you?</li>
+      <li>Which one asked you for more information before answering?</li>
+      <li>Which one gave you caveats and warnings — and did that help or frustrate you?</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-sky">
+    <div class="callout-label">Why this matters</div>
+    <p>Comparing AI tools is not just a fun exercise — it builds <strong>critical evaluation skills</strong> that apply to every source of information. After this lesson, you'll never take a single AI answer at face value again. That skepticism is the point.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">What to look for when you compare</h3>
+    <table class="compare-table">
+      <tr><th>Watch for...</th><th>What it tells you</th></tr>
+      <tr><td>One says something the others don't</td><td>That claim needs verification — it may be wrong</td></tr>
+      <tr><td>All four agree on something</td><td>More likely to be reliable — but still check important facts</td></tr>
+      <tr><td>One answer is much longer</td><td>Longer isn't better — check if the extra content adds value</td></tr>
+      <tr><td>One refuses to answer</td><td>Different tools have different guardrails — not always for the same reasons</td></tr>
+    </table>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Activity — 20 minutes</div>
+    <p>This is the hands-on lesson. If devices are available, have participants split into four groups — one per AI tool — and test the same question. Report back to the group. The differences almost always spark real discussion about trust, accuracy, and what "good" looks like.</p>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-section" id="quiz-4">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q4-0">
+      <p class="question-text">1. If two different AI tools give you different answers to the same question, you should...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,0,0,false)">Always trust the one you like best</button>
+        <button class="quiz-option" onclick="answer(4,0,1,false)">Average the two answers together</button>
+        <button class="quiz-option" onclick="answer(4,0,2,true)">Treat it as a reason to verify — at least one of them may be wrong</button>
+        <button class="quiz-option" onclick="answer(4,0,3,false)">Ask a third AI to break the tie</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-0-correct">✓ Disagreement is a flag. When AI tools don't agree, that's your cue to verify with a real source.</div>
+      <div class="quiz-feedback" id="fb-4-0-incorrect">When AI tools disagree, at least one of them is wrong. That disagreement is a verification signal — find a reliable source to check.</div>
+    </div>
+
+    <div class="quiz-question" id="q4-1">
+      <p class="question-text">2. Which AI tool has access to real-time posts from social media?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,1,0,false)">Claude</button>
+        <button class="quiz-option" onclick="answer(4,1,1,false)">ChatGPT</button>
+        <button class="quiz-option" onclick="answer(4,1,2,false)">Gemini</button>
+        <button class="quiz-option" onclick="answer(4,1,3,true)">Grok</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-1-correct">✓ Grok is built by xAI and has real-time access to X (formerly Twitter), which makes it useful for current events.</div>
+      <div class="quiz-feedback" id="fb-4-1-incorrect">Grok, made by xAI, has real-time access to posts on X (Twitter) — which is what sets it apart for current events and trending topics.</div>
+    </div>
+
+    <div class="quiz-question" id="q4-2">
+      <p class="question-text">3. The main reason to test more than one AI tool is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,2,0,false)">To find the most expensive one, which is usually the best</button>
+        <button class="quiz-option" onclick="answer(4,2,1,true)">To build critical evaluation skills and find the most useful answer for your needs</button>
+        <button class="quiz-option" onclick="answer(4,2,2,false)">Because using one AI tool is against the rules</button>
+        <button class="quiz-option" onclick="answer(4,2,3,false)">So you can average their scores for higher accuracy</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-2-correct">✓ Exactly. Comparison builds judgment. And different tools genuinely have different strengths for different tasks.</div>
+      <div class="quiz-feedback" id="fb-4-2-incorrect">Testing multiple tools builds your ability to evaluate any source — AI or otherwise. That critical thinking transfers everywhere.</div>
+    </div>
+
+    <div class="quiz-score" id="score-4"><span class="score-number" id="score-num-4"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(4)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(4)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(4,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try it again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(4,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(4,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-4"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(3)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(5)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     LESSON 6 — Using AI Responsibly
+═══════════════════════════════════════════════ -->
+<div class="lesson-panel" id="lesson-5">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 06 of 06</div>
+    <h2 class="lesson-title">Using AI Responsibly</h2>
+    <p class="lesson-tagline">Protect your privacy. Be honest. Keep your own brain working.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">You are always in charge</h3>
+    <p>This is the lesson that brings everything together. AI is a powerful tool — and like any powerful tool, the person using it is responsible for what gets done with it. That's not a burden. It's a reminder that <strong>your judgment still matters more than the technology.</strong></p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Protect your privacy</h3>
+    <p>What you type into an AI tool may be stored, reviewed, or used to improve the model. Treat AI conversations the way you'd treat a public space, not a private one.</p>
+    <ul class="content-list">
+      <li><strong>Never enter Social Security numbers, account numbers, or passwords</strong> into an AI tool</li>
+      <li><strong>Be careful with medical information</strong> — especially other people's</li>
+      <li><strong>Don't share confidential business, legal, or government information</strong> unless you know your organization's policy on AI use</li>
+      <li><strong>Children's information is especially sensitive</strong> — treat it accordingly</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Be honest about using AI</h3>
+    <p>If you use AI to help write something — a report, an essay, an email — and the person receiving it expects your own work, say so. This isn't about shame. It's about integrity.</p>
+    <p>AI is a tool. Saying "I used AI to help draft this and then revised it" is honest. Submitting AI-written work as entirely your own when that's not the expectation is not. The line is clear: <strong>be transparent about the tool, just as you'd be transparent about any other resource you used.</strong></p>
+  </div>
+
+  <div class="callout callout-gold">
+    <div class="callout-label">The human in the loop</div>
+    <p>The most important principle in responsible AI use: <strong>keep your own brain working.</strong> AI is at its best when it's a thinking partner — not a replacement for thinking. When you outsource your reasoning entirely, you lose the one thing AI will never have: your judgment, your experience, your knowledge of your own situation.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Your AI philosophy</h3>
+    <p>Every person who uses AI regularly eventually develops their own approach — rules they've learned, lines they won't cross, ways it helps and ways it doesn't. You're building yours right now.</p>
+    <p>Take a few minutes and write three sentences: <em>When I use AI, I will always... I will never... And I will remember that...</em></p>
+    <p>That's your AI philosophy. It's worth writing down.</p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Note — The Payoff Activity</div>
+    <p>Don't rush the My AI Philosophy writing. Even 5 minutes of quiet writing followed by voluntary sharing creates real accountability and community agreement. If participants are comfortable, post these — they become a group charter for how AI gets used in your program.</p>
+  </div>
+
+  <!-- FINAL QUIZ -->
+  <div class="quiz-section" id="quiz-5">
+    <div class="quiz-title">Final Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q5-0">
+      <p class="question-text">1. Which of these should you NEVER type into an AI tool?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,0,0,false)">A question about a topic you're embarrassed to ask a person</button>
+        <button class="quiz-option" onclick="answer(5,0,1,false)">A rough draft of something you're writing</button>
+        <button class="quiz-option" onclick="answer(5,0,2,true)">Your Social Security number or account passwords</button>
+        <button class="quiz-option" onclick="answer(5,0,3,false)">A question you already know the answer to, to test it</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-0-correct">✓ Exactly right. Sensitive personal and financial information has no place in an AI conversation.</div>
+      <div class="quiz-feedback" id="fb-5-0-incorrect">Social Security numbers and passwords should never go into an AI tool. Treat your AI conversations like a public space, not a private one.</div>
+    </div>
+
+    <div class="quiz-question" id="q5-1">
+      <p class="question-text">2. Being honest about using AI means...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,1,0,false)">Never using AI for anything others might read</button>
+        <button class="quiz-option" onclick="answer(5,1,1,true)">Being transparent when someone expects your own work and you used AI to help</button>
+        <button class="quiz-option" onclick="answer(5,1,2,false)">Adding a disclaimer to every single thing AI helps you with</button>
+        <button class="quiz-option" onclick="answer(5,1,3,false)">Only using AI for tasks no one will ever see</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-1-correct">✓ Right. Transparency when it matters. No shame in using the tool — just be honest about it when the expectation is your own work.</div>
+      <div class="quiz-feedback" id="fb-5-1-incorrect">Honesty about AI is about context and expectation. When someone expects your own work, say if AI helped. That's integrity — not a rule against using AI at all.</div>
+    </div>
+
+    <div class="quiz-question" id="q5-2">
+      <p class="question-text">3. "The human in the loop" means...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,2,0,false)">A person must manually approve every AI output before it's used anywhere</button>
+        <button class="quiz-option" onclick="answer(5,2,1,false)">AI works best when a human watches it work in real time</button>
+        <button class="quiz-option" onclick="answer(5,2,2,true)">You keep your own judgment and reasoning active — AI is the assistant, not the decision-maker</button>
+        <button class="quiz-option" onclick="answer(5,2,3,false)">Humans and AI take turns answering questions</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-2-correct">✓ That's the whole module in one principle. AI handles the drafting and the data. You handle the judgment.</div>
+      <div class="quiz-feedback" id="fb-5-2-incorrect">The human in the loop means YOU stay in charge. AI assists — it doesn't decide. Your judgment, your experience, your knowledge of your situation is what makes the output actually useful.</div>
+    </div>
+
+    <div class="quiz-score" id="score-5"><span class="score-number" id="score-num-5"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(5)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(5)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this final lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(5,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try it again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(5,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(5,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-5"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(4)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="completeModule()">Complete Module ✦</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     COMPLETION BANNER
+═══════════════════════════════════════════════ -->
+<div class="completion-banner" id="completionBanner">
+  <span class="completion-star">🌾</span>
+  <h2 class="completion-title">Module 01 Complete</h2>
+  <p class="completion-text">You've finished Using AI: A Starter's Guide. You know what AI is, how to talk to it, where it shows up in your world, how it fails, how to evaluate it, and how to use it with integrity.</p>
+  <div class="completion-summary">
+    <div class="summary-stat">
+      <span class="stat-num">6</span>
+      <span class="stat-label">Lessons</span>
+    </div>
+    <div class="summary-stat">
+      <span class="stat-num">18</span>
+      <span class="stat-label">Quiz Questions</span>
+    </div>
+    <div class="summary-stat">
+      <span class="stat-num" id="finalScore">—</span>
+      <span class="stat-label">Your Score</span>
+    </div>
+  </div>
+  <p style="color:var(--text-dim); font-size:0.85rem; margin-bottom:24px;">"No such thing as failure here. Only trying, learning, and trying again."</p>
+  <a href="https://wideopenfuture.org" class="btn btn-primary" style="text-decoration:none; display:inline-block;">← Back to Wide Open Future</a>
+</div>
+
+</main>
+
+<script>
+// ── STATE ──
+const state = {
+  currentLesson: 0,
+  completed: new Array(6).fill(false),
+  quizAnswers: Array.from({length:6}, () => ({})),
+  quizSubmitted: new Array(6).fill(false),
+  confidence: new Array(6).fill(null),
+  totalCorrect: 0
+};
+
+// Questions per lesson (3 each)
+const quizData = [
+  [{correct:1},{correct:2},{correct:3}],
+  [{correct:1},{correct:2},{correct:1}],
+  [{correct:1},{correct:1},{correct:2}],
+  [{correct:2},{correct:1},{correct:2}],
+  [{correct:2},{correct:3},{correct:1}],
+  [{correct:2},{correct:1},{correct:2}]
+];
+
+// ── NAVIGATION ──
+function goToLesson(n) {
+  document.getElementById('lesson-' + state.currentLesson).classList.remove('active');
+  document.querySelectorAll('.lesson-nav-btn')[state.currentLesson].classList.remove('active');
+  state.currentLesson = n;
+  document.getElementById('lesson-' + n).classList.add('active');
+  const navBtns = document.querySelectorAll('.lesson-nav-btn');
+  navBtns[n].classList.add('active');
+  updateProgress();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function updateProgress() {
+  const pct = ((state.currentLesson + 1) / 6) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent =
+    'Lesson ' + (state.currentLesson + 1) + ' of 6';
+}
+
+// ── QUIZ ──
+function answer(lesson, question, optIdx, isCorrect) {
+  if (state.quizSubmitted[lesson]) return;
+  state.quizAnswers[lesson][question] = {optIdx, isCorrect};
+  const qEl = document.getElementById('q' + lesson + '-' + question);
+  qEl.querySelectorAll('.quiz-option').forEach((btn, i) => {
+    btn.style.opacity = i === optIdx ? '1' : '0.5';
+    btn.style.borderColor = i === optIdx ? 'var(--gold-dim)' : '';
+  });
+}
+
+function submitQuiz(lesson) {
+  if (state.quizSubmitted[lesson]) return;
+  state.quizSubmitted[lesson] = true;
+  let correct = 0;
+  const answers = state.quizAnswers[lesson];
+
+  for (let q = 0; q < 3; q++) {
+    const qEl = document.getElementById('q' + lesson + '-' + q);
+    const opts = qEl.querySelectorAll('.quiz-option');
+    const rightIdx = quizData[lesson][q].correct;
+
+    opts.forEach(btn => { btn.disabled = true; btn.style.opacity = '1'; });
+
+    if (answers[q] !== undefined) {
+      const chosen = answers[q].optIdx;
+      const isRight = answers[q].isCorrect;
+      opts[chosen].classList.add(isRight ? 'correct' : 'incorrect');
+      if (!isRight) opts[rightIdx].classList.add('show-correct');
+
+      const fbId = isRight
+        ? 'fb-' + lesson + '-' + q + '-correct'
+        : 'fb-' + lesson + '-' + q + '-incorrect';
+      document.getElementById(fbId).classList.add(isRight ? 'correct' : 'incorrect');
+      if (isRight) correct++;
+    } else {
+      opts[rightIdx].classList.add('show-correct');
+      const fbEl = document.getElementById('fb-' + lesson + '-' + q + '-incorrect');
+      if (fbEl) fbEl.classList.add('incorrect');
+    }
+  }
+
+  const scoreEl = document.getElementById('score-' + lesson);
+  scoreEl.style.display = 'block';
+  document.getElementById('score-num-' + lesson).textContent = correct + '/3';
+  state.totalCorrect += correct;
+
+  markComplete(lesson);
+}
+
+function retakeQuiz(lesson) {
+  state.quizSubmitted[lesson] = false;
+  state.quizAnswers[lesson] = {};
+
+  for (let q = 0; q < 3; q++) {
+    const qEl = document.getElementById('q' + lesson + '-' + q);
+    const opts = qEl.querySelectorAll('.quiz-option');
+    opts.forEach(btn => {
+      btn.disabled = false;
+      btn.classList.remove('correct','incorrect','show-correct');
+      btn.style.opacity = '1';
+      btn.style.borderColor = '';
+    });
+    ['correct','incorrect'].forEach(type => {
+      const el = document.getElementById('fb-' + lesson + '-' + q + '-' + type);
+      if (el) el.classList.remove('correct','incorrect');
+    });
+  }
+
+  const scoreEl = document.getElementById('score-' + lesson);
+  if (scoreEl) scoreEl.style.display = 'none';
+}
+
+// ── CONFIDENCE ──
+const confMessages = {
+  'getting-there': "That's the process. Try the lesson again tomorrow — or just move on and come back. There's no penalty for taking your time.",
+  'got-it': "Solid. That's all you need. Move forward with confidence.",
+  'could-teach': "That's a different level of ownership. When you can teach something, you've truly got it. Well done."
+};
+
+function setConfidence(lesson, level) {
+  state.confidence[lesson] = level;
+  const container = document.getElementById('lesson-' + lesson);
+  container.querySelectorAll('.confidence-btn').forEach(btn => btn.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  const resp = document.getElementById('conf-resp-' + lesson);
+  resp.style.display = 'block';
+  resp.textContent = confMessages[level];
+  markComplete(lesson);
+}
+
+// ── COMPLETION ──
+function markComplete(lesson) {
+  if (state.quizSubmitted[lesson] && state.confidence[lesson]) {
+    state.completed[lesson] = true;
+    const navBtn = document.querySelectorAll('.lesson-nav-btn')[lesson];
+    navBtn.classList.add('completed');
+    navBtn.classList.remove('active');
+  }
+}
+
+function completeModule() {
+  document.getElementById('lesson-5').classList.remove('active');
+  document.getElementById('completionBanner').classList.add('show');
+  const total = state.totalCorrect;
+  document.getElementById('finalScore').textContent = total + '/18';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressText').textContent = 'Module Complete ✦';
+}
+
+// Init
+updateProgress();
+</script>
+</body>
+</html>

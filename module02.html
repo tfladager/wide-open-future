@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 02 — Critical Thinking Skills | Wide Open Future</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --night: #0d120d;
+  --deep: #101a10;
+  --card: #141f14;
+  --card2: #1a271a;
+  --green: #5a9e5a;
+  --green-light: #88cc88;
+  --green-dim: #2d5e2d;
+  --sage: #7a9e7e;
+  --sage-light: #a8c5ac;
+  --gold: #c8a84b;
+  --gold-light: #e0c070;
+  --gold-dim: #7a6020;
+  --rust: #b86040;
+  --rust-light: #d88060;
+  --sky: #4a7fa5;
+  --sky-light: #7ab0d4;
+  --text: #e4e8e0;
+  --text-dim: #889880;
+  --text-soft: #bcc8b4;
+  --border: #1e2e1e;
+  --border-green: #2a4a2a;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--night);
+  color: var(--text);
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 300;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 15%, rgba(138,204,138,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 10%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 30%, rgba(138,204,138,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 75%, rgba(138,204,138,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 50% 20%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.site-header {
+  background: rgba(10,18,10,0.96);
+  border-bottom: 1px solid var(--border-green);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.site-logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--green-light);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.site-logo span {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  margin-left: 8px;
+}
+
+.progress-bar-wrap { flex:1; max-width:300px; margin:0 32px; }
+.progress-label { font-size:0.7rem; color:var(--text-dim); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+.progress-bar { height:4px; background:var(--border); border-radius:2px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg, var(--green-dim), var(--green)); border-radius:2px; transition:width 0.6s ease; width:0%; }
+
+.module-hero {
+  position: relative;
+  z-index: 1;
+  padding: 80px 40px 60px;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.module-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green-light);
+  border: 1px solid var(--border-green);
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.module-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.module-title em { color: var(--green-light); font-style: italic; }
+
+.module-subtitle { font-size:1.05rem; color:var(--text-soft); max-width:580px; margin:0 auto 32px; font-weight:300; }
+
+.module-meta { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; }
+.meta-pill { font-size:0.78rem; color:var(--text-dim); background:var(--card); border:1px solid var(--border); padding:6px 14px; border-radius:20px; letter-spacing:0.05em; }
+
+.lesson-nav {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto 48px;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+.lesson-nav-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  color: var(--text-dim);
+}
+
+.lesson-nav-btn:hover { border-color:var(--green-dim); color:var(--green-light); }
+.lesson-nav-btn.active { background:var(--card2); border-color:var(--green); color:var(--green-light); }
+.lesson-nav-btn.completed { border-color:var(--sage); color:var(--sage-light); }
+.lesson-nav-btn.completed::after { content:' ✓'; font-size:0.7em; }
+
+.nav-num { font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:3px; }
+.nav-title { font-size:0.68rem; line-height:1.3; }
+
+.main { position:relative; z-index:1; max-width:860px; margin:0 auto; padding:0 40px 80px; }
+
+.lesson-panel { display:none; animation:fadeIn 0.4s ease; }
+.lesson-panel.active { display:block; }
+
+@keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+.lesson-header { margin-bottom:36px; padding-bottom:24px; border-bottom:1px solid var(--border); }
+.lesson-number { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--green-dim); margin-bottom:10px; }
+.lesson-title { font-family:'Playfair Display',Georgia,serif; font-size:clamp(1.6rem,4vw,2.2rem); color:var(--text); margin-bottom:12px; line-height:1.3; }
+.lesson-tagline { font-size:1rem; color:var(--text-soft); font-style:italic; font-weight:300; }
+
+.content-block { margin-bottom:32px; }
+.block-heading { font-family:'Playfair Display',Georgia,serif; font-size:1.15rem; color:var(--green-light); margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+.block-heading::before { content:''; display:inline-block; width:20px; height:2px; background:var(--green-dim); flex-shrink:0; }
+
+p { margin-bottom:14px; color:var(--text-soft); }
+p:last-child { margin-bottom:0; }
+strong { color:var(--text); font-weight:600; }
+
+.callout { border-radius:10px; padding:20px 24px; margin:24px 0; border-left:3px solid; }
+.callout-green { background:rgba(90,158,90,0.07); border-color:var(--green); }
+.callout-gold  { background:rgba(200,168,75,0.07); border-color:var(--gold); }
+.callout-rust  { background:rgba(184,96,64,0.07);  border-color:var(--rust); }
+.callout-sky   { background:rgba(74,127,165,0.07); border-color:var(--sky); }
+
+.callout-label { font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; margin-bottom:8px; }
+.callout-green .callout-label { color:var(--green-light); }
+.callout-gold  .callout-label { color:var(--gold-light); }
+.callout-rust  .callout-label { color:var(--rust-light); }
+.callout-sky   .callout-label { color:var(--sky-light); }
+
+.example-box { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin:20px 0; font-size:0.92rem; }
+.example-label { font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dim); margin-bottom:10px; }
+
+ul.content-list { list-style:none; margin:12px 0 20px; }
+ul.content-list li { color:var(--text-soft); padding:6px 0 6px 24px; position:relative; border-bottom:1px solid rgba(30,46,30,0.7); font-size:0.95rem; }
+ul.content-list li:last-child { border-bottom:none; }
+ul.content-list li::before { content:'✦'; position:absolute; left:0; color:var(--green-dim); font-size:0.6rem; top:10px; }
+
+.compare-table { width:100%; border-collapse:collapse; margin:20px 0; font-size:0.88rem; }
+.compare-table th { background:var(--card2); color:var(--green-light); padding:10px 14px; text-align:left; font-weight:600; border-bottom:2px solid var(--border-green); font-family:'Source Serif 4',serif; }
+.compare-table td { padding:10px 14px; border-bottom:1px solid var(--border); color:var(--text-soft); vertical-align:top; }
+.compare-table tr:hover td { background:rgba(255,255,255,0.02); }
+
+/* SIFT Framework */
+.sift-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:20px 0; }
+.sift-card { background:var(--card2); border:1px solid var(--border-green); border-radius:10px; padding:18px; }
+.sift-letter { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--green-light); font-weight:700; display:block; line-height:1; }
+.sift-word { font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dim); display:block; margin:4px 0 8px; }
+.sift-desc { font-size:0.82rem; color:var(--text-soft); line-height:1.5; }
+
+/* Fallacy cards */
+.fallacy-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin:20px 0; }
+.fallacy-card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:14px 16px; border-left:3px solid var(--green-dim); }
+.fallacy-name { font-size:0.85rem; color:var(--green-light); font-weight:600; margin-bottom:4px; }
+.fallacy-def  { font-size:0.78rem; color:var(--text-dim); line-height:1.4; margin-bottom:6px; }
+.fallacy-ex   { font-size:0.76rem; color:var(--text-soft); font-style:italic; line-height:1.4; }
+
+/* Bias cards */
+.bias-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin:20px 0; }
+.bias-card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:14px 16px; border-left:3px solid var(--gold-dim); }
+.bias-name { font-size:0.85rem; color:var(--gold-light); font-weight:600; margin-bottom:4px; }
+.bias-def  { font-size:0.78rem; color:var(--text-soft); line-height:1.4; }
+
+/* Interactive sort activity */
+.sort-activity { background:var(--card); border:1px solid var(--border-green); border-radius:12px; padding:24px; margin:24px 0; }
+.sort-title { font-family:'Playfair Display',serif; color:var(--green-light); font-size:1rem; margin-bottom:6px; }
+.sort-instruction { font-size:0.82rem; color:var(--text-dim); margin-bottom:18px; }
+.sort-statement { background:var(--card2); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin-bottom:10px; font-size:0.9rem; color:var(--text-soft); }
+.sort-statement .stmt-text { margin-bottom:8px; }
+.sort-btns { display:flex; gap:8px; flex-wrap:wrap; }
+.sort-btn { padding:5px 12px; border-radius:6px; border:1px solid var(--border); background:transparent; font-size:0.75rem; cursor:pointer; font-family:'Source Serif 4',serif; color:var(--text-dim); transition:all 0.2s; }
+.sort-btn:hover { border-color:var(--green-dim); color:var(--green-light); }
+.sort-btn.selected-fact    { background:rgba(90,158,90,0.15); border-color:var(--green); color:var(--green-light); }
+.sort-btn.selected-opinion { background:rgba(200,168,75,0.12); border-color:var(--gold); color:var(--gold-light); }
+.sort-btn.selected-inference { background:rgba(74,127,165,0.12); border-color:var(--sky); color:var(--sky-light); }
+.sort-result { font-size:0.78rem; margin-top:8px; padding:6px 10px; border-radius:5px; display:none; }
+.sort-result.show { display:block; }
+.sort-result.correct { background:rgba(90,158,90,0.1); color:var(--green-light); border-left:2px solid var(--green); }
+.sort-result.partial { background:rgba(200,168,75,0.1); color:var(--gold-light); border-left:2px solid var(--gold); }
+
+/* Quiz */
+.quiz-section { background:var(--card); border:1px solid var(--border-green); border-radius:14px; padding:32px; margin:40px 0 20px; }
+.quiz-title { font-family:'Playfair Display',Georgia,serif; font-size:1.3rem; color:var(--green-light); margin-bottom:6px; }
+.quiz-subtitle { font-size:0.82rem; color:var(--text-dim); margin-bottom:28px; letter-spacing:0.03em; }
+.quiz-question { margin-bottom:28px; }
+.question-text { font-size:0.97rem; color:var(--text); margin-bottom:14px; font-weight:400; }
+.quiz-options { display:flex; flex-direction:column; gap:8px; }
+.quiz-option { background:var(--card2); border:1px solid var(--border); border-radius:8px; padding:12px 16px; cursor:pointer; font-size:0.88rem; color:var(--text-soft); text-align:left; transition:all 0.2s; font-family:'Source Serif 4',serif; }
+.quiz-option:hover:not(:disabled) { border-color:var(--green-dim); color:var(--text); }
+.quiz-option.correct   { background:rgba(90,158,90,0.15);  border-color:var(--green); color:var(--green-light); }
+.quiz-option.incorrect { background:rgba(180,70,70,0.1);   border-color:#b44646; color:#d47070; }
+.quiz-option.show-correct { background:rgba(90,158,90,0.08); border-color:var(--green); color:var(--green-light); }
+.quiz-feedback { margin-top:10px; font-size:0.83rem; padding:10px 14px; border-radius:6px; display:none; line-height:1.5; }
+.quiz-feedback.correct   { display:block; background:rgba(90,158,90,0.1);  color:var(--green-light); border-left:3px solid var(--green); }
+.quiz-feedback.incorrect { display:block; background:rgba(180,80,80,0.08); color:#d47070; border-left:3px solid #b44646; }
+.quiz-actions { display:flex; gap:12px; margin-top:24px; flex-wrap:wrap; }
+.btn { padding:11px 24px; border-radius:8px; cursor:pointer; font-size:0.85rem; font-family:'Source Serif 4',serif; letter-spacing:0.05em; transition:all 0.2s; border:none; }
+.btn-primary { background:var(--green); color:#0d120d; font-weight:600; }
+.btn-primary:hover { background:var(--green-light); }
+.btn-secondary { background:transparent; color:var(--text-dim); border:1px solid var(--border); }
+.btn-secondary:hover { border-color:var(--green-dim); color:var(--green-light); }
+.quiz-score { display:none; text-align:center; padding:20px 0; }
+.score-number { font-family:'Playfair Display',serif; font-size:3rem; color:var(--green-light); font-weight:700; display:block; }
+.score-label { color:var(--text-dim); font-size:0.85rem; margin-top:4px; }
+
+/* Confidence */
+.confidence-check { background:linear-gradient(135deg,var(--card) 0%,var(--card2) 100%); border:1px solid var(--border-green); border-radius:14px; padding:32px; margin:20px 0 40px; text-align:center; }
+.confidence-title { font-family:'Playfair Display',Georgia,serif; font-size:1.2rem; color:var(--green-light); margin-bottom:6px; }
+.confidence-subtitle { font-size:0.82rem; color:var(--text-dim); margin-bottom:24px; }
+.confidence-options { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.confidence-btn { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:16px 20px; cursor:pointer; transition:all 0.2s; min-width:160px; font-family:'Source Serif 4',serif; }
+.confidence-btn:hover { border-color:var(--green-dim); transform:translateY(-2px); }
+.confidence-btn.selected { border-color:var(--green); background:rgba(90,158,90,0.08); }
+.conf-icon { font-size:1.6rem; display:block; margin-bottom:6px; }
+.conf-label { font-size:0.82rem; color:var(--green-light); font-weight:600; display:block; }
+.conf-desc  { font-size:0.72rem; color:var(--text-dim); margin-top:4px; line-height:1.4; }
+.confidence-response { margin-top:20px; padding:14px 20px; border-radius:8px; font-size:0.88rem; display:none; color:var(--text-soft); background:rgba(90,158,90,0.05); border:1px solid var(--border-green); }
+
+/* Nav buttons */
+.lesson-nav-buttons { display:flex; justify-content:space-between; align-items:center; margin-top:40px; padding-top:24px; border-top:1px solid var(--border); }
+.nav-btn { background:transparent; border:1px solid var(--border); color:var(--text-dim); padding:10px 20px; border-radius:8px; cursor:pointer; font-size:0.83rem; font-family:'Source Serif 4',serif; transition:all 0.2s; display:flex; align-items:center; gap:8px; }
+.nav-btn:hover { border-color:var(--green-dim); color:var(--green-light); }
+.nav-btn:disabled { opacity:0.3; cursor:not-allowed; }
+.nav-btn.next-btn { background:var(--green); color:#0d120d; border-color:var(--green); font-weight:600; }
+.nav-btn.next-btn:hover { background:var(--green-light); border-color:var(--green-light); color:#0d120d; }
+
+/* Facilitator note */
+.facilitator-note { background:rgba(74,127,165,0.06); border:1px solid rgba(74,127,165,0.3); border-radius:10px; padding:18px 22px; margin:20px 0; }
+.facilitator-note .fn-label { font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--sky-light); margin-bottom:8px; font-weight:600; }
+.facilitator-note p { color:rgba(200,220,235,0.8); font-size:0.88rem; }
+
+/* Completion */
+.completion-banner { display:none; text-align:center; padding:60px 40px; animation:fadeIn 0.6s ease; }
+.completion-banner.show { display:block; }
+.completion-star { font-size:4rem; display:block; margin-bottom:20px; }
+.completion-title { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--green-light); margin-bottom:12px; }
+.completion-text { color:var(--text-soft); max-width:500px; margin:0 auto 28px; font-size:0.97rem; }
+.completion-summary { display:inline-grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px; }
+.summary-stat { background:var(--card); border:1px solid var(--border-green); border-radius:10px; padding:16px 20px; }
+.stat-num { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--green-light); display:block; }
+.stat-label { font-size:0.72rem; color:var(--text-dim); letter-spacing:0.08em; text-transform:uppercase; }
+
+@media(max-width:640px){
+  .site-header{padding:12px 20px;}
+  .progress-bar-wrap{display:none;}
+  .module-hero{padding:50px 20px 40px;}
+  .lesson-nav{padding:0 20px; grid-template-columns:repeat(3,1fr);}
+  .main{padding:0 20px 60px;}
+  .sift-grid,.fallacy-grid,.bias-grid{grid-template-columns:1fr;}
+  .confidence-options{flex-direction:column; align-items:center;}
+  .completion-summary{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://wideopenfuture.org" class="site-logo">Wide Open Future <span>/ Module 02</span></a>
+  <div class="progress-bar-wrap">
+    <div class="progress-label">Your progress</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div style="font-size:0.75rem;color:var(--text-dim);"><span id="progressText">Lesson 1 of 6</span></div>
+</header>
+
+<section class="module-hero">
+  <div class="module-tag">Module 02 · Wide Open Future</div>
+  <h1 class="module-title">Critical Thinking:<br><em>A Starter's Guide</em></h1>
+  <p class="module-subtitle">Question → Evaluate → Reason → Decide → Defend. The skill that makes everything else possible.</p>
+  <div class="module-meta">
+    <span class="meta-pill">6 Lessons</span>
+    <span class="meta-pill">Self-paced</span>
+    <span class="meta-pill">Retakeable quizzes</span>
+    <span class="meta-pill">Facilitator-ready</span>
+  </div>
+</section>
+
+<nav class="lesson-nav" id="lessonNav">
+  <button class="lesson-nav-btn active" onclick="goToLesson(0)"><span class="nav-num">01</span><span class="nav-title">What Is It?</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(1)"><span class="nav-num">02</span><span class="nav-title">Question the Source</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(2)"><span class="nav-num">03</span><span class="nav-title">Fallacies</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(3)"><span class="nav-num">04</span><span class="nav-title">Fact vs. Opinion</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(4)"><span class="nav-num">05</span><span class="nav-title">Your Own Thinking</span></button>
+  <button class="lesson-nav-btn" onclick="goToLesson(5)"><span class="nav-num">06</span><span class="nav-title">The Challenge</span></button>
+</nav>
+
+<main class="main">
+
+<!-- ══════════════════════════════════════
+     LESSON 1 — What Is Critical Thinking?
+══════════════════════════════════════ -->
+<div class="lesson-panel active" id="lesson-0">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 01 of 06</div>
+    <h2 class="lesson-title">What Is Critical Thinking?</h2>
+    <p class="lesson-tagline">Slowing down before you react. The most underrated skill in any room.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The short answer</h3>
+    <p>Critical thinking is the habit of <strong>slowing down before you react</strong> — asking whether something is actually true, whether the argument actually holds, and whether you're reacting to facts or feelings.</p>
+    <p>That's it. Everything else in this module is a tool for doing that more reliably.</p>
+    <p>It doesn't mean doubting everything or arguing with everyone. It means not letting your first reaction be your final answer — especially on things that matter.</p>
+  </div>
+
+  <div class="callout callout-green">
+    <div class="callout-label">The Ranch Rule</div>
+    <p>Walk the fence before you open the gate. You don't know what you don't know until you look. Critical thinking is the mental version of walking the fence — checking things out before you act on them.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">When critical thinking matters most</h3>
+    <ul class="content-list">
+      <li><strong>Someone tells you something surprising or alarming.</strong> That's the moment to slow down, not speed up.</li>
+      <li><strong>You strongly agree with something.</strong> We check things less carefully when they confirm what we already believe.</li>
+      <li><strong>You're about to share something.</strong> If you're passing information along, you're responsible for it.</li>
+      <li><strong>Someone is asking you to do something based on a claim.</strong> Before you act, check whether the claim is solid.</li>
+      <li><strong>The stakes are high.</strong> The bigger the decision, the more it deserves careful thinking.</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">What it is NOT</h3>
+    <ul class="content-list">
+      <li>It is not being negative or suspicious of everyone</li>
+      <li>It is not refusing to make decisions until you have perfect information</li>
+      <li>It is not the same as being smart — it's a habit anyone can build</li>
+      <li>It is not arguing for the sake of arguing</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The five skills this module builds</h3>
+    <table class="compare-table">
+      <tr><th>Lesson</th><th>Skill</th></tr>
+      <tr><td>2 — Question the Source</td><td>Evaluate who said it and why</td></tr>
+      <tr><td>3 — Logical Fallacies</td><td>Recognize arguments that sound good but aren't</td></tr>
+      <tr><td>4 — Fact vs. Opinion</td><td>Separate what IS from what FEELS</td></tr>
+      <tr><td>5 — Your Own Thinking</td><td>Know your own blind spots</td></tr>
+      <tr><td>6 — The Challenge</td><td>Apply all five to a real situation</td></tr>
+    </table>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Note</div>
+    <p>Open with a recent local example — a rumor, a news story, a community debate. Ask: What did people do when they first heard this? What should they have done first? This grounds the lesson immediately in real stakes.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-0">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q0-0">
+      <p class="question-text">1. Critical thinking is best described as...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,0,0,false)">Doubting everything and trusting no one</button>
+        <button class="quiz-option" onclick="answer(0,0,1,true)">Slowing down to check whether something is actually true before reacting</button>
+        <button class="quiz-option" onclick="answer(0,0,2,false)">Being the smartest person in the room</button>
+        <button class="quiz-option" onclick="answer(0,0,3,false)">Arguing against whatever others say</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-0-correct">✓ Exactly. Slowing down before reacting — that's the whole thing.</div>
+      <div class="quiz-feedback" id="fb-0-0-incorrect">Critical thinking isn't about doubt or argument — it's about slowing down and checking before you react or decide.</div>
+    </div>
+
+    <div class="quiz-question" id="q0-1">
+      <p class="question-text">2. When should you be MOST careful to slow down and think critically?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,1,0,false)">Only when you disagree with something</button>
+        <button class="quiz-option" onclick="answer(0,1,1,false)">Only when the topic is political</button>
+        <button class="quiz-option" onclick="answer(0,1,2,true)">When you strongly agree with something — that's when we check least carefully</button>
+        <button class="quiz-option" onclick="answer(0,1,3,false)">Only when you're being tested or evaluated</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-1-correct">✓ Right. We're most vulnerable when something confirms what we already believe. That's when we need to slow down most.</div>
+      <div class="quiz-feedback" id="fb-0-1-incorrect">We're actually most at risk when we agree — we check things less carefully when they match our existing beliefs. That's the blind spot worth watching.</div>
+    </div>
+
+    <div class="quiz-question" id="q0-2">
+      <p class="question-text">3. The "ranch rule" in this lesson means...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(0,2,0,false)">Ranchers are naturally better critical thinkers</button>
+        <button class="quiz-option" onclick="answer(0,2,1,false)">You should apply farming knowledge to every problem</button>
+        <button class="quiz-option" onclick="answer(0,2,2,true)">Check things out before you act — walk the fence before opening the gate</button>
+        <button class="quiz-option" onclick="answer(0,2,3,false)">Rural people need different rules than city people</button>
+      </div>
+      <div class="quiz-feedback" id="fb-0-2-correct">✓ Walk the fence before you open the gate. Check before you act. That's the habit.</div>
+      <div class="quiz-feedback" id="fb-0-2-incorrect">The ranch rule is a metaphor: walk the fence before opening the gate. Look before you act. Check before you decide.</div>
+    </div>
+
+    <div class="quiz-score" id="score-0"><span class="score-number" id="score-num-0"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(0)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(0)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(0,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(0,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(0,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-0"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" disabled>← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(1)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     LESSON 2 — Question the Source (SIFT)
+══════════════════════════════════════ -->
+<div class="lesson-panel" id="lesson-1">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 02 of 06</div>
+    <h2 class="lesson-title">Question the Source</h2>
+    <p class="lesson-tagline">Who said it, why they said it, and whether it holds up — every time.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The problem with information today</h3>
+    <p>We live in a world where anyone can publish anything, AI can generate convincing-sounding text in seconds, and a made-up story can spread farther in an hour than a correction will in a month. The volume of information is not the problem. <strong>Knowing what to do with it is.</strong></p>
+    <p>The SIFT method gives you a four-step habit for evaluating any source — a social media post, a news article, an AI answer, a neighbor's claim at a county meeting.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The SIFT method</h3>
+    <div class="sift-grid">
+      <div class="sift-card">
+        <span class="sift-letter">S</span>
+        <span class="sift-word">Stop</span>
+        <span class="sift-desc">Before you react, share, or decide — pause. Your first reaction is not always your best one. The pause is the skill.</span>
+      </div>
+      <div class="sift-card">
+        <span class="sift-letter">I</span>
+        <span class="sift-word">Investigate the Source</span>
+        <span class="sift-desc">Who published this? What do you know about them? What's their track record? What might they gain from this claim?</span>
+      </div>
+      <div class="sift-card">
+        <span class="sift-letter">F</span>
+        <span class="sift-word">Find Better Coverage</span>
+        <span class="sift-desc">Is anyone else reporting this? If a major claim only appears in one place, that's a red flag. Reliable information gets confirmed by multiple independent sources.</span>
+      </div>
+      <div class="sift-card">
+        <span class="sift-letter">T</span>
+        <span class="sift-word">Trace Claims to Origin</span>
+        <span class="sift-desc">Where did this actually come from? Many stories start with a real fact that gets distorted. Find the original source and read it yourself.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-gold">
+    <div class="callout-label">Important — AI is not a source</div>
+    <p>AI can help you find sources. It is not a source itself. Never cite "AI told me" as evidence for a claim. Always trace AI's answers back to verifiable, named sources. If it can't give you one, treat the claim with caution.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Red flags to watch for</h3>
+    <ul class="content-list">
+      <li><strong>The headline makes you angry or scared.</strong> Strong emotions are a signal to slow down — not speed up.</li>
+      <li><strong>There's no author or no date.</strong> Credible sources name who wrote something and when.</li>
+      <li><strong>The URL looks almost right.</strong> Fake news sites often mimic real ones with small changes: abcnews.com.co instead of abcnews.com.</li>
+      <li><strong>No other source is covering it.</strong> If only one outlet has a major story, that's a red flag.</li>
+      <li><strong>It confirms exactly what you already believe.</strong> That's when you need to check most carefully.</li>
+    </ul>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Activity — 15 minutes</div>
+    <p>Bring in two or three real examples — one reliable, one questionable, one outright false. Walk through SIFT together. The URL check and "find better coverage" steps are the ones most learners haven't tried before. Seeing them work in real time is the lesson.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-1">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q1-0">
+      <p class="question-text">1. In SIFT, what does the "F" step ask you to do?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,0,0,false)">Find the author's social media profiles</button>
+        <button class="quiz-option" onclick="answer(1,0,1,true)">Find better coverage — check whether other independent sources confirm the claim</button>
+        <button class="quiz-option" onclick="answer(1,0,2,false)">Find out who paid for the article</button>
+        <button class="quiz-option" onclick="answer(1,0,3,false)">Find a fact-checker to do it for you</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-0-correct">✓ Find better coverage — if a major claim only appears in one place, that's a red flag worth noting.</div>
+      <div class="quiz-feedback" id="fb-1-0-incorrect">F stands for Find better coverage. If a significant claim only has one source, look for independent confirmation before believing or sharing it.</div>
+    </div>
+
+    <div class="quiz-question" id="q1-1">
+      <p class="question-text">2. You see a shocking headline that matches exactly what you already believe. You should...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,1,0,false)">Share it — if it matches your experience, it's probably true</button>
+        <button class="quiz-option" onclick="answer(1,1,1,false)">Ignore it — you don't need more confirmation</button>
+        <button class="quiz-option" onclick="answer(1,1,2,true)">Apply SIFT — agreement is when we check least carefully, so check most carefully</button>
+        <button class="quiz-option" onclick="answer(1,1,3,false)">Ask AI if it's true before deciding</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-1-correct">✓ Exactly. We're most vulnerable to misinformation when it confirms our beliefs. That's the moment to apply SIFT most carefully.</div>
+      <div class="quiz-feedback" id="fb-1-1-incorrect">When something confirms your beliefs, that's actually when you need to check most carefully — it's when we're most likely to skip the verification step.</div>
+    </div>
+
+    <div class="quiz-question" id="q1-2">
+      <p class="question-text">3. Why is AI NOT considered a source you can cite?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(1,2,0,false)">Because AI is always wrong</button>
+        <button class="quiz-option" onclick="answer(1,2,1,false)">Because using AI is against most school rules</button>
+        <button class="quiz-option" onclick="answer(1,2,2,true)">Because AI generates responses from patterns — it can't verify its own claims, and may invent sources</button>
+        <button class="quiz-option" onclick="answer(1,2,3,false)">Because AI doesn't have an author's name attached</button>
+      </div>
+      <div class="quiz-feedback" id="fb-1-2-correct">✓ Right. AI can help you find sources, but it is not a source. It can hallucinate citations that don't exist. Always trace back to the original.</div>
+      <div class="quiz-feedback" id="fb-1-2-incorrect">AI generates responses by matching patterns — it can't verify its own claims and may invent convincing-sounding citations that don't exist. Use it to help search, not as the source itself.</div>
+    </div>
+
+    <div class="quiz-score" id="score-1"><span class="score-number" id="score-num-1"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(1)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(1)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(1,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(1,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(1,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-1"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(0)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(2)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     LESSON 3 — Spotting Logical Fallacies
+══════════════════════════════════════ -->
+<div class="lesson-panel" id="lesson-2">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 03 of 06</div>
+    <h2 class="lesson-title">Spotting Logical Fallacies</h2>
+    <p class="lesson-tagline">Naming them breaks the spell. Ten patterns that make bad arguments sound good.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Why this matters</h3>
+    <p>A logical fallacy is an argument that feels convincing but has a flaw in its reasoning. The frustrating thing is that fallacies often <em>sound</em> perfectly logical — especially when delivered with confidence.</p>
+    <p><strong>The moment you can name a fallacy, its power over you drops significantly.</strong> You stop reacting to the argument and start evaluating it. That's what this lesson is for.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Ten fallacies worth knowing</h3>
+    <div class="fallacy-grid">
+      <div class="fallacy-card">
+        <div class="fallacy-name">1. Ad Hominem</div>
+        <div class="fallacy-def">Attacking the person instead of the argument.</div>
+        <div class="fallacy-ex">"Don't listen to her water rights proposal — she's only lived here three years."</div>
+      </div>
+      <div class="fallacy-card">
+        <div class="fallacy-name">2. Straw Man</div>
+        <div class="fallacy-def">Misrepresenting someone's position to make it easier to attack.</div>
+        <div class="fallacy-ex">"He wants to slow the road project, so I guess he just doesn't care about school safety."</div>
+      </div>
+      <div class="fallacy-card">
+        <div class="fallacy-name">3. False Dilemma</div>
+        <div class="fallacy-def">Presenting only two options when more exist.</div>
+        <div class="fallacy-ex">"Either we approve this budget as written or the whole department shuts down."</div>
+      </div>
+      <div class="fallacy-card">
+        <div class="fallacy-name">4. Slippery Slope</div>
+        <div class="fallacy-def">Claiming one small step will automatically lead to an extreme outcome.</div>
+        <div class="fallacy-ex">"If we let the school teach AI, next they'll have robots replacing the teachers."</div>
+      </div>
+      <div class="fallacy-card">
+        <div class="fallacy-name">5. Appeal to Authority</div>
+        <div class="fallacy-def">Using someone's fame or status as proof of a claim outside their expertise.</div>
+        <div class="fallacy-ex">"A celebrity endorsed this supplement, so it must work."</div>
+      </div>
+      <div class="fallacy-card">
+        <div class="fallacy-name">6. Bandwagon</div>
+        <div class="fallacy-def">Claiming something is right or good because it's popular.</div>
+        <div class="fallacy-ex">"Every rancher in the county is switching to this chemical — you should too."</div>
+      </div>
+      <div class="fallacy-card">
+        <div class="fallacy-name">7. Hasty Generalization</div>
+        <div class="fallacy-def">Drawing a broad conclusion from one or a few examples.</div>
+        <div class="fallacy-ex">"I know one person who tried that and it failed — so it never works."</div>
+      </div>
+      <div class="fallacy-card">
+        <div class="fallacy-name">8. Post Hoc</div>
+        <div class="fallacy-def">Assuming that because one thing followed another, the first caused the second.</div>
+        <div class="fallacy-ex">"We hired a new clerk and then the audit findings got worse — she must be causing it."</div>
+      </div>
+      <div class="fallacy-card">
+        <div class="fallacy-name">9. Appeal to Emotion</div>
+        <div class="fallacy-def">Using emotional pressure instead of evidence to make a point.</div>
+        <div class="fallacy-ex">"If you don't support this bill, you're saying you don't care about our children's future."</div>
+      </div>
+      <div class="fallacy-card">
+        <div class="fallacy-name">10. Circular Reasoning</div>
+        <div class="fallacy-def">Using the conclusion as the evidence for itself.</div>
+        <div class="fallacy-ex">"We should trust these numbers because this office always provides accurate numbers."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-green">
+    <div class="callout-label">The key insight</div>
+    <p>Fallacies are not always used on purpose. Most people use them without realizing it — including you, and including AI. <strong>The goal of this lesson is not to catch others in a gotcha. It's to recognize the pattern, name it, and redirect the conversation to actual evidence.</strong></p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Activity — Fallacy Hunt</div>
+    <p>Present 6–8 real-sounding statements (draw from local issues, news headlines, social media posts). Have participants work in pairs to name the fallacy and explain what's actually wrong with the argument. The post hoc and straw man tend to spark the most discussion in rural settings.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-2">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q2-0">
+      <p class="question-text">1. "Either we approve this new road or kids won't be able to get to school." This is an example of...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,0,0,false)">Ad Hominem</button>
+        <button class="quiz-option" onclick="answer(2,0,1,false)">Slippery Slope</button>
+        <button class="quiz-option" onclick="answer(2,0,2,true)">False Dilemma</button>
+        <button class="quiz-option" onclick="answer(2,0,3,false)">Bandwagon</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-0-correct">✓ False Dilemma — presenting only two options (approve the road OR kids can't get to school) when other solutions likely exist.</div>
+      <div class="quiz-feedback" id="fb-2-0-incorrect">This is a False Dilemma — it presents only two choices when there are almost certainly other options: different routes, different projects, different timing.</div>
+    </div>
+
+    <div class="quiz-question" id="q2-1">
+      <p class="question-text">2. "We planted a new crop variety and had our best yield in years — the new variety must be the reason." This is an example of...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,1,0,false)">Hasty Generalization</button>
+        <button class="quiz-option" onclick="answer(2,1,1,true)">Post Hoc</button>
+        <button class="quiz-option" onclick="answer(2,1,2,false)">Appeal to Authority</button>
+        <button class="quiz-option" onclick="answer(2,1,3,false)">Circular Reasoning</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-1-correct">✓ Post Hoc — assuming the new variety caused the better yield, when rain, temperature, soil prep, or other factors may explain it.</div>
+      <div class="quiz-feedback" id="fb-2-1-incorrect">This is Post Hoc — after this, therefore because of this. One thing followed another, but that doesn't mean the first caused the second. Other factors (weather, soil, timing) could explain the yield.</div>
+    </div>
+
+    <div class="quiz-question" id="q2-2">
+      <p class="question-text">3. The main reason to learn fallacy names is...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(2,2,0,false)">To win arguments by making others look foolish</button>
+        <button class="quiz-option" onclick="answer(2,2,1,false)">To pass tests and academic courses</button>
+        <button class="quiz-option" onclick="answer(2,2,2,true)">Naming a fallacy reduces its power — it shifts focus from emotion to the actual evidence</button>
+        <button class="quiz-option" onclick="answer(2,2,3,false)">To identify which people are being dishonest</button>
+      </div>
+      <div class="quiz-feedback" id="fb-2-2-correct">✓ Exactly. Naming the pattern lets you step back from the emotional pull and evaluate the actual argument.</div>
+      <div class="quiz-feedback" id="fb-2-2-incorrect">The goal isn't to "win" or catch people — it's that naming a fallacy lets you see the structure of the argument clearly, separate from the emotional pressure it creates.</div>
+    </div>
+
+    <div class="quiz-score" id="score-2"><span class="score-number" id="score-num-2"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(2)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(2)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(2,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(2,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(2,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-2"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(1)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(3)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     LESSON 4 — Fact vs. Opinion
+══════════════════════════════════════ -->
+<div class="lesson-panel" id="lesson-3">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 04 of 06</div>
+    <h2 class="lesson-title">Fact vs. Opinion</h2>
+    <p class="lesson-tagline">Separating what IS from what FEELS — and everything in between.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Three categories, not two</h3>
+    <p>Most people think of this as a simple split: facts are true, opinions are not. Real life is more complicated. There are actually three categories worth knowing:</p>
+    <table class="compare-table">
+      <tr><th>Type</th><th>What it is</th><th>Example</th></tr>
+      <tr><td><strong>Fact</strong></td><td>A claim that can be verified as true or false</td><td>"Daniels County has a population under 2,000."</td></tr>
+      <tr><td><strong>Opinion</strong></td><td>A judgment or belief that reflects values, not just data</td><td>"Daniels County is the best place to raise a family."</td></tr>
+      <tr><td><strong>Inference</strong></td><td>A conclusion drawn from facts — may be reasonable, but is not itself a fact</td><td>"Because the population is declining, the county may face budget pressure."</td></tr>
+    </table>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The hard middle</h3>
+    <p>Most real-world statements mix all three. A news headline might state a fact, imply an inference, and carry a value judgment — all in one sentence. The skill is separating the layers, not just labeling the whole thing.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Language signals to watch for</h3>
+    <table class="compare-table">
+      <tr><th>Opinion signals</th><th>Fact signals</th></tr>
+      <tr><td>should, must, ought to, best, worst</td><td>according to, data shows, the study found</td></tr>
+      <tr><td>I think, I believe, in my view</td><td>on [date], in [year], the record shows</td></tr>
+      <tr><td>clearly, obviously, everyone knows</td><td>verified by, confirmed by, measured at</td></tr>
+      <tr><td>terrible, wonderful, outrageous</td><td>increased by %, declined to, equals</td></tr>
+    </table>
+  </div>
+
+  <div class="sort-activity">
+    <div class="sort-title">Practice: Sort These Statements</div>
+    <div class="sort-instruction">For each statement below, select whether it's a Fact, Opinion, or Inference. Then check your answer.</div>
+
+    <div class="sort-statement" id="ss-0">
+      <div class="stmt-text">"The county's bridge fund showed a cash deficit in the last annual report."</div>
+      <div class="sort-btns">
+        <button class="sort-btn" onclick="sortAnswer(0,'fact',true)">Fact</button>
+        <button class="sort-btn" onclick="sortAnswer(0,'opinion',false)">Opinion</button>
+        <button class="sort-btn" onclick="sortAnswer(0,'inference',false)">Inference</button>
+      </div>
+      <div class="sort-result" id="sr-0"></div>
+    </div>
+
+    <div class="sort-statement" id="ss-1">
+      <div class="stmt-text">"The county should hire an outside auditor to review the financial records."</div>
+      <div class="sort-btns">
+        <button class="sort-btn" onclick="sortAnswer(1,'fact',false)">Fact</button>
+        <button class="sort-btn" onclick="sortAnswer(1,'opinion',true)">Opinion</button>
+        <button class="sort-btn" onclick="sortAnswer(1,'inference',false)">Inference</button>
+      </div>
+      <div class="sort-result" id="sr-1"></div>
+    </div>
+
+    <div class="sort-statement" id="ss-2">
+      <div class="stmt-text">"Given the cash deficit, budget cuts are likely in the next fiscal year."</div>
+      <div class="sort-btns">
+        <button class="sort-btn" onclick="sortAnswer(2,'fact',false)">Fact</button>
+        <button class="sort-btn" onclick="sortAnswer(2,'opinion',false)">Opinion</button>
+        <button class="sort-btn" onclick="sortAnswer(2,'inference',true)">Inference</button>
+      </div>
+      <div class="sort-result" id="sr-2"></div>
+    </div>
+
+    <div class="sort-statement" id="ss-3">
+      <div class="stmt-text">"Rural healthcare is the most urgent issue facing eastern Montana communities."</div>
+      <div class="sort-btns">
+        <button class="sort-btn" onclick="sortAnswer(3,'fact',false)">Fact</button>
+        <button class="sort-btn" onclick="sortAnswer(3,'opinion',true)">Opinion</button>
+        <button class="sort-btn" onclick="sortAnswer(3,'inference',false)">Inference</button>
+      </div>
+      <div class="sort-result" id="sr-3"></div>
+    </div>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Note</div>
+    <p>The sorting exercise works well as a group activity with printed cards. Encourage debate — especially on the inference statements, where reasonable people disagree. The goal is not always a single right answer but the habit of asking "what kind of claim is this, and what would it take to verify it?"</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-3">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q3-0">
+      <p class="question-text">1. "Everyone clearly agrees this policy is a disaster." The word "clearly" is a signal that this is most likely...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,0,0,false)">A verifiable fact</button>
+        <button class="quiz-option" onclick="answer(3,0,1,true)">An opinion presented as obvious fact</button>
+        <button class="quiz-option" onclick="answer(3,0,2,false)">A scientific inference</button>
+        <button class="quiz-option" onclick="answer(3,0,3,false)">A neutral observation</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-0-correct">✓ "Clearly" and "everyone agrees" are opinion signals — they dress a judgment up as if it's self-evident. Watch for these words.</div>
+      <div class="quiz-feedback" id="fb-3-0-incorrect">Words like "clearly" and "everyone agrees" are opinion signals — they make a judgment sound like an obvious fact. That's the pattern to catch.</div>
+    </div>
+
+    <div class="quiz-question" id="q3-1">
+      <p class="question-text">2. An inference differs from a fact because...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,1,0,false)">Inferences are always wrong</button>
+        <button class="quiz-option" onclick="answer(3,1,1,true)">An inference is a conclusion drawn from facts — reasonable, but not itself verified</button>
+        <button class="quiz-option" onclick="answer(3,1,2,false)">Inferences only come from experts</button>
+        <button class="quiz-option" onclick="answer(3,1,3,false)">Inferences are the same as opinions</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-1-correct">✓ Right. An inference can be well-reasoned and still be wrong — it's a conclusion, not a confirmed fact.</div>
+      <div class="quiz-feedback" id="fb-3-1-incorrect">An inference is drawn from facts but is not itself a fact — it's a reasonable conclusion that could still be wrong. Knowing the difference matters when you're evaluating arguments.</div>
+    </div>
+
+    <div class="quiz-question" id="q3-2">
+      <p class="question-text">3. Most real-world statements — news headlines, public comments, social media posts — are...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(3,2,0,false)">Either pure facts or pure opinions, easy to sort</button>
+        <button class="quiz-option" onclick="answer(3,2,1,true)">Mixtures of facts, opinions, and inferences layered together</button>
+        <button class="quiz-option" onclick="answer(3,2,2,false)">Mostly facts with a few opinions added</button>
+        <button class="quiz-option" onclick="answer(3,2,3,false)">Impossible to evaluate without expert help</button>
+      </div>
+      <div class="quiz-feedback" id="fb-3-2-correct">✓ Exactly. The skill isn't sorting whole statements — it's separating the layers within them.</div>
+      <div class="quiz-feedback" id="fb-3-2-incorrect">Most real statements mix facts, opinions, and inferences. The skill is separating those layers — not just labeling the whole thing one or the other.</div>
+    </div>
+
+    <div class="quiz-score" id="score-3"><span class="score-number" id="score-num-3"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(3)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(3)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(3,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(3,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(3,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-3"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(2)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(4)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     LESSON 5 — Thinking About Your Own Thinking
+══════════════════════════════════════ -->
+<div class="lesson-panel" id="lesson-4">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 05 of 06</div>
+    <h2 class="lesson-title">Thinking About Your Own Thinking</h2>
+    <p class="lesson-tagline">The hardest lesson — and the most valuable. Knowing your own blind spots.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Why this lesson is the hardest</h3>
+    <p>Every other lesson in this module is about evaluating things outside you — sources, arguments, claims. This one is about evaluating what's happening inside you. That's harder. But it's also where the biggest gains are.</p>
+    <p>Our brains take shortcuts. They have to — we make thousands of decisions a day and can't think deeply about all of them. Those shortcuts are called <strong>cognitive biases</strong>, and they affect everyone. Including you. Including the smartest people you know.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Five biases worth knowing</h3>
+    <div class="bias-grid">
+      <div class="bias-card">
+        <div class="bias-name">Confirmation Bias</div>
+        <div class="bias-def">We seek out and remember information that confirms what we already believe — and overlook or dismiss what challenges it. The most common bias. Affects everyone.</div>
+      </div>
+      <div class="bias-card">
+        <div class="bias-name">In-Group Bias</div>
+        <div class="bias-def">We give more trust and benefit of the doubt to people in our own group — community, political party, church, team — and more skepticism to outsiders.</div>
+      </div>
+      <div class="bias-card">
+        <div class="bias-name">Sunk Cost Fallacy</div>
+        <div class="bias-def">We keep investing in something because of what we've already put in — money, time, effort — even when the evidence says we should stop.</div>
+      </div>
+      <div class="bias-card">
+        <div class="bias-name">Availability Bias</div>
+        <div class="bias-def">We overestimate the likelihood of things that come easily to mind — usually because they're dramatic or recent — even if they're statistically rare.</div>
+      </div>
+      <div class="bias-card">
+        <div class="bias-name">Anchoring Bias</div>
+        <div class="bias-def">The first number or piece of information we hear has outsized influence on our thinking, even when it's arbitrary or outdated.</div>
+      </div>
+      <div class="bias-card">
+        <div class="bias-name">Dunning-Kruger Effect</div>
+        <div class="bias-def">People with limited knowledge in an area tend to overestimate their competence. The more you learn about something, the more you realize what you don't know.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-gold">
+    <div class="callout-label">The key shift</div>
+    <p>Knowing about bias doesn't make you immune to it. But it gives you a pause point — a moment where you can ask: <em>Am I evaluating this based on evidence, or am I responding to something familiar, comfortable, or threatening?</em> That question changes outcomes.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Three questions to ask yourself</h3>
+    <ul class="content-list">
+      <li><strong>Would I evaluate this claim the same way if it came from someone I disagreed with?</strong></li>
+      <li><strong>Am I looking for reasons this is true, or am I actually testing whether it's true?</strong></li>
+      <li><strong>What would it take to change my mind on this? If nothing could, that's worth noticing.</strong></li>
+    </ul>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Note</div>
+    <p>This lesson works best with low stakes, relatable examples. Ask participants to share a time they changed their mind about something — not a political issue, but anything. What made them change? That story usually contains a bias they overcame. Celebrate it. That kind of intellectual honesty is rare and worth naming.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-4">
+    <div class="quiz-title">Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q4-0">
+      <p class="question-text">1. Confirmation bias means we tend to...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,0,0,false)">Always agree with experts and authority figures</button>
+        <button class="quiz-option" onclick="answer(4,0,1,true)">Seek out information that confirms what we already believe and overlook what challenges it</button>
+        <button class="quiz-option" onclick="answer(4,0,2,false)">Distrust information that comes from outside our community</button>
+        <button class="quiz-option" onclick="answer(4,0,3,false)">Believe the most recent information we heard</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-0-correct">✓ Right. We're drawn to what confirms us and dismissive of what challenges us — often without realizing it.</div>
+      <div class="quiz-feedback" id="fb-4-0-incorrect">Confirmation bias is the tendency to seek out and remember information that confirms what we already believe — and to overlook or dismiss what challenges it.</div>
+    </div>
+
+    <div class="quiz-question" id="q4-1">
+      <p class="question-text">2. A rancher keeps investing in a failing piece of equipment because "I've already put too much money into it to quit." This is an example of...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,1,0,false)">Availability Bias</button>
+        <button class="quiz-option" onclick="answer(4,1,1,false)">Anchoring Bias</button>
+        <button class="quiz-option" onclick="answer(4,1,2,true)">Sunk Cost Fallacy</button>
+        <button class="quiz-option" onclick="answer(4,1,3,false)">In-Group Bias</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-1-correct">✓ Sunk Cost Fallacy — continuing to invest because of what's already been spent, even when evidence says stop.</div>
+      <div class="quiz-feedback" id="fb-4-1-incorrect">This is the Sunk Cost Fallacy — continuing because of what's already been invested, rather than making a fresh decision based on current evidence.</div>
+    </div>
+
+    <div class="quiz-question" id="q4-2">
+      <p class="question-text">3. Learning about cognitive bias is valuable mainly because...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(4,2,0,false)">It makes you immune to being biased from then on</button>
+        <button class="quiz-option" onclick="answer(4,2,1,false)">It helps you identify which other people are biased</button>
+        <button class="quiz-option" onclick="answer(4,2,2,true)">It gives you a pause point — a moment to ask whether you're reacting to evidence or to something familiar or threatening</button>
+        <button class="quiz-option" onclick="answer(4,2,3,false)">It's mainly useful for politicians and journalists</button>
+      </div>
+      <div class="quiz-feedback" id="fb-4-2-correct">✓ Exactly. Knowledge of bias doesn't eliminate it — but it creates a pause point where better thinking can happen.</div>
+      <div class="quiz-feedback" id="fb-4-2-incorrect">Knowing about bias doesn't make you immune — but it creates a pause point where you can ask: am I evaluating this on evidence, or reacting to something else?</div>
+    </div>
+
+    <div class="quiz-score" id="score-4"><span class="score-number" id="score-num-4"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(4)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(4)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about this lesson?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(4,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(4,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(4,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-4"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(3)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="goToLesson(5)">Next Lesson →</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     LESSON 6 — The Challenge
+══════════════════════════════════════ -->
+<div class="lesson-panel" id="lesson-5">
+  <div class="lesson-header">
+    <div class="lesson-number">Lesson 06 of 06</div>
+    <h2 class="lesson-title">The Challenge: Real World, Real Stakes</h2>
+    <p class="lesson-tagline">Apply all five skills to one real situation. This is where it becomes yours.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">How this lesson works</h3>
+    <p>This final lesson is a synthesis. You'll take one real-world scenario and apply every skill from this module to it — slowing down, evaluating sources, spotting fallacies, separating fact from opinion, and checking your own bias.</p>
+    <p>There's no single right answer. What matters is the process: <strong>Can you walk through each step, identify what you know vs. what you're assuming, and build a reasoned position you can actually defend?</strong></p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">The scenario</h3>
+    <div class="example-box">
+      <div class="example-label">Community Scenario</div>
+      <p style="color:var(--text-soft);">A neighboring county is considering a wind energy development proposal. Supporters say it will bring jobs and tax revenue. Opponents say it will damage the landscape, hurt property values, and change the character of the community. A county commissioner has received several emails and social media posts about it — some presenting statistics, some sharing personal stories, some making strong predictions about what will happen if it's approved or rejected.</p>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">Apply the five skills</h3>
+    <table class="compare-table">
+      <tr><th>Skill</th><th>Questions to ask about this scenario</th></tr>
+      <tr><td><strong>Slow down</strong></td><td>What's my gut reaction? Am I reacting to a fact or a feeling?</td></tr>
+      <tr><td><strong>Question the source</strong></td><td>Who's providing the statistics? What do they gain from the outcome? Can I verify their numbers?</td></tr>
+      <tr><td><strong>Spot the fallacies</strong></td><td>Are any arguments using fear, false dilemmas, or personal attacks instead of evidence?</td></tr>
+      <tr><td><strong>Fact vs. opinion</strong></td><td>Which claims are verifiable? Which are predictions? Which are value judgments about what the community "should" be?</td></tr>
+      <tr><td><strong>Check your bias</strong></td><td>Do I already have an opinion on wind energy? How is that affecting how I'm reading each argument?</td></tr>
+    </table>
+  </div>
+
+  <div class="callout callout-green">
+    <div class="callout-label">The goal</div>
+    <p>After working through those five questions, write a short paragraph: <em>Based on what I can verify, here is my current position — and here is what I'd need to see to change it.</em> That paragraph, with the reasoning behind it, is critical thinking in action.</p>
+  </div>
+
+  <div class="content-block">
+    <h3 class="block-heading">A note on changing your mind</h3>
+    <p>If you go through this exercise and end up with a different position than when you started — <strong>that is not a failure. That is critical thinking working exactly as intended.</strong> The willingness to follow evidence rather than defend a starting position is one of the rarest and most valuable intellectual habits a person can have.</p>
+  </div>
+
+  <div class="facilitator-note">
+    <div class="fn-label">Facilitator Note — The Best Outcome</div>
+    <p>If a student says "I changed my mind during this exercise because of what I found" — celebrate it loudly. That kind of intellectual honesty is rare and worth honoring. It signals the whole module has landed.</p>
+  </div>
+
+  <div class="quiz-section" id="quiz-5">
+    <div class="quiz-title">Final Lesson Check</div>
+    <div class="quiz-subtitle">Three questions. No time limit. Retake as many times as you need.</div>
+
+    <div class="quiz-question" id="q5-0">
+      <p class="question-text">1. When evaluating the wind energy scenario, the first step is to...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,0,0,false)">Find as many sources as possible before forming any view</button>
+        <button class="quiz-option" onclick="answer(5,0,1,false)">Ask AI what it thinks about wind energy</button>
+        <button class="quiz-option" onclick="answer(5,0,2,true)">Slow down and notice your gut reaction — are you reacting to a fact or a feeling?</button>
+        <button class="quiz-option" onclick="answer(5,0,3,false)">Find out which side the county commissioner supports</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-0-correct">✓ The first step is always to slow down and notice what you're reacting to — that's the foundation everything else builds on.</div>
+      <div class="quiz-feedback" id="fb-5-0-incorrect">The first step — always — is to slow down and notice your reaction. Are you responding to a fact, a feeling, or something familiar? That awareness shapes everything that follows.</div>
+    </div>
+
+    <div class="quiz-question" id="q5-1">
+      <p class="question-text">2. Someone says: "If we allow one wind turbine, the whole county will be covered in them within five years." This is most likely a...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,1,0,false)">Verifiable fact that should be taken seriously</button>
+        <button class="quiz-option" onclick="answer(5,1,1,true)">Slippery Slope fallacy — assuming one small step leads automatically to an extreme outcome</button>
+        <button class="quiz-option" onclick="answer(5,1,2,false)">Reasonable inference based on available data</button>
+        <button class="quiz-option" onclick="answer(5,1,3,false)">An opinion worth including in your final position</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-1-correct">✓ Slippery Slope — one turbine does not automatically mean full coverage. The argument skips past all the steps in between.</div>
+      <div class="quiz-feedback" id="fb-5-1-incorrect">This is a Slippery Slope — claiming one step leads automatically to an extreme outcome without evidence for how that would actually happen.</div>
+    </div>
+
+    <div class="quiz-question" id="q5-2">
+      <p class="question-text">3. You reach the end of this exercise and realize you changed your position from where you started. This means...</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(5,2,0,false)">You were not thinking clearly at the beginning</button>
+        <button class="quiz-option" onclick="answer(5,2,1,false)">You were manipulated by one side's arguments</button>
+        <button class="quiz-option" onclick="answer(5,2,2,true)">Critical thinking worked — you followed evidence rather than defended a starting position</button>
+        <button class="quiz-option" onclick="answer(5,2,3,false)">You need to go back and reconsider until you hold your original view</button>
+      </div>
+      <div class="quiz-feedback" id="fb-5-2-correct">✓ That's the whole module in one moment. Following evidence over defending a position — that's what this is all for.</div>
+      <div class="quiz-feedback" id="fb-5-2-incorrect">Changing your mind based on evidence is not a failure — it's critical thinking working exactly as intended. That intellectual honesty is rare and valuable.</div>
+    </div>
+
+    <div class="quiz-score" id="score-5"><span class="score-number" id="score-num-5"></span><div class="score-label">questions correct</div></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="submitQuiz(5)">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="retakeQuiz(5)">Retake Quiz</button>
+    </div>
+  </div>
+
+  <div class="confidence-check">
+    <div class="confidence-title">Confidence Check</div>
+    <div class="confidence-subtitle">How do you feel about completing this module?</div>
+    <div class="confidence-options">
+      <button class="confidence-btn" onclick="setConfidence(5,'getting-there')"><span class="conf-icon">🌱</span><span class="conf-label">Getting There</span><span class="conf-desc">Still building. I'll try again.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(5,'got-it')"><span class="conf-icon">🌾</span><span class="conf-label">Got It</span><span class="conf-desc">Solid. Ready to move on.</span></button>
+      <button class="confidence-btn" onclick="setConfidence(5,'could-teach')"><span class="conf-icon">🏆</span><span class="conf-label">Could Teach It</span><span class="conf-desc">I own this. Let's go.</span></button>
+    </div>
+    <div class="confidence-response" id="conf-resp-5"></div>
+  </div>
+
+  <div class="lesson-nav-buttons">
+    <button class="nav-btn" onclick="goToLesson(4)">← Previous</button>
+    <button class="nav-btn next-btn" onclick="completeModule()">Complete Module ✦</button>
+  </div>
+</div>
+
+
+<!-- COMPLETION -->
+<div class="completion-banner" id="completionBanner">
+  <span class="completion-star">🌾</span>
+  <h2 class="completion-title">Module 02 Complete</h2>
+  <p class="completion-text">You've finished Critical Thinking Skills. You can slow down before reacting, evaluate any source with SIFT, name ten logical fallacies, separate fact from opinion and inference, and check your own thinking for bias.</p>
+  <div class="completion-summary">
+    <div class="summary-stat"><span class="stat-num">6</span><span class="stat-label">Lessons</span></div>
+    <div class="summary-stat"><span class="stat-num">18</span><span class="stat-label">Quiz Questions</span></div>
+    <div class="summary-stat"><span class="stat-num" id="finalScore">—</span><span class="stat-label">Your Score</span></div>
+  </div>
+  <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:24px;">"Walk the fence before you open the gate."</p>
+  <a href="https://wideopenfuture.org" class="btn btn-primary" style="text-decoration:none;display:inline-block;">← Back to Wide Open Future</a>
+</div>
+
+</main>
+
+<script>
+const state = {
+  currentLesson: 0,
+  completed: new Array(6).fill(false),
+  quizAnswers: Array.from({length:6}, () => ({})),
+  quizSubmitted: new Array(6).fill(false),
+  confidence: new Array(6).fill(null),
+  totalCorrect: 0
+};
+
+const quizData = [
+  [{correct:1},{correct:2},{correct:2}],
+  [{correct:1},{correct:2},{correct:2}],
+  [{correct:2},{correct:1},{correct:2}],
+  [{correct:1},{correct:1},{correct:1}],
+  [{correct:1},{correct:2},{correct:2}],
+  [{correct:2},{correct:1},{correct:2}]
+];
+
+function goToLesson(n) {
+  document.getElementById('lesson-' + state.currentLesson).classList.remove('active');
+  document.querySelectorAll('.lesson-nav-btn')[state.currentLesson].classList.remove('active');
+  state.currentLesson = n;
+  document.getElementById('lesson-' + n).classList.add('active');
+  document.querySelectorAll('.lesson-nav-btn')[n].classList.add('active');
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function updateProgress() {
+  const pct = ((state.currentLesson + 1) / 6) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = 'Lesson ' + (state.currentLesson + 1) + ' of 6';
+}
+
+function answer(lesson, question, optIdx, isCorrect) {
+  if (state.quizSubmitted[lesson]) return;
+  state.quizAnswers[lesson][question] = {optIdx, isCorrect};
+  const qEl = document.getElementById('q' + lesson + '-' + question);
+  qEl.querySelectorAll('.quiz-option').forEach((btn, i) => {
+    btn.style.opacity = i === optIdx ? '1' : '0.5';
+    btn.style.borderColor = i === optIdx ? 'var(--green-dim)' : '';
+  });
+}
+
+function submitQuiz(lesson) {
+  if (state.quizSubmitted[lesson]) return;
+  state.quizSubmitted[lesson] = true;
+  let correct = 0;
+  const answers = state.quizAnswers[lesson];
+  for (let q = 0; q < 3; q++) {
+    const qEl = document.getElementById('q' + lesson + '-' + q);
+    const opts = qEl.querySelectorAll('.quiz-option');
+    const rightIdx = quizData[lesson][q].correct;
+    opts.forEach(btn => { btn.disabled = true; btn.style.opacity = '1'; });
+    if (answers[q] !== undefined) {
+      const chosen = answers[q].optIdx;
+      const isRight = answers[q].isCorrect;
+      opts[chosen].classList.add(isRight ? 'correct' : 'incorrect');
+      if (!isRight) opts[rightIdx].classList.add('show-correct');
+      const fbId = isRight ? 'fb-'+lesson+'-'+q+'-correct' : 'fb-'+lesson+'-'+q+'-incorrect';
+      document.getElementById(fbId).classList.add(isRight ? 'correct' : 'incorrect');
+      if (isRight) correct++;
+    } else {
+      opts[rightIdx].classList.add('show-correct');
+      const fbEl = document.getElementById('fb-'+lesson+'-'+q+'-incorrect');
+      if (fbEl) fbEl.classList.add('incorrect');
+    }
+  }
+  const scoreEl = document.getElementById('score-' + lesson);
+  scoreEl.style.display = 'block';
+  document.getElementById('score-num-' + lesson).textContent = correct + '/3';
+  state.totalCorrect += correct;
+  markComplete(lesson);
+}
+
+function retakeQuiz(lesson) {
+  state.quizSubmitted[lesson] = false;
+  state.quizAnswers[lesson] = {};
+  for (let q = 0; q < 3; q++) {
+    const qEl = document.getElementById('q' + lesson + '-' + q);
+    const opts = qEl.querySelectorAll('.quiz-option');
+    opts.forEach(btn => { btn.disabled=false; btn.classList.remove('correct','incorrect','show-correct'); btn.style.opacity='1'; btn.style.borderColor=''; });
+    ['correct','incorrect'].forEach(type => {
+      const el = document.getElementById('fb-'+lesson+'-'+q+'-'+type);
+      if (el) el.classList.remove('correct','incorrect');
+    });
+  }
+  const scoreEl = document.getElementById('score-' + lesson);
+  if (scoreEl) scoreEl.style.display = 'none';
+}
+
+const confMessages = {
+  'getting-there': "That's the process. Try the lesson again tomorrow — or just move on and come back. There's no penalty for taking your time.",
+  'got-it': "Solid. That's all you need. Move forward with confidence.",
+  'could-teach': "That's a different level of ownership. When you can teach something, you've truly got it."
+};
+
+function setConfidence(lesson, level) {
+  state.confidence[lesson] = level;
+  const container = document.getElementById('lesson-' + lesson);
+  container.querySelectorAll('.confidence-btn').forEach(btn => btn.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  const resp = document.getElementById('conf-resp-' + lesson);
+  resp.style.display = 'block';
+  resp.textContent = confMessages[level];
+  markComplete(lesson);
+}
+
+function markComplete(lesson) {
+  if (state.quizSubmitted[lesson] && state.confidence[lesson]) {
+    state.completed[lesson] = true;
+    const navBtn = document.querySelectorAll('.lesson-nav-btn')[lesson];
+    navBtn.classList.add('completed');
+    navBtn.classList.remove('active');
+  }
+}
+
+// Sort activity
+const sortAnswers = {
+  0: { correct: 'fact',      msg: '✓ Fact — this is a verifiable claim found in the annual financial report.' },
+  1: { correct: 'opinion',   msg: '✓ Opinion — "should" is the signal. This is a value judgment about what action to take.' },
+  2: { correct: 'inference', msg: '✓ Inference — a reasonable conclusion drawn from the deficit, but not a confirmed fact.' },
+  3: { correct: 'opinion',   msg: '✓ Opinion — "most urgent" is a value judgment. Others might rank different issues as more pressing.' }
+};
+
+function sortAnswer(idx, chosen, isCorrect) {
+  const stEl = document.getElementById('ss-' + idx);
+  stEl.querySelectorAll('.sort-btn').forEach(b => {
+    b.classList.remove('selected-fact','selected-opinion','selected-inference');
+  });
+  event.currentTarget.classList.add('selected-' + chosen);
+  const res = document.getElementById('sr-' + idx);
+  res.classList.add('show');
+  if (isCorrect) {
+    res.className = 'sort-result show correct';
+    res.textContent = sortAnswers[idx].msg;
+  } else {
+    res.className = 'sort-result show partial';
+    res.textContent = 'Not quite. The correct answer is: ' + sortAnswers[idx].correct + '. ' + sortAnswers[idx].msg;
+  }
+}
+
+function completeModule() {
+  document.getElementById('lesson-5').classList.remove('active');
+  document.getElementById('completionBanner').classList.add('show');
+  document.getElementById('finalScore').textContent = state.totalCorrect + '/18';
+  window.scrollTo({top:0, behavior:'smooth'});
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressText').textContent = 'Module Complete ✦';
+}
+
+updateProgress();
+</script>
+</body>
+</html>
